@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_flash.h
 * @author             MCU Ecosystem Development Team
-* @brief              FLASH STD¿âÇı¶¯Í·ÎÄ¼ş¡£
-*                     Ìá¹©FLASHÏà¹ØµÄSTD¿â²Ù×÷º¯ÊıÉùÃ÷¡¢Êı¾İÀàĞÍÒÔ¼°³£Á¿µÄ¶¨Òå¡£                         
+* @brief              FLASH STDåº“é©±åŠ¨å¤´æ–‡ä»¶ã€‚
+*                     æä¾›FLASHç›¸å…³çš„STDåº“æ“ä½œå‡½æ•°å£°æ˜ã€æ•°æ®ç±»å‹ä»¥åŠå¸¸é‡çš„å®šä¹‰ã€‚                         
 *
 *
 **************************************************************************************************
@@ -13,7 +13,7 @@
 **************************************************************************************************
 */
 
-/*±ÜÃâÍ·ÎÄ¼şÖØ¸´ÒıÓÃ*/
+/*é¿å…å¤´æ–‡ä»¶é‡å¤å¼•ç”¨*/
 #ifndef CIU32F003_STD_FLASH_H
 #define CIU32F003_STD_FLASH_H
 
@@ -25,7 +25,7 @@
 
 /**
 * @defgroup FLASH FLASH
-* @brief FLASH´æ´¢Æ÷µÄSTD¿âÇı¶¯
+* @brief FLASHå­˜å‚¨å™¨çš„STDåº“é©±åŠ¨
 * @{
 */
 /************************************************************************************************/
@@ -39,85 +39,166 @@
 /*------------------------------------------includes--------------------------------------------*/
 #include "ciu32f003_std_common.h"
 
+
+/*-----------------------------------------type define------------------------------------------*/
+
+/************************************************************************************************/
+/** 
+* @defgroup FLASH_Types FLASH Types
+* @brief    FLASHæ•°æ®ç±»å‹å®šä¹‰
+* @{
+*/
+/************************************************************************************************/
+
+/**
+* @brief  FLASHé€‰é¡¹å­—èŠ‚é…ç½®ç»“æ„ä½“å®šä¹‰
+*/
+typedef struct
+{    
+    uint32_t config_select;          /**< é€‰é¡¹å­—èŠ‚é…ç½®é€‰æ‹©ï¼Œæœªè¢«é€‰ä¸­çš„é€‰é¡¹å­—èŠ‚å°†ä½¿ç”¨å‡ºå‚é»˜è®¤å€¼ï¼Œ
+                                          é€‰ä¸­çš„é€‰é¡¹å­—èŠ‚å°†ä½¿ç”¨é€‰é¡¹å­—èŠ‚é…ç½®ç»“æ„ä½“å¯¹åº”æˆå‘˜å˜é‡çš„å€¼æ›´æ–°
+                                              @arg FLASH_OB_CONFIG_RDP
+                                              @arg FLASH_OB_CONFIG_BOR
+                                              ...
+                                              @arg FLASH_OB_CONFIG_ALL                                          */
+    
+    uint32_t rdp_level;              /**< FLASHè¯»å‡ºä¿æŠ¤ç­‰çº§é€‰æ‹©                               
+                                              @arg FLASH_RDP_LEVEL_0
+                                              @arg FLASH_RDP_LEVEL_1                                            */
+                                   
+    uint32_t bor_enable;             /**< BORä½¿èƒ½æ§åˆ¶
+                                              @arg FLASH_BOR_ENABLE 
+                                              @arg FLASH_BOR_DISABLE                                            */
+    
+    uint32_t bor_level;              /**< BORæ¡£ä½é€‰æ‹©
+                                              @arg FLASH_BOR_LEVEL_0 
+                                              @arg FLASH_BOR_LEVEL_1
+                                              @arg FLASH_BOR_LEVEL_2
+                                              @arg FLASH_BOR_LEVEL_3                                            */
+    
+    uint32_t nrst_swd_mode;          /**< NRST/SWDIOå¼•è„šåŠŸèƒ½é€‰æ‹©
+                                              @arg FLASH_PIN_MODE_NRST_SWD
+                                              @arg FLASH_PIN_MODE_GPIO_SWD
+                                              @arg FLASH_PIN_MODE_SWD_GPIO                                      */
+                                   
+    uint32_t reset_stop;             /**< ä½åŠŸè€—æ¨¡å¼ï¼ˆStopæˆ–Deepstopï¼‰å¤ä½æ§åˆ¶
+                                              @arg FLASH_STOP_RESET_ENABLE
+                                              @arg FLASH_STOP_RESET_DISABLE                                     */
+                                   
+    uint32_t iwdg_stop;              /**< ç‹¬ç«‹çœ‹é—¨ç‹—ä½åŠŸè€—æ¨¡å¼ï¼ˆStopæˆ–Deepstopï¼‰è®¡æ•°å™¨è®¡æ•°æ§åˆ¶
+                                              @arg FLASH_IWDG_STOP_MODE_STOP
+                                              @arg FLASH_IWDG_STOP_MODE_NORMAL                                  */
+                                              
+    uint32_t wrp_config;             /**< FLASHå†™å…¥ä¿æŠ¤åŒºåŸŸé…ç½®ï¼Œå…¶é…ç½®å€¼èŒƒå›´åœ¨0x00~0x3F                        */
+                                   
+}std_flash_option_config_t;
+     
+/**
+* @}
+*/
+     
 /*-------------------------------------------define---------------------------------------------*/
 
 /************************************************************************************************/
 /**
 * @defgroup FLASH_Constants FLASH Constants 
-* @brief  FLASH³£Á¿¶¨Òå¼°ºê¶¨Òå
+* @brief  FLASHå¸¸é‡å®šä¹‰åŠå®å®šä¹‰
 * @{
 *
 */
 /************************************************************************************************/
 
-/* Flash¶ÁÈ¡·ÃÎÊµÈ´ıÖÜÆÚ */      
-#define FLASH_LATENCY_0CLK                FLASH_ACR_LATENCY_0CLK                     /**< µÈ´ıÖÜÆÚ£º0 HCLK         */
-#define FLASH_LATENCY_1CLK                FLASH_ACR_LATENCY_1CLK                     /**< µÈ´ıÖÜÆÚ£º1 HCLK         */ 
+/* Flashè¯»å–è®¿é—®ç­‰å¾…å‘¨æœŸ */      
+#define FLASH_LATENCY_0CLK                FLASH_ACR_LATENCY_0CLK                     /**< ç­‰å¾…å‘¨æœŸï¼š0 HCLK         */
+#define FLASH_LATENCY_1CLK                FLASH_ACR_LATENCY_1CLK                     /**< ç­‰å¾…å‘¨æœŸï¼š1 HCLK         */ 
 
-/* Flash¿ØÖÆ¼Ä´æÆ÷½âËøÃÜÔ¿ */                                                        
-#define FLASH_CR_KEY1                     (0xE57A1A85U)                              /**< Flash¿ØÖÆ¼Ä´æÆ÷½âËøÃÜÔ¿1 */
-#define FLASH_CR_KEY2                     (0x7C6E8391U)                              /**< Flash¿ØÖÆ¼Ä´æÆ÷½âËøÃÜÔ¿2 */
+/* Flashæ§åˆ¶å¯„å­˜å™¨è§£é”å¯†é’¥ */                                                        
+#define FLASH_CR_KEY1                     (0xE57A1A85U)                              /**< Flashæ§åˆ¶å¯„å­˜å™¨è§£é”å¯†é’¥1 */
+#define FLASH_CR_KEY2                     (0x7C6E8391U)                              /**< Flashæ§åˆ¶å¯„å­˜å™¨è§£é”å¯†é’¥2 */
 
-/* FlashÑ¡Ïî×Ö½Ú½âËøÃÜÔ¿ */                                                          
-#define FLASH_OPT_KEY1                    (0x6A894D7BU)                              /**< FlashÑ¡Ïî×Ö½Ú½âËøÃÜÔ¿1   */
-#define FLASH_OPT_KEY2                    (0x7C311F5AU)                              /**< FlashÑ¡Ïî×Ö½Ú½âËøÃÜÔ¿2   */
+/* Flashé€‰é¡¹å­—èŠ‚è§£é”å¯†é’¥ */                                                          
+#define FLASH_OPT_KEY1                    (0x6A894D7BU)                              /**< Flashé€‰é¡¹å­—èŠ‚è§£é”å¯†é’¥1   */
+#define FLASH_OPT_KEY2                    (0x7C311F5AU)                              /**< Flashé€‰é¡¹å­—èŠ‚è§£é”å¯†é’¥2   */
 
-/* Flash²Ù×÷×´Ì¬ */                                                                  
-#define FLASH_FLAG_EOP                    FLASH_SR_EOP                               /**< Flash²Ù×÷Íê³É±êÖ¾              */
-#define FLASH_FLAG_BSY                    FLASH_SR_BSY                               /**< Flash²Ù×÷×´Ì¬±êÖ¾              */
-#define FLASH_FLAG_OPTVERR                FLASH_SR_OPTVERR                           /**< Flash option bytesĞ£Ñé´íÎó±êÖ¾ */
-#define FLASH_FLAG_WRPERR                 FLASH_SR_WRPERR                            /**< FlashĞ´±£»¤´íÎó±êÖ¾            */
+/* Flashæ“ä½œçŠ¶æ€ */                                                                  
+#define FLASH_FLAG_EOP                    FLASH_SR_EOP                               /**< Flashæ“ä½œå®Œæˆæ ‡å¿—              */
+#define FLASH_FLAG_BSY                    FLASH_SR_BSY                               /**< Flashæ“ä½œçŠ¶æ€æ ‡å¿—              */
+#define FLASH_FLAG_OPTVERR                FLASH_SR_OPTVERR                           /**< Flash option bytesæ ¡éªŒé”™è¯¯æ ‡å¿— */
+#define FLASH_FLAG_WRPERR                 FLASH_SR_WRPERR                            /**< Flashå†™ä¿æŠ¤é”™è¯¯æ ‡å¿—            */
 
-/* FlashÖĞ¶ÏÔ´ */                      
-#define FLASH_INTERRUPT_OPERR             FLASH_CR_OPERRIE                           /**< Flash²Ù×÷Òì³£ÖĞ¶Ï        */
-#define FLASH_INTERRUPT_EOP               FLASH_CR_EOPIE                             /**< Flash²Ù×÷Íê³ÉÖĞ¶Ï        */
+/* Flashä¸­æ–­æº */                      
+#define FLASH_INTERRUPT_OPERR             FLASH_CR_OPERRIE                           /**< Flashæ“ä½œå¼‚å¸¸ä¸­æ–­        */
+#define FLASH_INTERRUPT_EOP               FLASH_CR_EOPIE                             /**< Flashæ“ä½œå®Œæˆä¸­æ–­        */
 
-/* Flash²Ù×÷Ä£Ê½ */                                                                  
-#define FLASH_MODE_IDLE                   FLASH_CR_OP_MODE_IDLE                      /**< FlashÍË³ö²Á³ı±à³ÌÄ£Ê½    */
-#define FLASH_MODE_PAGE_ERASE             FLASH_CR_OP_MODE_PAGE_ERASE                /**< FlashÒ³²Á³ıÄ£Ê½          */
-#define FLASH_MODE_MASS_ERASE             FLASH_CR_OP_MODE_MASS_ERASE                /**< FlashÅúÁ¿²Á³ıÄ£Ê½        */
-#define FLASH_MODE_PROGRAM                FLASH_CR_OP_MODE_PROGRAM                   /**< Flash±à³ÌÄ£Ê½            */
+/* Flashæ“ä½œæ¨¡å¼ */                                                                  
+#define FLASH_MODE_IDLE                   FLASH_CR_OP_MODE_IDLE                      /**< Flashé€€å‡ºæ“¦é™¤ç¼–ç¨‹æ¨¡å¼    */
+#define FLASH_MODE_PAGE_ERASE             FLASH_CR_OP_MODE_PAGE_ERASE                /**< Flashé¡µæ“¦é™¤æ¨¡å¼          */
+#define FLASH_MODE_MASS_ERASE             FLASH_CR_OP_MODE_MASS_ERASE                /**< Flashæ‰¹é‡æ“¦é™¤æ¨¡å¼        */
+#define FLASH_MODE_PROGRAM                FLASH_CR_OP_MODE_PROGRAM                   /**< Flashç¼–ç¨‹æ¨¡å¼            */
 
-/* Ñ¡Ïî×Ö½Ú1 Î»ÓòÊ¹ÄÜ */
-#define FLASH_PIN_MODE_MASK               FLASH_OPTR1_NRST_SWD_MODE_MASK             /**< NRST SWDÒı½Å¹¦ÄÜÑ¡Ôñ    */
+/* é€‰é¡¹å­—èŠ‚é…ç½®ç›¸å…³å®å®šä¹‰ */
+/* é€‰é¡¹å­—èŠ‚é…ç½®é€‰æ‹© */
+#define FLASH_OB_CONFIG_RDP               (0x00000001U)                              /**< é€‰é¡¹å­—èŠ‚é€‰æ‹©æ›´æ–°RDPé…ç½®            */
+#define FLASH_OB_CONFIG_BOR               (0x00000002U)                              /**< é€‰é¡¹å­—èŠ‚é€‰æ‹©æ›´æ–°BORé…ç½®            */
+#define FLASH_OB_CONFIG_NRST_SWD          (0x00000004U)                              /**< é€‰é¡¹å­—èŠ‚é€‰æ‹©æ›´æ–°NRST/SWDIOé…ç½®     */
+#define FLASH_OB_CONFIG_RST_STOP          (0x00000008U)                              /**< é€‰é¡¹å­—èŠ‚é€‰æ‹©æ›´æ–°ä½åŠŸè€—å¤ä½é…ç½®     */
+#define FLASH_OB_CONFIG_IWDG_STOP         (0x00000010U)                              /**< é€‰é¡¹å­—èŠ‚é€‰æ‹©æ›´æ–°IWDGä½åŠŸè€—è®¡æ•°é…ç½® */
+#define FLASH_OB_CONFIG_WRP               (0x00000020U)                              /**< é€‰é¡¹å­—èŠ‚é€‰æ‹©æ›´æ–°WRPé…ç½®            */
+#define FLASH_OB_CONFIG_ALL               (0x0000003FU)                              /**< é€‰é¡¹å­—èŠ‚é€‰æ‹©å…¨éƒ¨æ›´æ–°               */
+
+/* é€‰é¡¹å­—èŠ‚1é…ç½®å‚æ•° */
+#define FLASH_PIN_MODE_MASK               FLASH_OPTR1_NRST_SWD_MODE_MASK             /**< NRST SWDå¼•è„šåŠŸèƒ½é€‰æ‹©    */
 #define FLASH_PIN_MODE_NRST_SWD           FLASH_OPTR1_NRST_SWD_MODE_0                /**< PC0: NRST  PB6: SWDIO   */
 #define FLASH_PIN_MODE_GPIO_SWD           FLASH_OPTR1_NRST_SWD_MODE_2                /**< PC0: GPIO  PB6: SWDIO   */
 #define FLASH_PIN_MODE_SWD_GPIO           FLASH_OPTR1_NRST_SWD_MODE_3                /**< PC0: SWDIO PB6: GPIO    */
 
-#define FLASH_BOR_DISABLE                 (0x00000000U)                              /**< BOR½ûÖ¹                             */
-#define FLASH_BOR_ENABLE                  FLASH_OPTR1_BOR_EN                         /**< BORÊ¹ÄÜ                             */
+#define FLASH_BOR_DISABLE                 (0x00000000U)                              /**< BORç¦æ­¢                             */
+#define FLASH_BOR_ENABLE                  FLASH_OPTR1_BOR_EN                         /**< BORä½¿èƒ½                             */
 
-#define FLASH_BOR_LEVEL_0                 FLASH_OPTR1_BOR_LEVEL_0                    /**< BOR¼ì²âµçÑ¹ÉÏÉı/ÏÂ½µãĞÖµ£º2.0/1.9V  */
-#define FLASH_BOR_LEVEL_1                 FLASH_OPTR1_BOR_LEVEL_1                    /**< BOR¼ì²âµçÑ¹ÉÏÉı/ÏÂ½µãĞÖµ£º2.4/2.3V  */
-#define FLASH_BOR_LEVEL_2                 FLASH_OPTR1_BOR_LEVEL_2                    /**< BOR¼ì²âµçÑ¹ÉÏÉı/ÏÂ½µãĞÖµ£º2.8/2.7V  */
-#define FLASH_BOR_LEVEL_3                 FLASH_OPTR1_BOR_LEVEL_3                    /**< BOR¼ì²âµçÑ¹ÉÏÉı/ÏÂ½µãĞÖµ£º3.2/3.1V  */
+#define FLASH_BOR_LEVEL_0                 FLASH_OPTR1_BOR_LEVEL_0                    /**< BORæ£€æµ‹ç”µå‹ä¸Šå‡/ä¸‹é™é˜ˆå€¼ï¼š2.0/1.9V  */
+#define FLASH_BOR_LEVEL_1                 FLASH_OPTR1_BOR_LEVEL_1                    /**< BORæ£€æµ‹ç”µå‹ä¸Šå‡/ä¸‹é™é˜ˆå€¼ï¼š2.4/2.3V  */
+#define FLASH_BOR_LEVEL_2                 FLASH_OPTR1_BOR_LEVEL_2                    /**< BORæ£€æµ‹ç”µå‹ä¸Šå‡/ä¸‹é™é˜ˆå€¼ï¼š2.8/2.7V  */
+#define FLASH_BOR_LEVEL_3                 FLASH_OPTR1_BOR_LEVEL_3                    /**< BORæ£€æµ‹ç”µå‹ä¸Šå‡/ä¸‹é™é˜ˆå€¼ï¼š3.2/3.1V  */
 
-#define FLASH_RDP_LEVEL_MASK              FLASH_OPTR1_RDPRP_MASK                     /**< RDPÅäÖÃÓò       */
-#define FLASH_RDP_LEVEL_0                 (0x00000000U)                              /**< RDP±£»¤µÈ¼¶0    */
-#define FLASH_RDP_LEVEL_1                 (0x00000001U)                              /**< RDP±£»¤µÈ¼¶1    */
+#define FLASH_RDP_LEVEL_MASK              FLASH_OPTR1_RDPRP_MASK                     /**< RDPé…ç½®åŸŸ       */
+#define FLASH_RDP_LEVEL_0                 (0x00000000U)                              /**< RDPä¿æŠ¤ç­‰çº§0    */
+#define FLASH_RDP_LEVEL_1                 (0x00000001U)                              /**< RDPä¿æŠ¤ç­‰çº§1    */
 
-/* Ñ¡Ïî×Ö½Ú2 Î»ÓòÊ¹ÄÜ */
-#define FLASH_IWDG_STOP_MODE_STOP         (0x00000000U)                              /**< IWDGÔÚStopÄ£Ê½ÏÂÍ£Ö¹¼ÆÊı                       */
-#define FLASH_IWDG_STOP_MODE_NORMAL       FLASH_OPTR2_IWDG_STOP                      /**< IWDGÔÚStopÄ£Ê½ÏÂÕı³£¼ÆÊı                       */
+/* é€‰é¡¹å­—èŠ‚2é…ç½®å‚æ•° */
+#define FLASH_IWDG_STOP_MODE_STOP         (0x00000000U)                              /**< IWDGåœ¨Stopæ¨¡å¼ä¸‹åœæ­¢è®¡æ•°                       */
+#define FLASH_IWDG_STOP_MODE_NORMAL       FLASH_OPTR2_IWDG_STOP                      /**< IWDGåœ¨Stopæ¨¡å¼ä¸‹æ­£å¸¸è®¡æ•°                       */
 
-#define FLASH_STOP_RESET_ENABLE           (0x00000000U)                              /**< Ö´ĞĞ½øÈëStopÄ£Ê½²Ù×÷£¬²»½øÈëStop£¬²úÉú¸´Î»     */
-#define FLASH_STOP_RESET_DISABLE          FLASH_OPTR2_RST_STOP                       /**< Ö´ĞĞ½øÈëStopÄ£Ê½²Ù×÷£¬Õı³£½øÈëStop£¬²»²úÉú¸´Î» */
+#define FLASH_STOP_RESET_ENABLE           (0x00000000U)                              /**< æ‰§è¡Œè¿›å…¥Stopæ¨¡å¼æ“ä½œï¼Œä¸è¿›å…¥Stopï¼Œäº§ç”Ÿå¤ä½     */
+#define FLASH_STOP_RESET_DISABLE          FLASH_OPTR2_RST_STOP                       /**< æ‰§è¡Œè¿›å…¥Stopæ¨¡å¼æ“ä½œï¼Œæ­£å¸¸è¿›å…¥Stopï¼Œä¸äº§ç”Ÿå¤ä½ */
 
-/* Ğ´±£»¤ÇøÓòÅäÖÃ */
-#define FLASH_WRP_AREA_0                  (0x0000003EU)                              /**< Ğ´±£»¤ÇøÓò£º0x00000000U ~ 0x00000FFF */
-#define FLASH_WRP_AREA_1                  (0x0000003DU)                              /**< Ğ´±£»¤ÇøÓò£º0x00001000U ~ 0x00001FFF */
-#define FLASH_WRP_AREA_2                  (0x0000003BU)                              /**< Ğ´±£»¤ÇøÓò£º0x00002000U ~ 0x00002FFF */
-#define FLASH_WRP_AREA_3                  (0x00000037U)                              /**< Ğ´±£»¤ÇøÓò£º0x00003000U ~ 0x00003FFF */
-#define FLASH_WRP_AREA_4                  (0x0000002FU)                              /**< Ğ´±£»¤ÇøÓò£º0x00004000U ~ 0x00004FFF */
-#define FLASH_WRP_AREA_5                  (0x0000001FU)                              /**< Ğ´±£»¤ÇøÓò£º0x00005000U ~ 0x00005FFF */
-#define FLASH_WRP_AREA_ALL                (0x00000000U)                              /**< User flashÇøÓòÈ«²¿Ğ´±£»¤             */
-#define FLASH_WRP_AREA_NONE               (0x0000003FU)                              /**< User flashÇøÓòĞ´±£»¤¹Ø±Õ             */
+/* é€‰é¡¹å­—èŠ‚3é…ç½®å‚æ•° */
+#define FLASH_WRP_AREA_0                  (0x0000003EU)                              /**< å†™ä¿æŠ¤åŒºåŸŸï¼š0x00000000U ~ 0x00000FFF */
+#define FLASH_WRP_AREA_1                  (0x0000003DU)                              /**< å†™ä¿æŠ¤åŒºåŸŸï¼š0x00001000U ~ 0x00001FFF */
+#define FLASH_WRP_AREA_2                  (0x0000003BU)                              /**< å†™ä¿æŠ¤åŒºåŸŸï¼š0x00002000U ~ 0x00002FFF */
+#define FLASH_WRP_AREA_3                  (0x00000037U)                              /**< å†™ä¿æŠ¤åŒºåŸŸï¼š0x00003000U ~ 0x00003FFF */
+#define FLASH_WRP_AREA_4                  (0x0000002FU)                              /**< å†™ä¿æŠ¤åŒºåŸŸï¼š0x00004000U ~ 0x00004FFF */
+#define FLASH_WRP_AREA_5                  (0x0000001FU)                              /**< å†™ä¿æŠ¤åŒºåŸŸï¼š0x00005000U ~ 0x00005FFF */
+#define FLASH_WRP_AREA_ALL                (0x00000000U)                              /**< User flashåŒºåŸŸå…¨éƒ¨å†™ä¿æŠ¤             */
+#define FLASH_WRP_AREA_NONE               (0x0000003FU)                              /**< User flashåŒºåŸŸå†™ä¿æŠ¤å…³é—­             */
+
+/* é€‰é¡¹å­—èŠ‚æ•°é‡ */
+#define FLASH_OB_NUM                      (3U)                                       /**< é€‰é¡¹å­—èŠ‚ä¸ªæ•°            */
+
+/* é€‰æ‹©å­—èŠ‚å‡ºå‚é»˜è®¤å€¼ */
+#define FLASH_OB1_DEFULT_VALUE            (0xFF5500AAU)                              /**< é€‰é¡¹å­—èŠ‚1å‡ºå‚é»˜è®¤å€¼     */
+#define FLASH_OB2_DEFULT_VALUE            (0xFFDE0021U)                              /**< é€‰é¡¹å­—èŠ‚2å‡ºå‚é»˜è®¤å€¼     */
+#define FLASH_OB3_DEFULT_VALUE            (0xFFC0003FU)                              /**< é€‰é¡¹å­—èŠ‚3å‡ºå‚é»˜è®¤å€¼     */
+
+/* é€‰é¡¹å­—èŠ‚RDPç¼–ç¨‹ä½åŸŸåŠç¼–ç¨‹å€¼ */
+#define FLASH_OB_CONFIG_RDP_MASK          (0x000000FFU)                              /**< é€‰é¡¹å­—èŠ‚RDPRPé…ç½®æ©ç    */
+#define FLASH_OB_CONFIG_RDP_RDP0          (0x000000AAU)                              /**< é€‰é¡¹å­—èŠ‚RDPRPé…ç½®ä¸ºRDP0 */
+#define FLASH_OB_CONFIG_RDP_RDP1          (0x00000055U)                              /**< é€‰é¡¹å­—èŠ‚RDPRPé…ç½®ä¸ºRDP1 */
 
 
 /**
-* @brief  ¼ÆËãOption BytesÇø±à³ÌÖµ
-* @param  VAL OBÇøµÍ16Î»Ô¤ÆÚ±à³ÌÖµ 
-* @retval OB¸ß16Î»È¡·´ºóÓëµÍ16Î»Ïà¼ÓµÄÖµ
+* @brief  è®¡ç®—Option BytesåŒºç¼–ç¨‹å€¼
+* @param  VAL OBåŒºä½16ä½é¢„æœŸç¼–ç¨‹å€¼ 
+* @retval OBé«˜16ä½å–ååä¸ä½16ä½ç›¸åŠ çš„å€¼
 */
 #define FLASH_OB_DATA_CALCULATE(VAL)      ((uint32_t)(((VAL) & 0xFFFF) | ((~(VAL & 0xFFFF)) << 16)))
 
@@ -130,16 +211,16 @@
 /************************************************************************************************/
 /**
 * @defgroup FLASH_External_Functions FLASH External Functions
-* @brief    FLASH¶ÔÍâº¯Êı
+* @brief    FLASHå¯¹å¤–å‡½æ•°
 * @{
 *
 */
 /************************************************************************************************/
 
 /** 
-* @brief  Flash¿ØÖÆ¼Ä´æÆ÷½âËø
-* @note   FLASH¿ØÖÆÆ÷½âËøºó²Ù×÷CRKEY¼Ä´æÆ÷»á²úÉú×ÜÏß´íÎó²¢Ëø¶¨Ğ´±£»¤£¬Ö±ÖÁÏÂ´Î¸´Î»
-* @retval ÎŞ
+* @brief  Flashæ§åˆ¶å¯„å­˜å™¨è§£é”
+* @note   FLASHæ§åˆ¶å™¨è§£é”åæ“ä½œCRKEYå¯„å­˜å™¨ä¼šäº§ç”Ÿæ€»çº¿é”™è¯¯å¹¶é”å®šå†™ä¿æŠ¤ï¼Œç›´è‡³ä¸‹æ¬¡å¤ä½
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_unlock(void)
 {
@@ -151,8 +232,8 @@ __STATIC_INLINE void std_flash_unlock(void)
 }
 
 /** 
-* @brief  Flash¿ØÖÆ¼Ä´æÆ÷Ëø¶¨
-* @retval ÎŞ
+* @brief  Flashæ§åˆ¶å¯„å­˜å™¨é”å®š
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_lock(void)
 {
@@ -160,10 +241,10 @@ __STATIC_INLINE void std_flash_lock(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡FlashËø¶¨×´Ì¬
-* @retval uint32_t FlashËø¶¨×´Ì¬
-*             @arg ·Ç0: Ëø¶¨
-*             @arg 0:   Î´Ëø¶¨
+* @brief  è¯»å–Flashé”å®šçŠ¶æ€
+* @retval uint32_t Flashé”å®šçŠ¶æ€
+*             @arg é0: é”å®š
+*             @arg 0:   æœªé”å®š
 */
 __STATIC_INLINE uint32_t std_flash_get_lock_status(void)
 {
@@ -171,9 +252,9 @@ __STATIC_INLINE uint32_t std_flash_get_lock_status(void)
 }
 
 /** 
-* @brief  FlashÑ¡Ïî×Ö½Ú½âËø
-* @note   FLASH Ñ¡Ïî×Ö½Ú½âËøºó²Ù×÷OPTKEY¼Ä´æÆ÷»á²úÉú×ÜÏß´íÎó²¢Ëø¶¨Ğ´±£»¤£¬Ö±ÖÁÏÂ´Î¸´Î»
-* @retval ÎŞ
+* @brief  Flashé€‰é¡¹å­—èŠ‚è§£é”
+* @note   FLASH é€‰é¡¹å­—èŠ‚è§£é”åæ“ä½œOPTKEYå¯„å­˜å™¨ä¼šäº§ç”Ÿæ€»çº¿é”™è¯¯å¹¶é”å®šå†™ä¿æŠ¤ï¼Œç›´è‡³ä¸‹æ¬¡å¤ä½
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_opt_unlock(void)
 {
@@ -185,8 +266,8 @@ __STATIC_INLINE void std_flash_opt_unlock(void)
 }
 
 /** 
-* @brief  FlashÑ¡Ïî×Ö½ÚËø¶¨
-* @retval ÎŞ
+* @brief  Flashé€‰é¡¹å­—èŠ‚é”å®š
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_opt_lock(void)
 {
@@ -194,10 +275,10 @@ __STATIC_INLINE void std_flash_opt_lock(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡FlashÑ¡Ïî×Ö½ÚËø¶¨×´Ì¬
-* @retval uint32_t FlashÑ¡Ïî×Ö½ÚËø¶¨×´Ì¬
-*             @arg ·Ç0: Ëø¶¨
-*             @arg 0:   Î´Ëø¶¨
+* @brief  è¯»å–Flashé€‰é¡¹å­—èŠ‚é”å®šçŠ¶æ€
+* @retval uint32_t Flashé€‰é¡¹å­—èŠ‚é”å®šçŠ¶æ€
+*             @arg é0: é”å®š
+*             @arg 0:   æœªé”å®š
 */
 __STATIC_INLINE uint32_t std_flash_get_opt_lock_status(void)
 {
@@ -205,11 +286,11 @@ __STATIC_INLINE uint32_t std_flash_get_opt_lock_status(void)
 }
 
 /**
-* @brief  ÉèÖÃFLASH¶ÁÈ¡·ÃÎÊµÈ´ıÖÜÆÚ
-* @param  latency ¶ÁÈ¡·ÃÎÊµÈ´ıÖÜÆÚ
+* @brief  è®¾ç½®FLASHè¯»å–è®¿é—®ç­‰å¾…å‘¨æœŸ
+* @param  latency è¯»å–è®¿é—®ç­‰å¾…å‘¨æœŸ
 *             @arg  FLASH_LATENCY_0CLK
 *             @arg  FLASH_LATENCY_1CLK
-* @retval ÎŞ
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_set_latency(uint32_t latency)
 {
@@ -217,8 +298,8 @@ __STATIC_INLINE void std_flash_set_latency(uint32_t latency)
 } 
 
 /**
-* @brief  ¶ÁÈ¡FLASH¶ÁÈ¡·ÃÎÊµÈ´ıÖÜÆÚ
-* @retval uint32_t ¶ÁÈ¡·ÃÎÊµÈ´ıÖÜÆÚ
+* @brief  è¯»å–FLASHè¯»å–è®¿é—®ç­‰å¾…å‘¨æœŸ
+* @retval uint32_t è¯»å–è®¿é—®ç­‰å¾…å‘¨æœŸ
 *             @arg  FLASH_LATENCY_0CLK
 *             @arg  FLASH_LATENCY_1CLK
 */
@@ -228,11 +309,11 @@ __STATIC_INLINE uint32_t std_flash_get_latency(void)
 } 
 
 /**
-* @brief  Ê¹ÄÜFLASHÖĞ¶Ï
-* @param  interrupts ÖĞ¶ÏÔ´
+* @brief  ä½¿èƒ½FLASHä¸­æ–­
+* @param  interrupts ä¸­æ–­æº
 *             @arg FLASH_INTERRUPT_OPERR
 *             @arg FLASH_INTERRUPT_EOP 
-* @retval ÎŞ
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_interrupt_enable(uint32_t interrupts)
 {
@@ -240,11 +321,11 @@ __STATIC_INLINE void std_flash_interrupt_enable(uint32_t interrupts)
 }
 
 /**
-* @brief  ½ûÖ¹FLASHÖĞ¶Ï
-* @param  interrupts ÖĞ¶ÏÔ´
+* @brief  ç¦æ­¢FLASHä¸­æ–­
+* @param  interrupts ä¸­æ–­æº
 *             @arg FLASH_INTERRUPT_OPERR
 *             @arg FLASH_INTERRUPT_EOP 
-* @retval ÎŞ
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_interrupt_disable(uint32_t interrupts)
 {
@@ -252,13 +333,13 @@ __STATIC_INLINE void std_flash_interrupt_disable(uint32_t interrupts)
 }
 
 /**
-* @brief  ¶ÁÈ¡FLASHÖĞ¶ÏÊ¹ÄÜ×´Ì¬
-* @param  interrupt ÖĞ¶ÏÔ´
+* @brief  è¯»å–FLASHä¸­æ–­ä½¿èƒ½çŠ¶æ€
+* @param  interrupt ä¸­æ–­æº
 *             @arg FLASH_INTERRUPT_OPERR
 *             @arg FLASH_INTERRUPT_EOP 
-* @retval uint32_t FLASHÖĞ¶ÏÊ¹ÄÜ×´Ì¬
-*             @arg ·Ç0: Ê¹ÄÜ
-*             @arg 0:   ½ûÖ¹
+* @retval uint32_t FLASHä¸­æ–­ä½¿èƒ½çŠ¶æ€
+*             @arg é0: ä½¿èƒ½
+*             @arg 0:   ç¦æ­¢
 */
 __STATIC_INLINE uint32_t std_flash_get_interrupt_enable(uint32_t interrupt)
 {
@@ -266,15 +347,15 @@ __STATIC_INLINE uint32_t std_flash_get_interrupt_enable(uint32_t interrupt)
 }
 
 /**
-* @brief  ¶ÁÈ¡FLASH×´Ì¬±êÖ¾
-* @param  flag ×´Ì¬±êÖ¾
+* @brief  è¯»å–FLASHçŠ¶æ€æ ‡å¿—
+* @param  flag çŠ¶æ€æ ‡å¿—
 *             @arg FLASH_FLAG_EOP
 *             @arg FLASH_FLAG_BSY
 *             @arg FLASH_FLAG_OPTVERR
 *             @arg FLASH_FLAG_WRPERR
-* @retval uint32_t FLASH×´Ì¬±êÖ¾
-*             @arg ·Ç0: ±êÖ¾Î»ÖÃÎ»
-*             @arg 0:   ±êÖ¾Î»Çå³ı
+* @retval uint32_t FLASHçŠ¶æ€æ ‡å¿—
+*             @arg é0: æ ‡å¿—ä½ç½®ä½
+*             @arg 0:   æ ‡å¿—ä½æ¸…é™¤
 */
 __STATIC_INLINE uint32_t std_flash_get_flag(uint32_t flag)
 {
@@ -282,11 +363,11 @@ __STATIC_INLINE uint32_t std_flash_get_flag(uint32_t flag)
 }
 
 /**
-* @brief  Çå³ıFLASH×´Ì¬±êÖ¾
-* @param  flags ×´Ì¬±êÖ¾×éºÏ
+* @brief  æ¸…é™¤FLASHçŠ¶æ€æ ‡å¿—
+* @param  flags çŠ¶æ€æ ‡å¿—ç»„åˆ
 *             @arg FLASH_FLAG_EOP
 *             @arg FLASH_FLAG_WRPERR
-* @retval ÎŞ
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_clear_flag(uint32_t flags)
 {
@@ -294,13 +375,13 @@ __STATIC_INLINE void std_flash_clear_flag(uint32_t flags)
 }
 
 /** 
-* @brief  ÉèÖÃFlash²Ù×÷Ä£Ê½
-* @param  mode ²Á³ıÄ£Ê½
+* @brief  è®¾ç½®Flashæ“ä½œæ¨¡å¼
+* @param  mode æ“¦é™¤æ¨¡å¼
 *             @arg FLASH_MODE_IDLE
 *             @arg FLASH_MODE_PAGE_ERASE
 *             @arg FLASH_MODE_MASS_ERASE
 *             @arg FLASH_MODE_PROGRAM
-* @retval ÎŞ
+* @retval æ— 
 */
 __STATIC_INLINE void std_flash_set_operate_mode(uint32_t mode)
 {
@@ -308,8 +389,8 @@ __STATIC_INLINE void std_flash_set_operate_mode(uint32_t mode)
 }
 
 /**
-* @brief  ¶ÁÈ¡Ñ¡Ïî×Ö½Ú¼Ä´æÆ÷1
-* @retval uint32_t Ñ¡Ïî×Ö½Ú1¼ÓÔØÖµ
+* @brief  è¯»å–é€‰é¡¹å­—èŠ‚å¯„å­˜å™¨1
+* @retval uint32_t é€‰é¡¹å­—èŠ‚1åŠ è½½å€¼
 */
 __STATIC_INLINE uint32_t std_flash_get_opt1(void)
 {
@@ -317,8 +398,8 @@ __STATIC_INLINE uint32_t std_flash_get_opt1(void)
 }
 
 /**
-* @brief  ¶ÁÈ¡FLASH¶Á±£»¤µÈ¼¶
-* @retval uint32_t FLASH¶Á±£»¤µÈ¼¶
+* @brief  è¯»å–FLASHè¯»ä¿æŠ¤ç­‰çº§
+* @retval uint32_t FLASHè¯»ä¿æŠ¤ç­‰çº§
 *             @arg FLASH_RDP_LEVEL_0
 *             @arg FLASH_RDP_LEVEL_1
 */
@@ -328,8 +409,8 @@ __STATIC_INLINE uint32_t std_flash_get_rdp_level(void)
 }
 
 /**
-* @brief  ¶ÁÈ¡BORãĞÖµµÈ¼¶
-* @retval uint32_t FLASH¶Á±£»¤µÈ¼¶
+* @brief  è¯»å–BORé˜ˆå€¼ç­‰çº§
+* @retval uint32_t FLASHè¯»ä¿æŠ¤ç­‰çº§
 *             @arg FLASH_BOR_LEVEL_0
 *             @arg ...
 *             @arg FLASH_BOR_LEVEL_3
@@ -340,8 +421,8 @@ __STATIC_INLINE uint32_t std_flash_get_bor_level(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡BORÊ¹ÄÜ¿ØÖÆ
-* @retval uint32_t BORÊ¹ÄÜ¿ØÖÆ
+* @brief  è¯»å–BORä½¿èƒ½æ§åˆ¶
+* @retval uint32_t BORä½¿èƒ½æ§åˆ¶
 *             @arg FLASH_BOR_DISABLE
 *             @arg FLASH_BOR_ENABLE
 */
@@ -351,8 +432,8 @@ __STATIC_INLINE uint32_t std_flash_get_bor_en(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡NRST SWDÒı½Å¹¦ÄÜ¿ØÖÆ
-* @retval uint32_t NRST SWDÒı½Å¹¦ÄÜÑ¡Ôñ
+* @brief  è¯»å–NRST SWDå¼•è„šåŠŸèƒ½æ§åˆ¶
+* @retval uint32_t NRST SWDå¼•è„šåŠŸèƒ½é€‰æ‹©
 *             @arg FLASH_PIN_MODE_NRST_SWD
 *             @arg FLASH_PIN_MODE_GPIO_SWD
 *             @arg FLASH_PIN_MODE_SWD_GPIO
@@ -363,8 +444,8 @@ __STATIC_INLINE uint32_t std_flash_get_nrst_swd_mode(void)
 }
 
 /**
-* @brief  ¶ÁÈ¡Ñ¡Ïî×Ö½Ú¼Ä´æÆ÷2
-* @retval uint32_t Ñ¡Ïî×Ö½Ú2¼ÓÔØÖµ
+* @brief  è¯»å–é€‰é¡¹å­—èŠ‚å¯„å­˜å™¨2
+* @retval uint32_t é€‰é¡¹å­—èŠ‚2åŠ è½½å€¼
 */
 __STATIC_INLINE uint32_t std_flash_get_opt2(void)
 {
@@ -372,8 +453,8 @@ __STATIC_INLINE uint32_t std_flash_get_opt2(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡IWDGÔÚSTOPÄ£Ê½ÏÂ¼ÆÊıÆ÷Í£Ö¹¿ØÖÆ
-* @retval uint32_t IWDG_STOPÉèÖÃ
+* @brief  è¯»å–IWDGåœ¨STOPæ¨¡å¼ä¸‹è®¡æ•°å™¨åœæ­¢æ§åˆ¶
+* @retval uint32_t IWDG_STOPè®¾ç½®
 *             @arg FLASH_IWDG_STOP_MODE_STOP
 *             @arg FLASH_IWDG_STOP_MODE_NORMAL
 */
@@ -383,8 +464,8 @@ __STATIC_INLINE uint32_t std_flash_get_iwdg_stop(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡½øÈëSTOPÄ£Ê½ÊÇ·ñ¸´Î»µÄÅäÖÃ
-* @retval uint32_t RST_STOPÉèÖÃ
+* @brief  è¯»å–è¿›å…¥STOPæ¨¡å¼æ˜¯å¦å¤ä½çš„é…ç½®
+* @retval uint32_t RST_STOPè®¾ç½®
 *             @arg FLASH_STOP_RESET_ENABLE
 *             @arg FLASH_STOP_RESET_DISABLE
 */
@@ -394,8 +475,8 @@ __STATIC_INLINE uint32_t std_flash_get_rst_stop(void)
 }
 
 /**
-* @brief  ¶ÁÈ¡Ğ´±£»¤ÇøÅäÖÃÖµ
-* @retval uint32_t Ğ´±£»¤ÇøÅäÖÃÖµ
+* @brief  è¯»å–å†™ä¿æŠ¤åŒºé…ç½®å€¼
+* @retval uint32_t å†™ä¿æŠ¤åŒºé…ç½®å€¼
 */
 __STATIC_INLINE uint32_t std_flash_get_wrp(void)
 {
@@ -403,8 +484,8 @@ __STATIC_INLINE uint32_t std_flash_get_wrp(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡Ğ¾Æ¬ĞÍºÅ
-* @retval uint32_t Ğ¾Æ¬ĞÍºÅ
+* @brief  è¯»å–èŠ¯ç‰‡å‹å·
+* @retval uint32_t èŠ¯ç‰‡å‹å·
 */
 __STATIC_INLINE uint32_t std_flash_get_device_type(void)
 {
@@ -412,8 +493,8 @@ __STATIC_INLINE uint32_t std_flash_get_device_type(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡Flash¿Õ¼ä´óĞ¡
-* @retval uint32_t Flash¿Õ¼ä´óĞ¡
+* @brief  è¯»å–Flashç©ºé—´å¤§å°
+* @retval uint32_t Flashç©ºé—´å¤§å°
 */
 __STATIC_INLINE uint32_t std_flash_get_flash_size(void)
 {
@@ -421,8 +502,8 @@ __STATIC_INLINE uint32_t std_flash_get_flash_size(void)
 }
 
 /** 
-* @brief  ¶ÁÈ¡SRAM¿Õ¼ä´óĞ¡
-* @retval uint32_t SRAM¿Õ¼ä´óĞ¡
+* @brief  è¯»å–SRAMç©ºé—´å¤§å°
+* @retval uint32_t SRAMç©ºé—´å¤§å°
 */
 __STATIC_INLINE uint32_t std_flash_get_sram_size(void)
 {
@@ -432,6 +513,7 @@ __STATIC_INLINE uint32_t std_flash_get_sram_size(void)
 
 std_status_t std_flash_erase(uint32_t mode, uint32_t address);
 std_status_t std_flash_word_program(uint32_t address, uint32_t prog_data);
+std_status_t std_flash_option_bytes_config(std_flash_option_config_t *flash_option_config);
 
 /** 
 * @} 

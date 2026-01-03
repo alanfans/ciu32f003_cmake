@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_i2c.h
 * @author             MCU Ecosystem Development Team
-* @brief              I2C STD¿âÇı¶¯Í·ÎÄ¼ş¡£
-*                     Ìá¹©I2CÏà¹ØµÄSTD¿â²Ù×÷º¯ÊıÉùÃ÷¡¢Êı¾İÀàĞÍÒÔ¼°³£Á¿µÄ¶¨Òå¡£                         
+* @brief              I2C STDåº“é©±åŠ¨å¤´æ–‡ä»¶ã€‚
+*                     æä¾›I2Cç›¸å…³çš„STDåº“æ“ä½œå‡½æ•°å£°æ˜ã€æ•°æ®ç±»å‹ä»¥åŠå¸¸é‡çš„å®šä¹‰ã€‚                         
 *                     
 *
 **************************************************************************************************
@@ -13,7 +13,7 @@
 **************************************************************************************************
 */
 
-/* ±ÜÃâÍ·ÎÄ¼şÖØ¸´ÒıÓÃ */
+/* é¿å…å¤´æ–‡ä»¶é‡å¤å¼•ç”¨ */
 #ifndef CIU32F003_STD_I2C_H
 #define CIU32F003_STD_I2C_H
 
@@ -25,7 +25,7 @@
 
 /**
 * @defgroup I2C I2C
-* @brief I2C½Ó¿ÚµÄSTD¿âÇı¶¯
+* @brief I2Cæ¥å£çš„STDåº“é©±åŠ¨
 * @{
 */
 /************************************************************************************************/
@@ -43,60 +43,56 @@
 /************************************************************************************************/
 /**
 * @defgroup I2C_Constants I2C Constants
-* @brief    I2C³£Á¿¶¨Òå¼°ºê¶¨Òå
+* @brief    I2Cå¸¸é‡å®šä¹‰åŠå®å®šä¹‰
 * @{
 *
 */
 /************************************************************************************************/
-/* Êı×ÖÂË²¨Æ÷ÅäÖÃ */
-#define I2C_DIGITALFILTER_DISABLE       I2C_CR1_DNF_DISABLE         /**< Êı×ÖÂË²¨Æ÷½ûÖ¹             */
-#define I2C_DIGITALFILTER_1CLK          I2C_CR1_DNF_1CLK            /**< ÂË³ıĞ¡ÓÚ1¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_2CLK          I2C_CR1_DNF_2CLK            /**< ÂË³ıĞ¡ÓÚ2¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_3CLK          I2C_CR1_DNF_3CLK            /**< ÂË³ıĞ¡ÓÚ3¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_4CLK          I2C_CR1_DNF_4CLK            /**< ÂË³ıĞ¡ÓÚ4¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_5CLK          I2C_CR1_DNF_5CLK            /**< ÂË³ıĞ¡ÓÚ5¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_6CLK          I2C_CR1_DNF_6CLK            /**< ÂË³ıĞ¡ÓÚ6¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_7CLK          I2C_CR1_DNF_7CLK            /**< ÂË³ıĞ¡ÓÚ7¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_8CLK          I2C_CR1_DNF_8CLK            /**< ÂË³ıĞ¡ÓÚ8¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_9CLK          I2C_CR1_DNF_9CLK            /**< ÂË³ıĞ¡ÓÚ9¸öI2C_KCLKµÄÔëÉù  */
-#define I2C_DIGITALFILTER_10CLK         I2C_CR1_DNF_10CLK           /**< ÂË³ıĞ¡ÓÚ10¸öI2C_KCLKµÄÔëÉù */
-#define I2C_DIGITALFILTER_11CLK         I2C_CR1_DNF_11CLK           /**< ÂË³ıĞ¡ÓÚ11¸öI2C_KCLKµÄÔëÉù */
-#define I2C_DIGITALFILTER_12CLK         I2C_CR1_DNF_12CLK           /**< ÂË³ıĞ¡ÓÚ12¸öI2C_KCLKµÄÔëÉù */
-#define I2C_DIGITALFILTER_13CLK         I2C_CR1_DNF_13CLK           /**< ÂË³ıĞ¡ÓÚ13¸öI2C_KCLKµÄÔëÉù */
-#define I2C_DIGITALFILTER_14CLK         I2C_CR1_DNF_14CLK           /**< ÂË³ıĞ¡ÓÚ14¸öI2C_KCLKµÄÔëÉù */
-#define I2C_DIGITALFILTER_15CLK         I2C_CR1_DNF_15CLK           /**< ÂË³ıĞ¡ÓÚ15¸öI2C_KCLKµÄÔëÉù */
+/* æ•°å­—æ»¤æ³¢å™¨é…ç½® */
+#define I2C_DIGITALFILTER_DISABLE       I2C_CR1_DNF_DISABLE         /**< æ•°å­—æ»¤æ³¢å™¨ç¦æ­¢             */
+#define I2C_DIGITALFILTER_1CLK          I2C_CR1_DNF_1CLK            /**< æ»¤é™¤å°äº1ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_2CLK          I2C_CR1_DNF_2CLK            /**< æ»¤é™¤å°äº2ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_3CLK          I2C_CR1_DNF_3CLK            /**< æ»¤é™¤å°äº3ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_4CLK          I2C_CR1_DNF_4CLK            /**< æ»¤é™¤å°äº4ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_5CLK          I2C_CR1_DNF_5CLK            /**< æ»¤é™¤å°äº5ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_6CLK          I2C_CR1_DNF_6CLK            /**< æ»¤é™¤å°äº6ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_7CLK          I2C_CR1_DNF_7CLK            /**< æ»¤é™¤å°äº7ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_8CLK          I2C_CR1_DNF_8CLK            /**< æ»¤é™¤å°äº8ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_9CLK          I2C_CR1_DNF_9CLK            /**< æ»¤é™¤å°äº9ä¸ªI2C_KCLKçš„å™ªå£°  */
+#define I2C_DIGITALFILTER_10CLK         I2C_CR1_DNF_10CLK           /**< æ»¤é™¤å°äº10ä¸ªI2C_KCLKçš„å™ªå£° */
+#define I2C_DIGITALFILTER_11CLK         I2C_CR1_DNF_11CLK           /**< æ»¤é™¤å°äº11ä¸ªI2C_KCLKçš„å™ªå£° */
+#define I2C_DIGITALFILTER_12CLK         I2C_CR1_DNF_12CLK           /**< æ»¤é™¤å°äº12ä¸ªI2C_KCLKçš„å™ªå£° */
+#define I2C_DIGITALFILTER_13CLK         I2C_CR1_DNF_13CLK           /**< æ»¤é™¤å°äº13ä¸ªI2C_KCLKçš„å™ªå£° */
+#define I2C_DIGITALFILTER_14CLK         I2C_CR1_DNF_14CLK           /**< æ»¤é™¤å°äº14ä¸ªI2C_KCLKçš„å™ªå£° */
+#define I2C_DIGITALFILTER_15CLK         I2C_CR1_DNF_15CLK           /**< æ»¤é™¤å°äº15ä¸ªI2C_KCLKçš„å™ªå£° */
 
-/* I2C ÖĞ¶ÏÔ´ÅäÖÃ */
-#define I2C_INTERRUPT_ERR               I2C_CR1_ERRIE               /**< ´íÎóÖĞ¶Ï        */
-#define I2C_INTERRUPT_BUF               I2C_CR1_BUFIE               /**< »º³åÆ÷ÖĞ¶Ï      */
-#define I2C_INTERRUPT_EVT               I2C_CR1_EVTIE               /**< ÊÂ¼şÖĞ¶Ï        */
+/* I2C ä¸­æ–­æºé…ç½® */
+#define I2C_INTERRUPT_ERR               I2C_CR1_ERRIE               /**< é”™è¯¯ä¸­æ–­        */
+#define I2C_INTERRUPT_BUF               I2C_CR1_BUFIE               /**< ç¼“å†²å™¨ä¸­æ–­      */
+#define I2C_INTERRUPT_EVT               I2C_CR1_EVTIE               /**< äº‹ä»¶ä¸­æ–­        */
 
-/* I2C ×´Ì¬±êÖ¾Î» */
-#define I2C_FLAG_TXE                    I2C_ISR_TXE                 /**< ·¢ËÍÊı¾İ¼Ä´æÆ÷Îª¿Õ±êÖ¾    */
-#define I2C_FLAG_TXIS                   I2C_ISR_TXIS                /**< ·¢ËÍÖĞ¶Ï×´Ì¬±êÖ¾          */
-#define I2C_FLAG_RXNE                   I2C_ISR_RXNE                /**< ½ÓÊÕÊı¾İ¼Ä´æÆ÷·Ç¿Õ±êÖ¾    */
-#define I2C_FLAG_ADDR                   I2C_ISR_ADDR                /**< µØÖ·Æ¥Åä±êÖ¾              */
-#define I2C_FLAG_NACK                   I2C_ISR_NACKF               /**< ½ÓÊÕNACK±êÖ¾              */
-#define I2C_FLAG_STOP                   I2C_ISR_STOPF               /**< Í£Ö¹Î»¼ì²â±êÖ¾            */
-#define I2C_FLAG_BERR                   I2C_ISR_BERR                /**< ×ÜÏß´íÎó±êÖ¾              */
-#define I2C_FLAG_OVR                    I2C_ISR_OVR                 /**< Òç³ö±êÖ¾                  */
-#define I2C_FLAG_BUSY                   I2C_ISR_BUSY                /**< ×ÜÏß±»Õ¼ÓÃ±êÖ¾            */
-#define I2C_FLAG_DIR                    I2C_ISR_DIR                 /**< Êı¾İ´«Êä·½Ïò±êÖ¾          */
+/* I2C çŠ¶æ€æ ‡å¿—ä½ */
+#define I2C_FLAG_TXE                    I2C_ISR_TXE                 /**< å‘é€æ•°æ®å¯„å­˜å™¨ä¸ºç©ºæ ‡å¿—    */
+#define I2C_FLAG_TXIS                   I2C_ISR_TXIS                /**< å‘é€ä¸­æ–­çŠ¶æ€æ ‡å¿—          */
+#define I2C_FLAG_RXNE                   I2C_ISR_RXNE                /**< æ¥æ”¶æ•°æ®å¯„å­˜å™¨éç©ºæ ‡å¿—    */
+#define I2C_FLAG_ADDR                   I2C_ISR_ADDR                /**< åœ°å€åŒ¹é…æ ‡å¿—              */
+#define I2C_FLAG_NACK                   I2C_ISR_NACKF               /**< æ¥æ”¶NACKæ ‡å¿—              */
+#define I2C_FLAG_STOP                   I2C_ISR_STOPF               /**< åœæ­¢ä½æ£€æµ‹æ ‡å¿—            */
+#define I2C_FLAG_BERR                   I2C_ISR_BERR                /**< æ€»çº¿é”™è¯¯æ ‡å¿—              */
+#define I2C_FLAG_OVR                    I2C_ISR_OVR                 /**< æº¢å‡ºæ ‡å¿—                  */
+#define I2C_FLAG_BUSY                   I2C_ISR_BUSY                /**< æ€»çº¿è¢«å ç”¨æ ‡å¿—            */
+#define I2C_FLAG_DIR                    I2C_ISR_DIR                 /**< æ•°æ®ä¼ è¾“æ–¹å‘æ ‡å¿—          */
 
-/* I2C Çå³ı×´Ì¬Î» */
-#define I2C_CLEAR_ADDR                  I2C_ICR_ADDRCF              /**< Çå³ıµØÖ·Æ¥Åä±êÖ¾          */
-#define I2C_CLEAR_NACK                  I2C_ICR_NACKCF              /**< Çå³ıNACK±êÖ¾              */
-#define I2C_CLEAR_STOP                  I2C_ICR_STOPCF              /**< Çå³ıÍ£Ö¹Î»¼ì²â±êÖ¾        */
-#define I2C_CLEAR_BERR                  I2C_ICR_BERRCF              /**< Çå³ı×ÜÏß´íÎó±êÖ¾          */
-#define I2C_CLEAR_OVR                   I2C_ICR_OVRCF               /**< Çå³ıÒç³ö±êÖ¾              */
+/* I2C æ¸…é™¤çŠ¶æ€ä½ */
+#define I2C_CLEAR_ADDR                  I2C_ICR_ADDRCF              /**< æ¸…é™¤åœ°å€åŒ¹é…æ ‡å¿—          */
+#define I2C_CLEAR_NACK                  I2C_ICR_NACKCF              /**< æ¸…é™¤NACKæ ‡å¿—              */
+#define I2C_CLEAR_STOP                  I2C_ICR_STOPCF              /**< æ¸…é™¤åœæ­¢ä½æ£€æµ‹æ ‡å¿—        */
+#define I2C_CLEAR_BERR                  I2C_ICR_BERRCF              /**< æ¸…é™¤æ€»çº¿é”™è¯¯æ ‡å¿—          */
+#define I2C_CLEAR_OVR                   I2C_ICR_OVRCF               /**< æ¸…é™¤æº¢å‡ºæ ‡å¿—              */
 
-/* I2C´«Êä·½Ïò */
-#define I2C_DIR_RX                      (0x00000000U)               /**< I2C½ÓÊÕÊı¾İ               */
-#define I2C_DIR_TX                      I2C_ISR_DIR                 /**< I2C·¢ËÍÊı¾İ               */
-
-/* I2C Êı¾İ´«Êä·½ÏòÅäÖÃ */
-#define I2C_REQUEST_WRITE               (0x00000000U)               /**< Ğ´ÇëÇó     */
-#define I2C_REQUEST_READ                I2C_CR2_RD_WRN              /**< ¶ÁÇëÇó     */
+/* I2Cä¼ è¾“æ–¹å‘ */
+#define I2C_DIR_RX                      (0x00000000U)               /**< I2Cæ¥æ”¶æ•°æ®               */
+#define I2C_DIR_TX                      I2C_ISR_DIR                 /**< I2Cå‘é€æ•°æ®               */
 
 /** 
 * @} 
@@ -107,14 +103,14 @@
 /************************************************************************************************/
 /**
 * @defgroup I2C_External_Functions I2C External Functions
-* @brief    I2C¶ÔÍâº¯Êı
+* @brief    I2Cå¯¹å¤–å‡½æ•°
 * @{
 *
 */
 /************************************************************************************************/
 /** 
-* @brief  Ê¹ÄÜI2C½Ó¿Ú
-* @retval ÎŞ
+* @brief  ä½¿èƒ½I2Cæ¥å£
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_enable(void)
 {
@@ -123,8 +119,8 @@ __STATIC_INLINE void std_i2c_enable(void)
 
 
 /** 
-* @brief  ½ûÖ¹I2C½Ó¿Ú
-* @retval ÎŞ
+* @brief  ç¦æ­¢I2Cæ¥å£
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_disable(void)
 {
@@ -133,15 +129,15 @@ __STATIC_INLINE void std_i2c_disable(void)
 
 
 /** 
-* @brief  ÅäÖÃÊı×ÖÂË²¨Æ÷
-* @param  digital_filter Êı×ÖÂË²¨Æ÷ÅäÖÃ²ÎÊı
-*             @arg I2C_DIGITALFILTER_DISABLE: ½ûÖ¹Êı×ÖÂË²¨Æ÷
-*             @arg I2C_DIGITALFILTER_1CLK:    ÂË²¨Âö¿íĞ¡ÓÚ1 * I2C_KCLK
-*             @arg I2C_DIGITALFILTER_2CLK:    ÂË²¨Âö¿íĞ¡ÓÚ2 * I2C_KCLK
+* @brief  é…ç½®æ•°å­—æ»¤æ³¢å™¨
+* @param  digital_filter æ•°å­—æ»¤æ³¢å™¨é…ç½®å‚æ•°
+*             @arg I2C_DIGITALFILTER_DISABLE: ç¦æ­¢æ•°å­—æ»¤æ³¢å™¨
+*             @arg I2C_DIGITALFILTER_1CLK:    æ»¤æ³¢è„‰å®½å°äº1 * I2C_KCLK
+*             @arg I2C_DIGITALFILTER_2CLK:    æ»¤æ³¢è„‰å®½å°äº2 * I2C_KCLK
 *             @arg ...
-*             @arg I2C_DIGITALFILTER_15CLK:   ÂË²¨Âö¿íĞ¡ÓÚ15 * I2C_KCLK
-* @note   ÂË²¨Æ÷ÅäÖÃÖ»ÄÜÔÚI2C½ûÖ¹µÄ×´Ì¬ÏÂÌõ¼şÏÂÓĞĞ§
-* @retval ÎŞ
+*             @arg I2C_DIGITALFILTER_15CLK:   æ»¤æ³¢è„‰å®½å°äº15 * I2C_KCLK
+* @note   æ»¤æ³¢å™¨é…ç½®åªèƒ½åœ¨I2Cç¦æ­¢çš„çŠ¶æ€ä¸‹æ¡ä»¶ä¸‹æœ‰æ•ˆ
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_digital_filter_config(uint32_t digital_filter)
 {
@@ -150,8 +146,8 @@ __STATIC_INLINE void std_i2c_digital_filter_config(uint32_t digital_filter)
 
 
 /** 
-* @brief  I2C´ÓÄ£Ê½Ê±ÖÓÑÓ³¤¹¦ÄÜ¿ªÆô
-* @retval ÎŞ
+* @brief  I2Cä»æ¨¡å¼æ—¶é’Ÿå»¶é•¿åŠŸèƒ½å¼€å¯
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_clock_stretch_enable(void)
 {
@@ -160,8 +156,8 @@ __STATIC_INLINE void std_i2c_clock_stretch_enable(void)
 
 
 /** 
-* @brief  I2C´ÓÄ£Ê½Ê±ÖÓÑÓ³¤¹¦ÄÜ½ûÖ¹
-* @retval ÎŞ
+* @brief  I2Cä»æ¨¡å¼æ—¶é’Ÿå»¶é•¿åŠŸèƒ½ç¦æ­¢
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_clock_stretch_disable(void)
 {
@@ -170,8 +166,8 @@ __STATIC_INLINE void std_i2c_clock_stretch_disable(void)
 
 
 /** 
-* @brief  I2C¹ã²¥µØÖ·Ó¦´ğÊ¹ÄÜ
-* @retval ÎŞ
+* @brief  I2Cå¹¿æ’­åœ°å€åº”ç­”ä½¿èƒ½
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_general_call_address_enable(void)
 {
@@ -180,8 +176,8 @@ __STATIC_INLINE void std_i2c_general_call_address_enable(void)
 
 
 /** 
-* @brief  I2C¹ã²¥µØÖ·Ó¦´ğ½ûÖ¹
-* @retval ÎŞ
+* @brief  I2Cå¹¿æ’­åœ°å€åº”ç­”ç¦æ­¢
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_general_call_address_disable(void)
 {
@@ -190,9 +186,9 @@ __STATIC_INLINE void std_i2c_general_call_address_disable(void)
 
 
 /** 
-* @brief  ÉèÖÃI2C´ÓÄ£Ê½µØÖ·1
-* @param  dev_address I2CÉè±¸µØÖ·1£¨¸Ã±äÁ¿µÄ·¶Î§ÔÚ0x0~0x7FÖ®¼ä£©
-* @retval ÎŞ
+* @brief  è®¾ç½®I2Cä»æ¨¡å¼åœ°å€1
+* @param  dev_address I2Cè®¾å¤‡åœ°å€1ï¼ˆè¯¥å˜é‡çš„èŒƒå›´åœ¨0x0~0x7Fä¹‹é—´ï¼‰
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_device_address1_config(uint32_t dev_address)
 {
@@ -201,12 +197,12 @@ __STATIC_INLINE void std_i2c_device_address1_config(uint32_t dev_address)
 
 
 /** 
-* @brief  Ê¹ÄÜI2CÖĞ¶Ï
-* @param  interrupt Ê¹ÄÜI2CÖĞ¶ÏÔ´Ñ¡Ôñ
-*             @arg I2C_INTERRUPT_ERR:  I2C´íÎóÖĞ¶Ï
-*             @arg I2C_INTERRUPT_BUF:  I2C»º³åÆ÷ÖĞ¶Ï
-*             @arg I2C_INTERRUPT_EVT:  I2CÊÂ¼şÖĞ¶Ï
-* @retval ÎŞ
+* @brief  ä½¿èƒ½I2Cä¸­æ–­
+* @param  interrupt ä½¿èƒ½I2Cä¸­æ–­æºé€‰æ‹©
+*             @arg I2C_INTERRUPT_ERR:  I2Cé”™è¯¯ä¸­æ–­
+*             @arg I2C_INTERRUPT_BUF:  I2Cç¼“å†²å™¨ä¸­æ–­
+*             @arg I2C_INTERRUPT_EVT:  I2Cäº‹ä»¶ä¸­æ–­
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_interrupt_enable(uint32_t interrupt)
 {
@@ -215,12 +211,12 @@ __STATIC_INLINE void std_i2c_interrupt_enable(uint32_t interrupt)
 
 
 /** 
-* @brief  ½ûÖ¹I2CÖĞ¶Ï
-* @param  interrupt I2CÖĞ¶ÏÑ¡Ôñ
-*             @arg I2C_INTERRUPT_ERR:  I2C´íÎóÖĞ¶Ï
-*             @arg I2C_INTERRUPT_BUF:  I2C»º³åÆ÷ÖĞ¶Ï
-*             @arg I2C_INTERRUPT_EVT:  I2CÊÂ¼şÖĞ¶Ï
-* @retval ÎŞ
+* @brief  ç¦æ­¢I2Cä¸­æ–­
+* @param  interrupt I2Cä¸­æ–­é€‰æ‹©
+*             @arg I2C_INTERRUPT_ERR:  I2Cé”™è¯¯ä¸­æ–­
+*             @arg I2C_INTERRUPT_BUF:  I2Cç¼“å†²å™¨ä¸­æ–­
+*             @arg I2C_INTERRUPT_EVT:  I2Cäº‹ä»¶ä¸­æ–­
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_interrupt_disable(uint32_t interrupt)
 {
@@ -229,14 +225,14 @@ __STATIC_INLINE void std_i2c_interrupt_disable(uint32_t interrupt)
 
 
 /** 
-* @brief  »ñÈ¡I2CÖĞ¶ÏÊ¹ÄÜ×´Ì¬
-* @param  interrupt I2CÖĞ¶ÏÑ¡Ôñ
-*             @arg I2C_INTERRUPT_ERR:  I2C´íÎóÖĞ¶Ï
-*             @arg I2C_INTERRUPT_BUF:  I2C»º³åÆ÷ÖĞ¶Ï
-*             @arg I2C_INTERRUPT_EVT:  I2CÊÂ¼şÖĞ¶Ï
-* @retval uint32_t ·µ»ØÑ¡ÔñµÄI2CÖĞ¶ÏÊ¹ÄÜ×´Ì¬
-*             @arg ·Ç0: Ê¹ÄÜ
-*             @arg 0:   ½ûÖ¹
+* @brief  è·å–I2Cä¸­æ–­ä½¿èƒ½çŠ¶æ€
+* @param  interrupt I2Cä¸­æ–­é€‰æ‹©
+*             @arg I2C_INTERRUPT_ERR:  I2Cé”™è¯¯ä¸­æ–­
+*             @arg I2C_INTERRUPT_BUF:  I2Cç¼“å†²å™¨ä¸­æ–­
+*             @arg I2C_INTERRUPT_EVT:  I2Cäº‹ä»¶ä¸­æ–­
+* @retval uint32_t è¿”å›é€‰æ‹©çš„I2Cä¸­æ–­ä½¿èƒ½çŠ¶æ€
+*             @arg é0: ä½¿èƒ½
+*             @arg 0:   ç¦æ­¢
 */
 __STATIC_INLINE uint32_t std_i2c_get_interrupt_enable(uint32_t interrupt)
 {
@@ -245,16 +241,16 @@ __STATIC_INLINE uint32_t std_i2c_get_interrupt_enable(uint32_t interrupt)
 
 
 /** 
-* @brief  »ñÈ¡I2C×´Ì¬±êÖ¾Î»»òÊı¾İ´«Êä·½Ïò
-* @param  flag I2C×´Ì¬±êÖ¾Î»Ñ¡Ôñ
-*             @arg I2C_FLAG_TXE:      I2C·¢ËÍÊı¾İ¼Ä´æÆ÷Îª¿Õ
-*             @arg I2C_FLAG_TXIS:     I2C·¢ËÍÖĞ¶Ï×´Ì¬
-*             @arg I2C_FLAG_RXNE:     I2C½ÓÊÕÊı¾İ¼Ä´æÆ÷·Ç¿Õ
+* @brief  è·å–I2CçŠ¶æ€æ ‡å¿—ä½æˆ–æ•°æ®ä¼ è¾“æ–¹å‘
+* @param  flag I2CçŠ¶æ€æ ‡å¿—ä½é€‰æ‹©
+*             @arg I2C_FLAG_TXE:      I2Cå‘é€æ•°æ®å¯„å­˜å™¨ä¸ºç©º
+*             @arg I2C_FLAG_TXIS:     I2Cå‘é€ä¸­æ–­çŠ¶æ€
+*             @arg I2C_FLAG_RXNE:     I2Cæ¥æ”¶æ•°æ®å¯„å­˜å™¨éç©º
 *             @arg ...
-*             @arg I2C_FLAG_DIR:      I2CÊı¾İ´«Êä·½Ïò±êÖ¾
-* @retval uint32_t ·µ»ØÑ¡ÔñµÄI2C×´Ì¬±êÖ¾Î»×´Ì¬
-*             @arg ·Ç0: ±êÖ¾Î»ÖÃÎ»
-*             @arg 0:   ±êÖ¾Î»Çå³ı
+*             @arg I2C_FLAG_DIR:      I2Cæ•°æ®ä¼ è¾“æ–¹å‘æ ‡å¿—
+* @retval uint32_t è¿”å›é€‰æ‹©çš„I2CçŠ¶æ€æ ‡å¿—ä½çŠ¶æ€
+*             @arg é0: æ ‡å¿—ä½ç½®ä½
+*             @arg 0:   æ ‡å¿—ä½æ¸…é™¤
 */
 __STATIC_INLINE uint32_t std_i2c_get_flag(uint32_t flag)
 {
@@ -263,14 +259,14 @@ __STATIC_INLINE uint32_t std_i2c_get_flag(uint32_t flag)
 
 
 /** 
-* @brief  Çå³ıI2C×´Ì¬±êÖ¾Î»
-* @param  flag I2C×´Ì¬±êÖ¾Î»Ñ¡Ôñ
-*             @arg I2C_CLEAR_ADDR:     Çå³ıADDR±êÖ¾
-*             @arg I2C_CLEAR_NACK:     Çå³ıNACKF±êÖ¾
-*             @arg I2C_CLEAR_STOP:     Çå³ıSTOPF±êÖ¾
-*             @arg I2C_CLEAR_BERR:     Çå³ıBERR±êÖ¾
-*             @arg I2C_CLEAR_OVR:      Çå³ıOVR±êÖ¾
-* @retval ÎŞ
+* @brief  æ¸…é™¤I2CçŠ¶æ€æ ‡å¿—ä½
+* @param  flag I2CçŠ¶æ€æ ‡å¿—ä½é€‰æ‹©
+*             @arg I2C_CLEAR_ADDR:     æ¸…é™¤ADDRæ ‡å¿—
+*             @arg I2C_CLEAR_NACK:     æ¸…é™¤NACKFæ ‡å¿—
+*             @arg I2C_CLEAR_STOP:     æ¸…é™¤STOPFæ ‡å¿—
+*             @arg I2C_CLEAR_BERR:     æ¸…é™¤BERRæ ‡å¿—
+*             @arg I2C_CLEAR_OVR:      æ¸…é™¤OVRæ ‡å¿—
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_clear_flag(uint32_t flag)
 {
@@ -279,8 +275,8 @@ __STATIC_INLINE void std_i2c_clear_flag(uint32_t flag)
 
 
 /** 
-* @brief  ÅäÖÃ´ÓÄ£Ê½ÏÂµØÖ·Æ¥Åä»ò½ÓÊÕÏÂ¸öÊı¾İÊ±·µ»ØNACKÓ¦´ğ
-* @retval ÎŞ
+* @brief  é…ç½®ä»æ¨¡å¼ä¸‹åœ°å€åŒ¹é…æˆ–æ¥æ”¶ä¸‹ä¸ªæ•°æ®æ—¶è¿”å›NACKåº”ç­”
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_set_next_data_nack(void)
 {
@@ -289,8 +285,8 @@ __STATIC_INLINE void std_i2c_set_next_data_nack(void)
 
 
 /** 
-* @brief  ¶ÁÊı¾İ¼Ä´æÆ÷
-* @retval uint8_t ½ÓÊÕÊı¾İ¼Ä´æÆ÷ÖĞµÄÖµ£¨¸ÃÖµ·¶Î§Îª0x00~0xFF£©
+* @brief  è¯»æ•°æ®å¯„å­˜å™¨
+* @retval uint8_t æ¥æ”¶æ•°æ®å¯„å­˜å™¨ä¸­çš„å€¼ï¼ˆè¯¥å€¼èŒƒå›´ä¸º0x00~0xFFï¼‰
 */
 __STATIC_INLINE uint8_t std_i2c_receive_byte(void)
 {
@@ -299,9 +295,9 @@ __STATIC_INLINE uint8_t std_i2c_receive_byte(void)
 
 
 /** 
-* @brief  Ğ´Êı¾İ¼Ä´æÆ÷
-* @param  send_data Ğ´ÈëI2C TDR¼Ä´æÆ÷ÖĞµÄÖµ£¨¸Ã±äÁ¿·¶Î§Îª0x00~0xFF£©
-* @retval ÎŞ
+* @brief  å†™æ•°æ®å¯„å­˜å™¨
+* @param  send_data å†™å…¥I2C TDRå¯„å­˜å™¨ä¸­çš„å€¼ï¼ˆè¯¥å˜é‡èŒƒå›´ä¸º0x00~0xFFï¼‰
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_transmit_byte(uint8_t send_data)
 {
@@ -310,8 +306,8 @@ __STATIC_INLINE void std_i2c_transmit_byte(uint8_t send_data)
 
 
 /** 
-* @brief  Çå³ı·¢ËÍÊı¾İ¼Ä´æÆ÷
-* @retval ÎŞ
+* @brief  æ¸…é™¤å‘é€æ•°æ®å¯„å­˜å™¨
+* @retval æ— 
 */
 __STATIC_INLINE void std_i2c_clear_tx_data(void)
 {
@@ -319,7 +315,7 @@ __STATIC_INLINE void std_i2c_clear_tx_data(void)
 }
 
 
-/* I2CÈ¥³õÊ¼»¯º¯Êı */
+/* I2Cå»åˆå§‹åŒ–å‡½æ•° */
 void std_i2c_deinit(void);
 
 /** 

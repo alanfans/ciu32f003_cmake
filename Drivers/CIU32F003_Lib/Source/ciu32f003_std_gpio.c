@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_gpio.c
 * @author             MCU Ecosystem Development Team
-* @brief              GPIO STD¿âÇı¶¯¡£
-*                     ÊµÏÖGPIO³õÊ¼»¯¡¢È¥³õÊ¼»¯µÈAPI¡£
+* @brief              GPIO STDåº“é©±åŠ¨ã€‚
+*                     å®ç°GPIOåˆå§‹åŒ–ã€å»åˆå§‹åŒ–ç­‰APIã€‚
 *
 *
 **************************************************************************************************
@@ -43,36 +43,36 @@
 /************************************************************************************************/ 
 
 /**
-* @brief  GPIO³õÊ¼»¯
-* @param  gpiox GPIOÍâÉè
+* @brief  GPIOåˆå§‹åŒ–
+* @param  gpiox GPIOå¤–è®¾
 *             @arg GPIOA
 *             @arg GPIOB
 *             @arg GPIOC
-* @param  gpio_init_param GPIO³õÊ¼»¯²ÎÊı½á¹¹Ìå
-* @retval ÎŞ
+* @param  gpio_init_param GPIOåˆå§‹åŒ–å‚æ•°ç»“æ„ä½“
+* @retval æ— 
 */
 void std_gpio_init(GPIO_t* gpiox, std_gpio_init_t* gpio_init_param)
 {
     uint32_t offset = 0;
     uint32_t current_pin = 0;
 
-    /* ±éÀúÅäÖÃGPIOÒı½Å */
+    /* éå†é…ç½®GPIOå¼•è„š */
     for (; ((gpio_init_param->pin) >> offset) != 0x00U; offset++)
     {
-        /* »ñÈ¡µ±Ç°Ëù±éÀúÒı½Å */
+        /* è·å–å½“å‰æ‰€éå†å¼•è„š */
         current_pin = (gpio_init_param->pin) & (0x00000001UL << offset);
 
         if (current_pin != 0x00U)
         {
-            /* ÅäÖÃÄ£Ê½ */
+            /* é…ç½®æ¨¡å¼ */
             std_gpio_set_pin_mode(gpiox, current_pin, gpio_init_param->mode);
 
-            /* ÅäÖÃÉÏÏÂÀ­ */
+            /* é…ç½®ä¸Šä¸‹æ‹‰ */
             std_gpio_set_pin_pull(gpiox, current_pin, gpio_init_param->pull);
 
             if (gpio_init_param->mode == GPIO_MODE_ALTERNATE)
             {
-                /* ÉèÖÃGPIOÒı½Å£¨0~7£©¸´ÓÃ¹¦ÄÜ */
+                /* è®¾ç½®GPIOå¼•è„šï¼ˆ0~7ï¼‰å¤ç”¨åŠŸèƒ½ */
                 std_gpio_set_afpin_0_7 (gpiox, current_pin, gpio_init_param->alternate);
             }
         }
@@ -80,18 +80,18 @@ void std_gpio_init(GPIO_t* gpiox, std_gpio_init_t* gpio_init_param)
 
     if ((gpio_init_param->mode == GPIO_MODE_OUTPUT) || (gpio_init_param->mode == GPIO_MODE_ALTERNATE))
     {
-        /* ÅäÖÃÊä³öÀàĞÍ */
+        /* é…ç½®è¾“å‡ºç±»å‹ */
         std_gpio_set_pin_output_type(gpiox, gpio_init_param->pin, gpio_init_param->output_type);
     }
 }
 
 /**
-* @brief  GPIOÈ¥³õÊ¼»¯
-* @param  gpiox GPIOÍâÉè
+* @brief  GPIOå»åˆå§‹åŒ–
+* @param  gpiox GPIOå¤–è®¾
 *             @arg GPIOA
 *             @arg GPIOB
 *             @arg GPIOC
-* @retval ÎŞ
+* @retval æ— 
 */
 void std_gpio_deinit(GPIO_t* gpiox)
 {
@@ -111,9 +111,9 @@ void std_gpio_deinit(GPIO_t* gpiox)
 }
 
 /**
-* @brief  GPIO³õÊ¼»¯½á¹¹Ìå³õÊ¼»¯
-* @param  gpio_init_struct GPIO³õÊ¼»¯²ÎÊı½á¹¹Ìå
-* @retval ÎŞ
+* @brief  GPIOåˆå§‹åŒ–ç»“æ„ä½“åˆå§‹åŒ–
+* @param  gpio_init_struct GPIOåˆå§‹åŒ–å‚æ•°ç»“æ„ä½“
+* @retval æ— 
 */
 void std_gpio_struct_init(std_gpio_init_t* gpio_init_struct)
 {

@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_crc.c
 * @author             MCU Ecosystem Development Team
-* @brief              CRC STD¿âÇı¶¯¡£
-*                     ÊµÏÖCRC³õÊ¼»¯ÅäÖÃµÈ¹¦ÄÜAPI¡£
+* @brief              CRC STDåº“é©±åŠ¨ã€‚
+*                     å®ç°CRCåˆå§‹åŒ–é…ç½®ç­‰åŠŸèƒ½APIã€‚
 *                           
 *
 **************************************************************************************************
@@ -42,28 +42,28 @@
 */
 /************************************************************************************************/
 /**
-* @brief  CRCÈ¥³õÊ¼»¯
-* @retval ÎŞ
+* @brief  CRCå»åˆå§‹åŒ–
+* @retval æ— 
 */
 void std_crc_deinit(void)
 {
-    /* ¸´Î»CRC */
+    /* å¤ä½CRC */
     std_rcc_ahb_reset(RCC_PERIPH_RESET_CRC); 
 }
 
 
 /**
-* @brief  ½«CRC³õÊ¼Öµ·´×ªºóĞ´Èë¼Ä´æÆ÷
-* @param  poly_sel   ¶àÏîÊ½Ñ¡Ôñ
-* @param  init_value ×Ô¶¨Òå³õÊ¼Öµ
-* @retval ÎŞ
+* @brief  å°†CRCåˆå§‹å€¼åè½¬åå†™å…¥å¯„å­˜å™¨
+* @param  poly_sel   å¤šé¡¹å¼é€‰æ‹©
+* @param  init_value è‡ªå®šä¹‰åˆå§‹å€¼
+* @retval æ— 
 */
 void std_crc_set_init_value_invert(uint32_t poly_sel, uint32_t init_value)
 {
     uint32_t index, temp; 
     uint32_t result = 0;
     
-    /* ³õÊ¼Öµ°´Î»·­×ª */
+    /* åˆå§‹å€¼æŒ‰ä½ç¿»è½¬ */
     for (index = 0U; index < 4; index++)
     {
         temp = (init_value >> (8U * index));

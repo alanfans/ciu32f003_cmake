@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_exti.c
 * @author             MCU Ecosystem Development Team
-* @brief              EXTI STD¿âÇı¶¯
-*                     ÊµÏÖÁËEXTIÄ£¿éµÄĞÅºÅÏß³õÊ¼»¯¡¢È¥³õÊ¼»¯µÈAPI¡£
+* @brief              EXTI STDåº“é©±åŠ¨
+*                     å®ç°äº†EXTIæ¨¡å—çš„ä¿¡å·çº¿åˆå§‹åŒ–ã€å»åˆå§‹åŒ–ç­‰APIã€‚
 *
 *
 **************************************************************************************************
@@ -43,57 +43,57 @@
 /************************************************************************************************/ 
 
 /**
-* @brief  EXTI³õÊ¼»¯
-* @param  exti_init_param EXTI³õÊ¼»¯²ÎÊı½á¹¹Ìå
-* @retval ÎŞ
+* @brief  EXTIåˆå§‹åŒ–
+* @param  exti_init_param EXTIåˆå§‹åŒ–å‚æ•°ç»“æ„ä½“
+* @retval æ— 
 */
 void std_exti_init(std_exti_init_t* exti_init_param)
 {
     uint32_t trigger;
     uint32_t exti_mode;
 
-    /* ÅäÖÃGPIO EXTIÍ¨µÀ */
+    /* é…ç½®GPIO EXTIé€šé“ */
     if ((exti_init_param->line_id & EXTI_GPIO) != 0x00U)
     {
         trigger = exti_init_param->trigger & EXTI_TRIGGER_MASK;
 
-        /* ½ûÖ¹EXTIÍ¨µÀÉÏÉıÑØ/ÏÂ½µÑØ´¥·¢ */
+        /* ç¦æ­¢EXTIé€šé“ä¸Šå‡æ²¿/ä¸‹é™æ²¿è§¦å‘ */
         std_exti_falling_trigger_disable(exti_init_param->line_id);
         std_exti_rising_trigger_disable (exti_init_param->line_id);
 
-        /* Ê¹ÄÜEXTIÍ¨µÀÉÏÉıÑØ´¥·¢ */
+        /* ä½¿èƒ½EXTIé€šé“ä¸Šå‡æ²¿è§¦å‘ */
         if ((trigger & EXTI_TRIGGER_RISING) == EXTI_TRIGGER_RISING)
         {
             std_exti_rising_trigger_enable (exti_init_param->line_id);
         }
 
-        /* Ê¹ÄÜEXTIÍ¨µÀÏÂ½µÑØ´¥·¢ */
+        /* ä½¿èƒ½EXTIé€šé“ä¸‹é™æ²¿è§¦å‘ */
         if ((trigger & EXTI_TRIGGER_FALLING) == EXTI_TRIGGER_FALLING)
         {
             std_exti_falling_trigger_enable(exti_init_param->line_id);
         }
 
-        /* ÉèÖÃEXTIÍ¨µÀËù¶ÔÓ¦GPIO¶Ë¿Ú */
+        /* è®¾ç½®EXTIé€šé“æ‰€å¯¹åº”GPIOç«¯å£ */
         if ((exti_init_param->line_id & EXTI_GPIO) == EXTI_GPIO)
         {
             std_exti_set_gpio(exti_init_param->gpio_id, exti_init_param->line_id);
         }
     }
 
-    /* ÅäÖÃEXTIÍ¨µÀÖĞ¶Ï/ÊÂ¼ş»½ĞÑ */
+    /* é…ç½®EXTIé€šé“ä¸­æ–­/äº‹ä»¶å”¤é†’ */
     exti_mode = exti_init_param->mode & EXTI_MODE_INTERRUPT_EVENT;
 
-    /* ½ûÖ¹EXTIÍ¨µÀÖĞ¶Ï/ÊÂ¼ş»½ĞÑ */
+    /* ç¦æ­¢EXTIé€šé“ä¸­æ–­/äº‹ä»¶å”¤é†’ */
     std_exti_interrupt_disable(exti_init_param->line_id);
     std_exti_event_disable(exti_init_param->line_id);
 
-    /* Ê¹ÄÜEXTIÍ¨µÀÖĞ¶Ï»½ĞÑ */
+    /* ä½¿èƒ½EXTIé€šé“ä¸­æ–­å”¤é†’ */
     if ((exti_mode & EXTI_MODE_INTERRUPT) == EXTI_MODE_INTERRUPT)
     {
         std_exti_interrupt_enable(exti_init_param->line_id);
     }
 
-    /* Ê¹ÄÜEXTIÍ¨µÀÊÂ¼ş»½ĞÑ */
+    /* ä½¿èƒ½EXTIé€šé“äº‹ä»¶å”¤é†’ */
     if ((exti_mode & EXTI_MODE_EVENT) == EXTI_MODE_EVENT)
     {
         std_exti_event_enable (exti_init_param->line_id);
@@ -101,8 +101,8 @@ void std_exti_init(std_exti_init_t* exti_init_param)
 }
 
 /**
-* @brief  EXTIÈ¥³õÊ¼»¯
-* @retval ÎŞ
+* @brief  EXTIå»åˆå§‹åŒ–
+* @retval æ— 
 */
 void std_exti_deinit(void)
 {
@@ -115,9 +115,9 @@ void std_exti_deinit(void)
 }
 
 /**
-* @brief  EXTI³õÊ¼»¯½á¹¹Ìå³õÊ¼»¯
-* @param  exti_init_struct EXTI³õÊ¼»¯²ÎÊı½á¹¹Ìå
-* @retval ÎŞ
+* @brief  EXTIåˆå§‹åŒ–ç»“æ„ä½“åˆå§‹åŒ–
+* @param  exti_init_struct EXTIåˆå§‹åŒ–å‚æ•°ç»“æ„ä½“
+* @retval æ— 
 */
 void std_exti_struct_init(std_exti_init_t* exti_init_struct)
 {

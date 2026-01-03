@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_pmu.c
 * @author             MCU Ecosystem Development Team
-* @brief              PMU STD¿âÇý¶¯¡£
-*                     ÊµÏÖµÍ¹¦ºÄÄ£Ê½½øÈë¹¦ÄÜAPI¡£
+* @brief              PMU STDåº“é©±åŠ¨ã€‚
+*                     å®žçŽ°ä½ŽåŠŸè€—æ¨¡å¼è¿›å…¥åŠŸèƒ½APIã€‚
 *
 *
 **************************************************************************************************
@@ -43,25 +43,25 @@
 /************************************************************************************************/ 
 
 /**
-* @brief  ½øÈësleepÄ£Ê½
-* @param  mode_entry ½øÈëµÍ¹¦ºÄÄ£Ê½µÄ·½Ê½
+* @brief  è¿›å…¥sleepæ¨¡å¼
+* @param  mode_entry è¿›å…¥ä½ŽåŠŸè€—æ¨¡å¼çš„æ–¹å¼
 *             @arg PMU_ENTRY_LOWPOWER_MODE_WFE
 *             @arg PMU_ENTRY_LOWPOWER_MODE_WFI
-* @retval ÎÞ
+* @retval æ— 
 */
 void std_pmu_enter_sleep(uint32_t mode_entry)
 {    
-    /* Çå³ý SLEEPDEEP ±êÖ¾ */
+    /* æ¸…é™¤ SLEEPDEEP æ ‡å¿— */
     SCB->SCR &= (~SCB_SCR_SLEEPDEEP_Msk); 
     
-    /* ´¦ÀíµÍ¹¦ºÄÄ£Ê½µÄ½øÈë·½Ê½*/
+    /* å¤„ç†ä½ŽåŠŸè€—æ¨¡å¼çš„è¿›å…¥æ–¹å¼*/
     if(PMU_ENTRY_LOWPOWER_MODE_WFI == mode_entry)
     {
         __WFI();
     }
     else
     {
-        /* ÏÈÉú³ÉÒ»¸öÊÂ¼þ£¬Í¨¹ýWFEÇå³ýÊÂ¼þ£¬ÖØÐÂµ÷ÓÃWFE½øÈëµÍ¹¦ºÄÄ£Ê½*/
+        /* å…ˆç”Ÿæˆä¸€ä¸ªäº‹ä»¶ï¼Œé€šè¿‡WFEæ¸…é™¤äº‹ä»¶ï¼Œé‡æ–°è°ƒç”¨WFEè¿›å…¥ä½ŽåŠŸè€—æ¨¡å¼*/
         __SEV();
         __WFE();
         __WFE();
@@ -69,39 +69,39 @@ void std_pmu_enter_sleep(uint32_t mode_entry)
 }
 
 /**
-* @brief  ½øÈëstop/DeepstopÄ£Ê½
-* @param  stop_mode µÍ¹¦ºÄÄ£Ê½Ñ¡Ôñ
+* @brief  è¿›å…¥stop/Deepstopæ¨¡å¼
+* @param  stop_mode ä½ŽåŠŸè€—æ¨¡å¼é€‰æ‹©
 *             @arg PMU_MODE_STOP
 *             @arg PMU_MODE_DEEPSTOP
-* @param  mode_entry ½øÈëµÍ¹¦ºÄÄ£Ê½µÄ·½Ê½
+* @param  mode_entry è¿›å…¥ä½ŽåŠŸè€—æ¨¡å¼çš„æ–¹å¼
 *             @arg PMU_ENTRY_LOWPOWER_MODE_WFE
 *             @arg PMU_ENTRY_LOWPOWER_MODE_WFI
-* @retval ÎÞ
+* @retval æ— 
 */
 void std_pmu_enter_stop(uint32_t stop_mode, uint32_t mode_entry)
 {    
     std_rcc_apb1_clk_enable(RCC_PERIPH_CLK_PMU);
     
-    /* ÅäÖÃµÍ¹¦ºÄÄ£Ê½  */
+    /* é…ç½®ä½ŽåŠŸè€—æ¨¡å¼  */
     MODIFY_REG(PMU->CR, PMU_CR_LP_MODE, stop_mode);
     
-    /* ÖÃÎ»SLEEPDEEP±êÖ¾ */
+    /* ç½®ä½SLEEPDEEPæ ‡å¿— */
     SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;   
     
-     /* ´¦ÀíµÍ¹¦ºÄÄ£Ê½µÄ½øÈë·½Ê½*/
+     /* å¤„ç†ä½ŽåŠŸè€—æ¨¡å¼çš„è¿›å…¥æ–¹å¼*/
     if(PMU_ENTRY_LOWPOWER_MODE_WFI == mode_entry)
     {
         __WFI();
     }
     else
     {
-        /* ÏÈÉú³ÉÒ»¸öÊÂ¼þ£¬Í¨¹ýWFEÇå³ýÊÂ¼þ£¬ÖØÐÂµ÷ÓÃWFE½øÈëµÍ¹¦ºÄÄ£Ê½*/
+        /* å…ˆç”Ÿæˆä¸€ä¸ªäº‹ä»¶ï¼Œé€šè¿‡WFEæ¸…é™¤äº‹ä»¶ï¼Œé‡æ–°è°ƒç”¨WFEè¿›å…¥ä½ŽåŠŸè€—æ¨¡å¼*/
         __SEV();
         __WFE();
         __WFE();
     }   
     
-    /* »¹Ô­SLEEPDEEP±êÖ¾ */
+    /* è¿˜åŽŸSLEEPDEEPæ ‡å¿— */
     SCB->SCR &= (~SCB_SCR_SLEEPDEEP_Msk);
 }
 

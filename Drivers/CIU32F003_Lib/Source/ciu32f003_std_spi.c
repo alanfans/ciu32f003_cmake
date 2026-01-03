@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_spi.c
 * @author             MCU Ecosystem Development Team
-* @brief              SPI STD¿âÇı¶¯¡£
-*                     ÊµÏÖSPI³õÊ¼»¯µÈAPI¡£
+* @brief              SPI STDåº“é©±åŠ¨ã€‚
+*                     å®ç°SPIåˆå§‹åŒ–ç­‰APIã€‚
 *
 *
 **************************************************************************************************
@@ -43,17 +43,17 @@
 /************************************************************************************************/ 
    
 /** 
-* @brief  SPI³õÊ¼»¯
-* @param  spi_init_param SPI³õÊ¼»¯½á¹¹Ìå   
-* @retval ÎŞ
+* @brief  SPIåˆå§‹åŒ–
+* @param  spi_init_param SPIåˆå§‹åŒ–ç»“æ„ä½“   
+* @retval æ— 
 */
 void std_spi_init(std_spi_init_t *spi_init_param)
 {
-    /* SPI³õÊ¼»¯£º
-       - ÅäÖÃSPIÍ¨ĞÅËÙÂÊ
-       - ÅäÖÃSPIÊ±ÖÓ¼«ĞÔ
-       - ÅäÖÃSPIÊ±ÖÓÏàÎ»
-       - ÅäÖÃSPIÊı¾İ´óĞ¡¶Ë
+    /* SPIåˆå§‹åŒ–ï¼š
+       - é…ç½®SPIé€šä¿¡é€Ÿç‡
+       - é…ç½®SPIæ—¶é’Ÿææ€§
+       - é…ç½®SPIæ—¶é’Ÿç›¸ä½
+       - é…ç½®SPIæ•°æ®å¤§å°ç«¯
     */
     MODIFY_REG(SPI1->CR1, (SPI_CR1_BR | SPI_CR1_CPOL | SPI_CR1_CPHA | SPI_CR1_LSBFIRST),
                           (spi_init_param->baud_rate_prescaler
@@ -61,13 +61,13 @@ void std_spi_init(std_spi_init_t *spi_init_param)
                          | spi_init_param->clk_phase
                          | spi_init_param->bitorder));
     
-    /* ÅäÖÃSPIÖ÷´ÓÄ£Ê½ */
+    /* é…ç½®SPIä¸»ä»æ¨¡å¼ */
     MODIFY_REG(SPI1->CR1, SPI_CR1_MSTR, spi_init_param->mode);
 }
 
 /**
-* @brief  SPIÈ¥³õÊ¼»¯
-* @retval ÎŞ
+* @brief  SPIå»åˆå§‹åŒ–
+* @retval æ— 
 */
 void std_spi_deinit(void)
 {
@@ -75,9 +75,9 @@ void std_spi_deinit(void)
 } 
 
 /**
-* @brief  SPI½á¹¹Ìå³õÊ¼»¯
-* @param  spi_init_struct SPI³õÊ¼»¯½á¹¹Ìå 
-* @retval ÎŞ
+* @brief  SPIç»“æ„ä½“åˆå§‹åŒ–
+* @param  spi_init_struct SPIåˆå§‹åŒ–ç»“æ„ä½“ 
+* @retval æ— 
 */
 void std_spi_struct_init(std_spi_init_t *spi_init_struct)
 {

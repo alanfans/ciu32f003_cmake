@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_crc.h
 * @author             MCU Ecosystem Development Team
-* @brief              CRC STD������ͷ�ļ���
-*                     �ṩCRC��ص�STD������������������������Լ������Ķ��塣                         
+* @brief              CRC STD库驱动头文件。
+*                     提供CRC相关的STD库操作函数声明、数据类型以及常量的定义。                         
 *                     
 *
 **************************************************************************************************
@@ -13,7 +13,7 @@
 **************************************************************************************************
 */
 
-/* ����ͷ�ļ��ظ����� */
+/* 避免头文件重复引用 */
 #ifndef CIU32F003_STD_CRC_H
 #define CIU32F003_STD_CRC_H
 
@@ -25,7 +25,7 @@
 
 /**
 * @defgroup CRC CRC
-* @brief ѭ������У���STD������
+* @brief 循环冗余校验的STD库驱动
 * @{
 */
 /************************************************************************************************/
@@ -44,17 +44,17 @@
 /************************************************************************************************/
 /**
 * @defgroup CRC_Constants CRC Constants 
-* @brief    CRC�������弰�궨��
+* @brief    CRC常量定义及宏定义
 * @{
 *
 */
 /************************************************************************************************/
-/* CRC����ʽѡ�� */
-#define CRC_POLY_16                           CRC_CSR_POLY_SIZE_16     /**< 16λ����ʽ       */
-#define CRC_POLY_32                           CRC_CSR_POLY_SIZE_32     /**< 32λ����ʽ       */
+/* CRC多项式选择 */
+#define CRC_POLY_16                           CRC_CSR_POLY_SIZE_16     /**< 16位多项式       */
+#define CRC_POLY_32                           CRC_CSR_POLY_SIZE_32     /**< 32位多项式       */
 
-/* CRCĬ�ϳ�ʼֵ */
-#define CRC_DEFAULT_INIT_VALUE                (0xFFFFFFFFU)            /**< CRCĬ�ϳ�ʼֵ    */
+/* CRC默认初始值 */
+#define CRC_DEFAULT_INIT_VALUE                (0xFFFFFFFFU)            /**< CRC默认初始值    */
 
 /** 
 * @} 
@@ -65,17 +65,17 @@
 /************************************************************************************************/
 /**
 * @defgroup CRC_External_Functions CRC External Functions
-* @brief    CRC���⺯��
+* @brief    CRC对外函数
 * @{
 *
 */
 /************************************************************************************************/
 /** 
-* @brief  ����CRC����ʽ
-* @param  poly_size ����ʽѡ��
-*             @arg CRC_POLY_16��16λ����ʽ
-*             @arg CRC_POLY_32��32λ����ʽ
-* @retval ��
+* @brief  配置CRC多项式
+* @param  poly_size 多项式选择
+*             @arg CRC_POLY_16：16位多项式
+*             @arg CRC_POLY_32：32位多项式
+* @retval 无
 */
 __STATIC_INLINE void std_crc_set_poly_size(uint32_t poly_size)
 {
@@ -83,9 +83,9 @@ __STATIC_INLINE void std_crc_set_poly_size(uint32_t poly_size)
 }
 
 /**
-* @brief  ��CRC��ʼֵδ���з�תֱ��д��Ĵ���
-* @param  init_value CRC�ĳ�ʼֵ
-* @retval ��
+* @brief  将CRC初始值未进行反转直接写入寄存器
+* @param  init_value CRC的初始值
+* @retval 无
 */
 __STATIC_INLINE void std_crc_set_init_value(uint32_t init_value)
 {
@@ -93,8 +93,8 @@ __STATIC_INLINE void std_crc_set_init_value(uint32_t init_value)
 }
 
 /**
-* @brief  ��ȡCRC������
-* @retval uint32_t CRC������
+* @brief  读取CRC计算结果
+* @retval uint32_t CRC计算结果
 */
 __STATIC_INLINE uint32_t std_crc_get_value(void)
 {
@@ -102,9 +102,9 @@ __STATIC_INLINE uint32_t std_crc_get_value(void)
 }
 
 /**
-* @brief  �����ݼĴ�����д�������1�ֽ�����
-* @param  input_data Ҫ����CRC�����ԭʼ����
-* @retval ��
+* @brief  向数据寄存器中写入输入的1字节数据
+* @param  input_data 要进行CRC计算的原始数据
+* @retval 无
 */
 __STATIC_INLINE void std_crc_set_byte(uint8_t input_data)
 {

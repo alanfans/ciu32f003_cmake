@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_lptim.c
 * @author             MCU Ecosystem Development Team
-* @brief              LPTIM STD¿âÇı¶¯¡£
-*                     ÊµÏÖLPTIM³õÊ¼»¯µÈAPI¡£
+* @brief              LPTIM STDåº“é©±åŠ¨ã€‚
+*                     å®ç°LPTIMåˆå§‹åŒ–ç­‰APIã€‚
 *
 *
 **************************************************************************************************
@@ -42,12 +42,12 @@
 */
 /************************************************************************************************/ 
 /**
-* @brief  LPTIMÈ¥³õÊ¼»¯
-* @retval ÎŞ
+* @brief  LPTIMå»åˆå§‹åŒ–
+* @retval æ— 
 */
 void std_lptim_deinit(void)
 {
-    /* ¸´Î»LPTIM1²¢¹Ø±ÕÊ±ÖÓ */
+    /* å¤ä½LPTIM1å¹¶å…³é—­æ—¶é’Ÿ */
     std_rcc_apb1_reset(RCC_PERIPH_RESET_LPTIM1);
 }
 

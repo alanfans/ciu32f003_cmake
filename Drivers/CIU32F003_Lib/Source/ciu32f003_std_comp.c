@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_comp.c
 * @author             MCU Ecosystem Development Team
-* @brief              COMP STD¿âÇý¶¯¡£
-*                     ÊµÏÖCOMP³õÊ¼»¯ÅäÖÃµÈ¹¦ÄÜAPI¡£
+* @brief              COMP STDåº“é©±åŠ¨ã€‚
+*                     å®žçŽ°COMPåˆå§‹åŒ–é…ç½®ç­‰åŠŸèƒ½APIã€‚
 *
 *
 **************************************************************************************************
@@ -40,16 +40,16 @@
 */
 /************************************************************************************************/
 /** 
-* @brief  COMPÈ¥³õÊ¼»¯
-* @param  compx COMPÍâÉè
-* @retval ÎÞ
+* @brief  COMPåŽ»åˆå§‹åŒ–
+* @param  compx COMPå¤–è®¾
+* @retval æ— 
 */
 void std_comp_deinit(COMP_t *compx)
 {
-    /* ¸´Î»COMPÍâÉè */
+    /* å¤ä½COMPå¤–è®¾ */
     compx->CSR = 0x00000000U;
     
-    /*µ±COMP1ºÍCOMP2¶¼¸´Î»Ê±£¬¸´Î»CR¼Ä´æÆ÷*/
+    /*å½“COMP1å’ŒCOMP2éƒ½å¤ä½æ—¶ï¼Œå¤ä½CRå¯„å­˜å™¨*/
     if((COMP1->CSR == 0) && (COMP2->CSR == 0))
     {
         COMP_COMMON->CR = 0x00000000U;

@@ -1,38 +1,37 @@
 /************************************************************************************************/
 /**
-* @file               ciu32f003_std_gpio.h
-* @author             MCU Ecosystem Development Team
-* @brief              GPIO STD¿âÇı¶¯Í·ÎÄ¼ş¡£
-*                     Ìá¹©GPIOÏà¹ØµÄSTD¿â²Ù×÷º¯ÊıÉùÃ÷¡¢Êı¾İÀàĞÍÒÔ¼°³£Á¿µÄ¶¨Òå¡£                         
-*                     
-*
-**************************************************************************************************
-* @attention
-* Copyright (c) CEC Huada Electronic Design Co.,Ltd. All rights reserved.
-*
-**************************************************************************************************
-*/
+ * @file               ciu32f003_std_gpio.h
+ * @author             MCU Ecosystem Development Team
+ * @brief              GPIO STDåº“é©±åŠ¨å¤´æ–‡ä»¶ã€‚
+ *                     æä¾›GPIOç›¸å…³çš„STDåº“æ“ä½œå‡½æ•°å£°æ˜ã€æ•°æ®ç±»å‹ä»¥åŠå¸¸é‡çš„å®šä¹‰ã€‚
+ *
+ *
+ **************************************************************************************************
+ * @attention
+ * Copyright (c) CEC Huada Electronic Design Co.,Ltd. All rights reserved.
+ *
+ **************************************************************************************************
+ */
 
-/* ±ÜÃâÍ·ÎÄ¼şÖØ¸´ÒıÓÃ */
+/* é¿å…å¤´æ–‡ä»¶é‡å¤å¼•ç”¨ */
 #ifndef CIU32F003_STD_GPIO_H
 #define CIU32F003_STD_GPIO_H
 
 /************************************************************************************************/
-/** 
-* @addtogroup CIU32F003_STD_Driver
-* @{
-*/
+/**
+ * @addtogroup CIU32F003_STD_Driver
+ * @{
+ */
 
 /**
-* @defgroup GPIO GPIO
-* @brief Í¨ÓÃÊäÈë/Êä³ö½Ó¿ÚµÄSTD¿âÇı¶¯
-* @{
-*/
+ * @defgroup GPIO GPIO
+ * @brief é€šç”¨è¾“å…¥/è¾“å‡ºæ¥å£çš„STDåº“é©±åŠ¨
+ * @{
+ */
 /************************************************************************************************/
 
-
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /*------------------------------------------includes--------------------------------------------*/
@@ -41,497 +40,494 @@
 /*-----------------------------------------type define------------------------------------------*/
 
 /************************************************************************************************/
-/** 
-* @defgroup GPIO_Types GPIO Types
-* @brief GPIOÊı¾İÀàĞÍ¶¨Òå
-* @{
-*/
+/**
+ * @defgroup GPIO_Types GPIO Types
+ * @brief GPIOæ•°æ®ç±»å‹å®šä¹‰
+ * @{
+ */
 /************************************************************************************************/
 /**
-* @brief  GPIO³õÊ¼»¯½á¹¹Ìå¶¨Òå
-*/
+ * @brief  GPIOåˆå§‹åŒ–ç»“æ„ä½“å®šä¹‰
+ */
 typedef struct
-{                         
-    uint32_t pin;                 /**< Ö¸¶¨GPIOÒı½Å£¬¿ÉÒÔÊÇGPIOÒı½Å×éºÏ 
-                                           @arg GPIO_PIN_0 ...           */
+{
+    uint32_t pin; /**< æŒ‡å®šGPIOå¼•è„šï¼Œå¯ä»¥æ˜¯GPIOå¼•è„šç»„åˆ
+                           @arg GPIO_PIN_0 ...           */
 
-    uint32_t mode;                /**< Ö¸¶¨GPIOÒı½ÅÄ£Ê½¼°Êä³öÀàĞÍÅäÖÃ 
-                                           @arg GPIO_MODE_INPUT
-                                           @arg GPIO_MODE_ANALOG
-                                           @arg GPIO_MODE_OUTPUT
-                                           @arg GPIO_MODE_ALTERNATE      */
+    uint32_t mode; /**< æŒ‡å®šGPIOå¼•è„šæ¨¡å¼åŠè¾“å‡ºç±»å‹é…ç½®
+                            @arg GPIO_MODE_INPUT
+                            @arg GPIO_MODE_ANALOG
+                            @arg GPIO_MODE_OUTPUT
+                            @arg GPIO_MODE_ALTERNATE      */
 
-    uint32_t pull;                /**< Ö¸¶¨GPIOÒı½ÅÉÏ/ÏÂÀ­ÅäÖÃ  
-                                           @arg GPIO_NOPULL ...          */
+    uint32_t pull; /**< æŒ‡å®šGPIOå¼•è„šä¸Š/ä¸‹æ‹‰é…ç½®
+                            @arg GPIO_NOPULL ...          */
 
-    uint32_t output_type;         /**< Ö¸¶¨GPIOÊä³öÀàĞÍ  
-                                           @arg GPIO_OUTPUT_PUSHPULL
-                                           @arg GPIO_OUTPUT_OPENDRAIN    */
-    
-    uint32_t alternate;           /**< Ö¸¶¨GPIOÒı½Å¸´ÓÃ¹¦ÄÜÅäÖÃ   
-                                           @arg GPIO_AF0_SPI1 ...        */
+    uint32_t output_type; /**< æŒ‡å®šGPIOè¾“å‡ºç±»å‹
+                                   @arg GPIO_OUTPUT_PUSHPULL
+                                   @arg GPIO_OUTPUT_OPENDRAIN    */
+
+    uint32_t alternate; /**< æŒ‡å®šGPIOå¼•è„šå¤ç”¨åŠŸèƒ½é…ç½®
+                                 @arg GPIO_AF0_SPI1 ...        */
 } std_gpio_init_t;
 
-/** 
-* @} 
-*/
+/**
+ * @}
+ */
 
 /*--------------------------------------------define--------------------------------------------*/
 
 /************************************************************************************************/
 /**
-* @defgroup GPIO_Constants GPIO Constants 
-* @brief  GPIO³£Á¿¶¨Òå¼°ºê¶¨Òå
-* @{
-*
-*/
+ * @defgroup GPIO_Constants GPIO Constants
+ * @brief  GPIOå¸¸é‡å®šä¹‰åŠå®å®šä¹‰
+ * @{
+ *
+ */
 /************************************************************************************************/
 
-/* GPIO PIN³£Á¿ */
-#define  GPIO_PIN_0                            ((uint16_t)0x0001U)        /**< Ñ¡¶¨  PIN 0   */
-#define  GPIO_PIN_1                            ((uint16_t)0x0002U)        /**< Ñ¡¶¨  PIN 1   */
-#define  GPIO_PIN_2                            ((uint16_t)0x0004U)        /**< Ñ¡¶¨  PIN 2   */
-#define  GPIO_PIN_3                            ((uint16_t)0x0008U)        /**< Ñ¡¶¨  PIN 3   */
-#define  GPIO_PIN_4                            ((uint16_t)0x0010U)        /**< Ñ¡¶¨  PIN 4   */
-#define  GPIO_PIN_5                            ((uint16_t)0x0020U)        /**< Ñ¡¶¨  PIN 5   */
-#define  GPIO_PIN_6                            ((uint16_t)0x0040U)        /**< Ñ¡¶¨  PIN 6   */
-#define  GPIO_PIN_7                            ((uint16_t)0x0080U)        /**< Ñ¡¶¨  PIN 7   */
-#define  GPIO_PIN_All                          ((uint16_t)0x00FFU)        /**< Ñ¡¶¨  È«²¿    */
+/* GPIO PINå¸¸é‡ */
+#define GPIO_PIN_0   ((uint16_t)0x0001U) /**< é€‰å®š  PIN 0   */
+#define GPIO_PIN_1   ((uint16_t)0x0002U) /**< é€‰å®š  PIN 1   */
+#define GPIO_PIN_2   ((uint16_t)0x0004U) /**< é€‰å®š  PIN 2   */
+#define GPIO_PIN_3   ((uint16_t)0x0008U) /**< é€‰å®š  PIN 3   */
+#define GPIO_PIN_4   ((uint16_t)0x0010U) /**< é€‰å®š  PIN 4   */
+#define GPIO_PIN_5   ((uint16_t)0x0020U) /**< é€‰å®š  PIN 5   */
+#define GPIO_PIN_6   ((uint16_t)0x0040U) /**< é€‰å®š  PIN 6   */
+#define GPIO_PIN_7   ((uint16_t)0x0080U) /**< é€‰å®š  PIN 7   */
+#define GPIO_PIN_All ((uint16_t)0x00FFU) /**< é€‰å®š  å…¨éƒ¨    */
 
-/* GPIO Ä£Ê½ÅäÖÃ³£Á¿ */
-#define  GPIO_MODE_INPUT                       (0x00000000U)              /**< ÊäÈë¸¡¿Õ */
-#define  GPIO_MODE_OUTPUT                      (0x00000001U)              /**< Êä³ö¹¦ÄÜ */
-#define  GPIO_MODE_ALTERNATE                   (0x00000002U)              /**< ¸´ÓÃ¹¦ÄÜ */
-#define  GPIO_MODE_ANALOG                      (0x00000003U)              /**< Ä£Äâ¹¦ÄÜ */
+/* GPIO æ¨¡å¼é…ç½®å¸¸é‡ */
+#define GPIO_MODE_INPUT     (0x00000000U) /**< è¾“å…¥æµ®ç©º */
+#define GPIO_MODE_OUTPUT    (0x00000001U) /**< è¾“å‡ºåŠŸèƒ½ */
+#define GPIO_MODE_ALTERNATE (0x00000002U) /**< å¤ç”¨åŠŸèƒ½ */
+#define GPIO_MODE_ANALOG    (0x00000003U) /**< æ¨¡æ‹ŸåŠŸèƒ½ */
 
-/* GPIO ÉÏÏÂÀ­ÅäÖÃ²ÎÊı */
-#define  GPIO_NOPULL                           (0x00000000U)              /**< ÎŞÉÏ¡¢ÏÂÀ­ */
-#define  GPIO_PULLUP                           (0x00000001U)              /**< ÉÏÀ­       */
-#define  GPIO_PULLDOWN                         (0x00000002U)              /**< ÏÂÀ­       */
+/* GPIO ä¸Šä¸‹æ‹‰é…ç½®å‚æ•° */
+#define GPIO_NOPULL   (0x00000000U) /**< æ— ä¸Šã€ä¸‹æ‹‰ */
+#define GPIO_PULLUP   (0x00000001U) /**< ä¸Šæ‹‰       */
+#define GPIO_PULLDOWN (0x00000002U) /**< ä¸‹æ‹‰       */
 
-/* GPIO Êä³öÀàĞÍ */
-#define  GPIO_OUTPUT_PUSHPULL                  (0x00000000U)              /**< ÍÆÍìÊä³ö */
-#define  GPIO_OUTPUT_OPENDRAIN                 (0x00000001U)              /**< ¿ªÂ©Êä³ö */
+/* GPIO è¾“å‡ºç±»å‹ */
+#define GPIO_OUTPUT_PUSHPULL  (0x00000000U) /**< æ¨æŒ½è¾“å‡º */
+#define GPIO_OUTPUT_OPENDRAIN (0x00000001U) /**< å¼€æ¼è¾“å‡º */
 
-/* ¸´ÓÃ¹¦ÄÜ0 */
-#define  GPIO_AF0_SPI1                         ((uint8_t)0x00U)           /**< SPI1   ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF0_SWCLK                        ((uint8_t)0x00U)           /**< SWCLK  ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF0_SWDIO                        ((uint8_t)0x00U)           /**< SWDIO  ¸´ÓÃ¹¦ÄÜÓ³Éä */
+/* å¤ç”¨åŠŸèƒ½0 */
+#define GPIO_AF0_SPI1  ((uint8_t)0x00U) /**< SPI1   å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF0_SWCLK ((uint8_t)0x00U) /**< SWCLK  å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF0_SWDIO ((uint8_t)0x00U) /**< SWDIO  å¤ç”¨åŠŸèƒ½æ˜ å°„ */
 
-/* ¸´ÓÃ¹¦ÄÜ1 */
-#define  GPIO_AF1_UART1                        ((uint8_t)0x01U)           /**< UART1  ¸´ÓÃ¹¦ÄÜÓ³Éä */
+/* å¤ç”¨åŠŸèƒ½1 */
+#define GPIO_AF1_UART1 ((uint8_t)0x01U) /**< UART1  å¤ç”¨åŠŸèƒ½æ˜ å°„ */
 
-/* ¸´ÓÃ¹¦ÄÜ2 */
-#define  GPIO_AF2_TIM1                         ((uint8_t)0x02U)           /**< TIM1   ¸´ÓÃ¹¦ÄÜÓ³Éä */
+/* å¤ç”¨åŠŸèƒ½2 */
+#define GPIO_AF2_TIM1 ((uint8_t)0x02U) /**< TIM1   å¤ç”¨åŠŸèƒ½æ˜ å°„ */
 
-/* ¸´ÓÃ¹¦ÄÜ3 */
-#define  GPIO_AF3_TIM1                         ((uint8_t)0x03U)           /**< TIM1   ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF3_TIM3                         ((uint8_t)0x03U)           /**< TIM3   ¸´ÓÃ¹¦ÄÜÓ³Éä */
+/* å¤ç”¨åŠŸèƒ½3 */
+#define GPIO_AF3_TIM1 ((uint8_t)0x03U) /**< TIM1   å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF3_TIM3 ((uint8_t)0x03U) /**< TIM3   å¤ç”¨åŠŸèƒ½æ˜ å°„ */
 
-/* ¸´ÓÃ¹¦ÄÜ4 */
-#define  GPIO_AF4_TIM1                         ((uint8_t)0x04U)           /**< TIM1   ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF4_COMP1                        ((uint8_t)0x04U)           /**< COMP1  ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF4_SPI1                         ((uint8_t)0x04U)           /**< SPI1   ¸´ÓÃ¹¦ÄÜÓ³Éä */
+/* å¤ç”¨åŠŸèƒ½4 */
+#define GPIO_AF4_TIM1  ((uint8_t)0x04U) /**< TIM1   å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF4_COMP1 ((uint8_t)0x04U) /**< COMP1  å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF4_SPI1  ((uint8_t)0x04U) /**< SPI1   å¤ç”¨åŠŸèƒ½æ˜ å°„ */
 
-/* ¸´ÓÃ¹¦ÄÜ5 */
-#define  GPIO_AF5_TIM1                         ((uint8_t)0x05U)           /**< TIM1   ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF5_UART1                        ((uint8_t)0x05U)           /**< UART1  ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF5_UART2                        ((uint8_t)0x05U)           /**< UART2  ¸´ÓÃ¹¦ÄÜÓ³Éä */
+/* å¤ç”¨åŠŸèƒ½5 */
+#define GPIO_AF5_TIM1  ((uint8_t)0x05U) /**< TIM1   å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF5_UART1 ((uint8_t)0x05U) /**< UART1  å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF5_UART2 ((uint8_t)0x05U) /**< UART2  å¤ç”¨åŠŸèƒ½æ˜ å°„ */
 
-/* ¸´ÓÃ¹¦ÄÜ6 */
-#define  GPIO_AF6_I2C1                         ((uint8_t)0x06U)           /**< I2C1   ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF6_MCO                          ((uint8_t)0x06U)           /**< MCO    ¸´ÓÃ¹¦ÄÜÓ³Éä */
+/* å¤ç”¨åŠŸèƒ½6 */
+#define GPIO_AF6_I2C1 ((uint8_t)0x06U) /**< I2C1   å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF6_MCO  ((uint8_t)0x06U) /**< MCO    å¤ç”¨åŠŸèƒ½æ˜ å°„ */
 
-/* ¸´ÓÃ¹¦ÄÜ7 */
-#define  GPIO_AF7_COMP2                        ((uint8_t)0x07U)           /**< COMP2  ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF7_IR_OUT                       ((uint8_t)0x07U)           /**< IR_OUT ¸´ÓÃ¹¦ÄÜÓ³Éä */
-#define  GPIO_AF7_MCO                          ((uint8_t)0x07U)           /**< MCO    ¸´ÓÃ¹¦ÄÜÓ³Éä */
+/* å¤ç”¨åŠŸèƒ½7 */
+#define GPIO_AF7_COMP2  ((uint8_t)0x07U) /**< COMP2  å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF7_IR_OUT ((uint8_t)0x07U) /**< IR_OUT å¤ç”¨åŠŸèƒ½æ˜ å°„ */
+#define GPIO_AF7_MCO    ((uint8_t)0x07U) /**< MCO    å¤ç”¨åŠŸèƒ½æ˜ å°„ */
 
-/* ¸´ÓÃ¹¦ÄÜ¼Ä´æÆ÷GPIOÔ´Ñ¡ÔñÆ«ÒÆÎ» */
-#define  GPIO_AF_SELECT_OFFSET                 (0x0000000FU)              /**< GPIOÔ´Ñ¡ÔñÆ«ÒÆÎ» */
+/* å¤ç”¨åŠŸèƒ½å¯„å­˜å™¨GPIOæºé€‰æ‹©åç§»ä½ */
+#define GPIO_AF_SELECT_OFFSET (0x0000000FU) /**< GPIOæºé€‰æ‹©åç§»ä½ */
 
-/** 
-* @} 
-*/
+/**
+ * @}
+ */
 
 /*-------------------------------------------functions------------------------------------------*/
 
 /************************************************************************************************/
 /**
-* @defgroup GPIO_External_Functions GPIO External Functions
-* @brief    GPIO¶ÔÍâº¯Êı
-* @{
-*
-*/
+ * @defgroup GPIO_External_Functions GPIO External Functions
+ * @brief    GPIOå¯¹å¤–å‡½æ•°
+ * @{
+ *
+ */
 /************************************************************************************************/
 /**
-* @brief  ÉèÖÃGPIOÒı½ÅÄ£Ê½
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin  GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @param  mode GPIOÒı½ÅÄ£Ê½
-*             @arg GPIO_MODE_INPUT     ÊäÈëÄ£Ê½
-*             @arg GPIO_MODE_OUTPUT    Êä³öÄ£Ê½
-*             @arg GPIO_MODE_ALTERNATE ¸´ÓÃÄ£Ê½
-*             @arg GPIO_MODE_ANALOG    Ä£ÄâÄ£Ê½
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval ÎŞ
-*/
+ * @brief  è®¾ç½®GPIOå¼•è„šæ¨¡å¼
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin  GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @param  mode GPIOå¼•è„šæ¨¡å¼
+ *             @arg GPIO_MODE_INPUT     è¾“å…¥æ¨¡å¼
+ *             @arg GPIO_MODE_OUTPUT    è¾“å‡ºæ¨¡å¼
+ *             @arg GPIO_MODE_ALTERNATE å¤ç”¨æ¨¡å¼
+ *             @arg GPIO_MODE_ANALOG    æ¨¡æ‹Ÿæ¨¡å¼
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval æ— 
+ */
 __STATIC_INLINE void std_gpio_set_pin_mode(GPIO_t *gpiox, uint32_t pin, uint32_t mode)
 {
     MODIFY_REG(gpiox->MODE, ((pin * pin) * GPIO_MODE_MODE0), ((pin * pin) * mode));
 }
 
 /**
-* @brief  ¶ÁÈ¡GPIOÒı½ÅÄ£Ê½
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval uint32_t GPIOÒı½ÅÄ£Ê½
-*             @arg GPIO_MODE_INPUT     ÊäÈëÄ£Ê½
-*             @arg GPIO_MODE_OUTPUT    Êä³öÄ£Ê½
-*             @arg GPIO_MODE_ALTERNATE ¸´ÓÃÄ£Ê½
-*             @arg GPIO_MODE_ANALOG    Ä£ÄâÄ£Ê½
-*/
+ * @brief  è¯»å–GPIOå¼•è„šæ¨¡å¼
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval uint32_t GPIOå¼•è„šæ¨¡å¼
+ *             @arg GPIO_MODE_INPUT     è¾“å…¥æ¨¡å¼
+ *             @arg GPIO_MODE_OUTPUT    è¾“å‡ºæ¨¡å¼
+ *             @arg GPIO_MODE_ALTERNATE å¤ç”¨æ¨¡å¼
+ *             @arg GPIO_MODE_ANALOG    æ¨¡æ‹Ÿæ¨¡å¼
+ */
 __STATIC_INLINE uint32_t std_gpio_get_pin_mode(GPIO_t *gpiox, uint32_t pin)
 {
     return ((gpiox->MODE & ((pin * pin) * GPIO_MODE_MODE0)) / (pin * pin));
 }
 
 /**
-* @brief  ÉèÖÃGPIOÒı½ÅÊä³öÀàĞÍ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin_mask GPIOÒı½Å×éºÏ
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @param  output_type GPIOÒı½ÅÊä³öÀàĞÍ
-*             @arg GPIO_OUTPUT_PUSHPULL  ÍÆÍìÊä³ö
-*             @arg GPIO_OUTPUT_OPENDRAIN ¿ªÂ©Êä³ö
-* @retval ÎŞ
-*/
+ * @brief  è®¾ç½®GPIOå¼•è„šè¾“å‡ºç±»å‹
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin_mask GPIOå¼•è„šç»„åˆ
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @param  output_type GPIOå¼•è„šè¾“å‡ºç±»å‹
+ *             @arg GPIO_OUTPUT_PUSHPULL  æ¨æŒ½è¾“å‡º
+ *             @arg GPIO_OUTPUT_OPENDRAIN å¼€æ¼è¾“å‡º
+ * @retval æ— 
+ */
 __STATIC_INLINE void std_gpio_set_pin_output_type(GPIO_t *gpiox, uint32_t pin_mask, uint32_t output_type)
 {
     MODIFY_REG(gpiox->OTYPE, pin_mask, pin_mask * output_type);
 }
 
 /**
-* @brief  ¶ÁÈ¡GPIOÒı½ÅÊä³öÀàĞÍ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin  GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval uint32_t GPIOÒı½ÅÊä³öÀàĞÍ
-*             @arg GPIO_OUTPUT_PUSHPULL  ÍÆÍìÊä³ö
-*             @arg GPIO_OUTPUT_OPENDRAIN ¿ªÂ©Êä³ö
-*/
+ * @brief  è¯»å–GPIOå¼•è„šè¾“å‡ºç±»å‹
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin  GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval uint32_t GPIOå¼•è„šè¾“å‡ºç±»å‹
+ *             @arg GPIO_OUTPUT_PUSHPULL  æ¨æŒ½è¾“å‡º
+ *             @arg GPIO_OUTPUT_OPENDRAIN å¼€æ¼è¾“å‡º
+ */
 __STATIC_INLINE uint32_t std_gpio_get_pin_output_type(GPIO_t *gpiox, uint32_t pin)
 {
     return ((gpiox->OTYPE & (pin)) != 0U ? GPIO_OUTPUT_OPENDRAIN : GPIO_OUTPUT_PUSHPULL);
 }
 
 /**
-* @brief  ÉèÖÃGPIOÒı½ÅÉÏÏÂÀ­ÅäÖÃ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @param  pull GPIOÒı½ÅÉÏÏÂÀ­ÅäÖÃ
-*             @arg GPIO_NOPULL   ÎŞÉÏ¡¢ÏÂÀ­
-*             @arg GPIO_PULLUP   ÉÏÀ­
-*             @arg GPIO_PULLDOWN ÏÂÀ­
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval ÎŞ
-*/
+ * @brief  è®¾ç½®GPIOå¼•è„šä¸Šä¸‹æ‹‰é…ç½®
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @param  pull GPIOå¼•è„šä¸Šä¸‹æ‹‰é…ç½®
+ *             @arg GPIO_NOPULL   æ— ä¸Šã€ä¸‹æ‹‰
+ *             @arg GPIO_PULLUP   ä¸Šæ‹‰
+ *             @arg GPIO_PULLDOWN ä¸‹æ‹‰
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval æ— 
+ */
 __STATIC_INLINE void std_gpio_set_pin_pull(GPIO_t *gpiox, uint32_t pin, uint32_t pull)
 {
     MODIFY_REG(gpiox->PUPD, ((pin * pin) * GPIO_PUPD_PUPD0), ((pin * pin) * pull));
 }
 
 /**
-* @brief  ¶ÁÈ¡GPIOÒı½ÅÉÏÏÂÀ­ÅäÖÃ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin  GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval uint32_t GPIOÒı½ÅÉÏÏÂÀ­ÅäÖÃ
-*             @arg GPIO_NOPULL   ÎŞÉÏ¡¢ÏÂÀ­
-*             @arg GPIO_PULLUP   ÉÏÀ­
-*             @arg GPIO_PULLDOWN ÏÂÀ­
-*/
+ * @brief  è¯»å–GPIOå¼•è„šä¸Šä¸‹æ‹‰é…ç½®
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin  GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval uint32_t GPIOå¼•è„šä¸Šä¸‹æ‹‰é…ç½®
+ *             @arg GPIO_NOPULL   æ— ä¸Šã€ä¸‹æ‹‰
+ *             @arg GPIO_PULLUP   ä¸Šæ‹‰
+ *             @arg GPIO_PULLDOWN ä¸‹æ‹‰
+ */
 __STATIC_INLINE uint32_t std_gpio_get_pin_pull(GPIO_t *gpiox, uint32_t pin)
 {
-  return ((gpiox->PUPD & ((pin * pin) * GPIO_PUPD_PUPD0)) / (pin * pin));
+    return ((gpiox->PUPD & ((pin * pin) * GPIO_PUPD_PUPD0)) / (pin * pin));
 }
 
 /**
-* @brief  ÉèÖÃGPIOÒı½Å£¨0~7£©¸´ÓÃ¹¦ÄÜ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin  GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @param  alternate GPIOÒı½Å£¨0~7£©¸´ÓÃ¹¦ÄÜ
-*             @arg GPIO_AF0_SPI1                         
-*             @arg GPIO_AF0_SWCLK                       
-*             @arg GPIO_AF0_SWDIO             
-*             @arg GPIO_AF1_UART1                        
-*             @arg GPIO_AF2_TIM1                        
-*             @arg GPIO_AF3_TIM1                         
-*             @arg GPIO_AF3_TIM3                         
-*             @arg GPIO_AF4_TIM1                         
-*             @arg GPIO_AF4_COMP1                        
-*             @arg GPIO_AF4_SPI1                         
-*             @arg GPIO_AF5_TIM1                         
-*             @arg GPIO_AF5_UART1                        
-*             @arg GPIO_AF5_UART2                       
-*             @arg GPIO_AF6_I2C1                         
-*             @arg GPIO_AF6_MCO                          
-*             @arg GPIO_AF7_COMP2                       
-*             @arg GPIO_AF7_IR_OUT                       
-*             @arg GPIO_AF7_MCO                          
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval ÎŞ
-*/
+ * @brief  è®¾ç½®GPIOå¼•è„šï¼ˆ0~7ï¼‰å¤ç”¨åŠŸèƒ½
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin  GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @param  alternate GPIOå¼•è„šï¼ˆ0~7ï¼‰å¤ç”¨åŠŸèƒ½
+ *             @arg GPIO_AF0_SPI1
+ *             @arg GPIO_AF0_SWCLK
+ *             @arg GPIO_AF0_SWDIO
+ *             @arg GPIO_AF1_UART1
+ *             @arg GPIO_AF2_TIM1
+ *             @arg GPIO_AF3_TIM1
+ *             @arg GPIO_AF3_TIM3
+ *             @arg GPIO_AF4_TIM1
+ *             @arg GPIO_AF4_COMP1
+ *             @arg GPIO_AF4_SPI1
+ *             @arg GPIO_AF5_TIM1
+ *             @arg GPIO_AF5_UART1
+ *             @arg GPIO_AF5_UART2
+ *             @arg GPIO_AF6_I2C1
+ *             @arg GPIO_AF6_MCO
+ *             @arg GPIO_AF7_COMP2
+ *             @arg GPIO_AF7_IR_OUT
+ *             @arg GPIO_AF7_MCO
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval æ— 
+ */
 __STATIC_INLINE void std_gpio_set_afpin_0_7(GPIO_t *gpiox, uint32_t pin, uint32_t alternate)
 {
     MODIFY_REG(gpiox->AFL, ((((pin * pin) * pin) * pin) * GPIO_AF_SELECT_OFFSET),
-               ((((pin * pin) * pin) * pin) * alternate)); 
+               ((((pin * pin) * pin) * pin) * alternate));
 }
 
 /**
-* @brief  ¶ÁÈ¡GPIOÒı½Å£¨0~7£©¸´ÓÃ¹¦ÄÜ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval uint32_t GPIOÒı½Å£¨0~7£©¸´ÓÃ¹¦ÄÜ
-*             @arg GPIO_AF0_SPI1                         
-*             @arg GPIO_AF0_SWCLK                       
-*             @arg GPIO_AF0_SWDIO             
-*             @arg GPIO_AF1_UART1                        
-*             @arg GPIO_AF2_TIM1                        
-*             @arg GPIO_AF3_TIM1                         
-*             @arg GPIO_AF3_TIM3                         
-*             @arg GPIO_AF4_TIM1                         
-*             @arg GPIO_AF4_COMP1                        
-*             @arg GPIO_AF4_SPI1                         
-*             @arg GPIO_AF5_TIM1                         
-*             @arg GPIO_AF5_UART1                        
-*             @arg GPIO_AF5_UART2                       
-*             @arg GPIO_AF6_I2C1                         
-*             @arg GPIO_AF6_MCO                          
-*             @arg GPIO_AF7_COMP2                       
-*             @arg GPIO_AF7_IR_OUT                       
-*             @arg GPIO_AF7_MCO  
-*/
+ * @brief  è¯»å–GPIOå¼•è„šï¼ˆ0~7ï¼‰å¤ç”¨åŠŸèƒ½
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval uint32_t GPIOå¼•è„šï¼ˆ0~7ï¼‰å¤ç”¨åŠŸèƒ½
+ *             @arg GPIO_AF0_SPI1
+ *             @arg GPIO_AF0_SWCLK
+ *             @arg GPIO_AF0_SWDIO
+ *             @arg GPIO_AF1_UART1
+ *             @arg GPIO_AF2_TIM1
+ *             @arg GPIO_AF3_TIM1
+ *             @arg GPIO_AF3_TIM3
+ *             @arg GPIO_AF4_TIM1
+ *             @arg GPIO_AF4_COMP1
+ *             @arg GPIO_AF4_SPI1
+ *             @arg GPIO_AF5_TIM1
+ *             @arg GPIO_AF5_UART1
+ *             @arg GPIO_AF5_UART2
+ *             @arg GPIO_AF6_I2C1
+ *             @arg GPIO_AF6_MCO
+ *             @arg GPIO_AF7_COMP2
+ *             @arg GPIO_AF7_IR_OUT
+ *             @arg GPIO_AF7_MCO
+ */
 __STATIC_INLINE uint32_t std_gpio_get_afpin_0_7(GPIO_t *gpiox, uint32_t pin)
 {
-    return ((gpiox->AFL & ((((pin * pin) * pin) * pin) * GPIO_AF_SELECT_OFFSET)) / 
+    return ((gpiox->AFL & ((((pin * pin) * pin) * pin) * GPIO_AF_SELECT_OFFSET)) /
             (((pin * pin) * pin) * pin));
 }
 
 /**
-* @brief  ¶ÁÈ¡GPIOÒı½ÅÊäÈë×´Ì¬
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin  GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval bool GPIOÒı½ÅÊäÈë×´Ì¬
-*             @arg true  ±íÊ¾¸ßµçÆ½
-*             @arg false ±íÊ¾µÍµçÆ½
-*/
-__STATIC_INLINE bool std_gpio_get_input_pin(GPIO_t* gpiox, uint32_t pin)
+ * @brief  è¯»å–GPIOå¼•è„šè¾“å…¥çŠ¶æ€
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin  GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval bool GPIOå¼•è„šè¾“å…¥çŠ¶æ€
+ *             @arg true  è¡¨ç¤ºé«˜ç”µå¹³
+ *             @arg false è¡¨ç¤ºä½ç”µå¹³
+ */
+__STATIC_INLINE bool std_gpio_get_input_pin(GPIO_t *gpiox, uint32_t pin)
 {
     return ((gpiox->IDR & (pin)) == (pin));
 }
 
 /**
-* @brief  ¶ÁÈ¡GPIOÒı½ÅÊä³ö×´Ì¬
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin GPIOÒı½Å
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @note   ½öÖ§³Öµ¥¸öÒı½Å
-* @retval bool GPIOÒı½ÅÊä³ö×´Ì¬
-*             @arg true  ±íÊ¾¸ßµçÆ½
-*             @arg false ±íÊ¾µÍµçÆ½
-*/
-__STATIC_INLINE bool std_gpio_get_output_pin(GPIO_t* gpiox, uint32_t pin)
+ * @brief  è¯»å–GPIOå¼•è„šè¾“å‡ºçŠ¶æ€
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin GPIOå¼•è„š
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @note   ä»…æ”¯æŒå•ä¸ªå¼•è„š
+ * @retval bool GPIOå¼•è„šè¾“å‡ºçŠ¶æ€
+ *             @arg true  è¡¨ç¤ºé«˜ç”µå¹³
+ *             @arg false è¡¨ç¤ºä½ç”µå¹³
+ */
+__STATIC_INLINE bool std_gpio_get_output_pin(GPIO_t *gpiox, uint32_t pin)
 {
     return ((gpiox->ODR & (pin)) == (pin));
 }
 
 /**
-* @brief  ¶ÁÈ¡GPIO¶Ë¿ÚÊäÈëÊı¾İ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @retval uint32_t GPIO¶Ë¿ÚÊäÈëÊı¾İ
-*/
-__STATIC_INLINE uint32_t std_gpio_read_input_port(GPIO_t* gpiox)
+ * @brief  è¯»å–GPIOç«¯å£è¾“å…¥æ•°æ®
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @retval uint32_t GPIOç«¯å£è¾“å…¥æ•°æ®
+ */
+__STATIC_INLINE uint32_t std_gpio_read_input_port(GPIO_t *gpiox)
 {
     return (gpiox->IDR);
 }
 
 /**
-* @brief  ¶ÁÈ¡GPIO¶Ë¿ÚÊä³öÊı¾İ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @retval uint32_t GPIO¶Ë¿ÚÊä³öÊı¾İ
-*/
-__STATIC_INLINE uint32_t std_gpio_read_output_port(GPIO_t* gpiox)
+ * @brief  è¯»å–GPIOç«¯å£è¾“å‡ºæ•°æ®
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @retval uint32_t GPIOç«¯å£è¾“å‡ºæ•°æ®
+ */
+__STATIC_INLINE uint32_t std_gpio_read_output_port(GPIO_t *gpiox)
 {
     return (gpiox->ODR);
 }
 
 /**
-* @brief  Ğ´ÈëGPIO¶Ë¿ÚÊä³öÊı¾İ
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  value Êä³öÊı¾İ
-* @retval ÎŞ
-*/
-__STATIC_INLINE void std_gpio_write_output_port(GPIO_t* gpiox, uint32_t value)
+ * @brief  å†™å…¥GPIOç«¯å£è¾“å‡ºæ•°æ®
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  value è¾“å‡ºæ•°æ®
+ * @retval æ— 
+ */
+__STATIC_INLINE void std_gpio_write_output_port(GPIO_t *gpiox, uint32_t value)
 {
     gpiox->ODR = value;
 }
 
 /**
-* @brief  ÉèÖÃGPIOÊä³ö¸ßµçÆ½
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin_mask GPIOÒı½Å×éºÏ
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @retval ÎŞ
-*/
-__STATIC_INLINE void std_gpio_set_pin(GPIO_t* gpiox, uint32_t pin_mask)
+ * @brief  è®¾ç½®GPIOè¾“å‡ºé«˜ç”µå¹³
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin_mask GPIOå¼•è„šç»„åˆ
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @retval æ— 
+ */
+__STATIC_INLINE void std_gpio_set_pin(GPIO_t *gpiox, uint32_t pin_mask)
 {
     gpiox->BSR = pin_mask;
 }
 
 /**
-* @brief  ÉèÖÃGPIOÊä³öµÍµçÆ½
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin_mask  GPIOÒı½Å×éºÏ
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @retval ÎŞ
-*/
-__STATIC_INLINE void std_gpio_reset_pin(GPIO_t* gpiox, uint32_t pin_mask)
+ * @brief  è®¾ç½®GPIOè¾“å‡ºä½ç”µå¹³
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin_mask  GPIOå¼•è„šç»„åˆ
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @retval æ— 
+ */
+__STATIC_INLINE void std_gpio_reset_pin(GPIO_t *gpiox, uint32_t pin_mask)
 {
     gpiox->BR = pin_mask;
 }
 
 /**
-* @brief  ÇĞ»»GPIO¶Ë¿Ú¸ß/µÍµçÆ½
-* @param  gpiox GPIOÍâÉè
-*             @arg GPIOA
-*             @arg GPIOB
-*             @arg GPIOC
-* @param  pin_mask  GPIOÒı½Å×éºÏ
-*             @arg GPIO_PIN_0
-*             @arg GPIO_PIN_1
-*             @arg ...
-*             @arg GPIO_PIN_7
-* @retval ÎŞ
-*/
-__STATIC_INLINE void std_gpio_toggle_pin(GPIO_t* gpiox, uint32_t pin_mask)
+ * @brief  åˆ‡æ¢GPIOç«¯å£é«˜/ä½ç”µå¹³
+ * @param  gpiox GPIOå¤–è®¾
+ *             @arg GPIOA
+ *             @arg GPIOB
+ *             @arg GPIOC
+ * @param  pin_mask  GPIOå¼•è„šç»„åˆ
+ *             @arg GPIO_PIN_0
+ *             @arg GPIO_PIN_1
+ *             @arg ...
+ *             @arg GPIO_PIN_7
+ * @retval æ— 
+ */
+__STATIC_INLINE void std_gpio_toggle_pin(GPIO_t *gpiox, uint32_t pin_mask)
 {
     gpiox->ODR ^= pin_mask;
 }
 
-void std_gpio_init(GPIO_t* gpiox, std_gpio_init_t* gpio_init_param);
-void std_gpio_deinit(GPIO_t* gpiox);
-void std_gpio_struct_init(std_gpio_init_t* gpio_init_struct);
+void std_gpio_init(GPIO_t *gpiox, std_gpio_init_t *gpio_init_param);
+void std_gpio_deinit(GPIO_t *gpiox);
+void std_gpio_struct_init(std_gpio_init_t *gpio_init_struct);
 
-/** 
-* @} 
-*/
-
+/**
+ * @}
+ */
 
 #ifdef __cplusplus
 }
 #endif
 
 /**
-* @} 
-*/  
+ * @}
+ */
 
 /**
-* @}
-*/
+ * @}
+ */
 
 #endif /* CIU32F003_STD_GPIO_H */
-
-

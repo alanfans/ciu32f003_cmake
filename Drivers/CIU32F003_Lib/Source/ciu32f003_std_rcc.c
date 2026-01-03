@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_rcc.c
 * @author             MCU Ecosystem Development Team
-* @brief              RCC STD¿âÇý¶¯¡£
-*                     ÊµÏÖRCCÊ±ÖÓÆµÂÊ»ñÈ¡µÈAPI¡£
+* @brief              RCC STDåº“é©±åŠ¨ã€‚
+*                     å®žçŽ°RCCæ—¶é’Ÿé¢‘çŽ‡èŽ·å–ç­‰APIã€‚
 *
 *
 **************************************************************************************************
@@ -41,41 +41,41 @@
 /************************************************************************************************/ 
 
 /**
-* @brief  »ñÈ¡µ±Ç°ÏµÍ³Ê±ÖÓÆµÂÊ£¨SYSCLK£©
-* @retval ·µ»ØÏµÍ³Ê±ÖÓÆµÂÊ£¨Hz£©
+* @brief  èŽ·å–å½“å‰ç³»ç»Ÿæ—¶é’Ÿé¢‘çŽ‡ï¼ˆSYSCLKï¼‰
+* @retval è¿”å›žç³»ç»Ÿæ—¶é’Ÿé¢‘çŽ‡ï¼ˆHzï¼‰
 */
 uint32_t std_rcc_get_sysclkfreq(void)
 {
     uint32_t frequency = 0;
     
-    /* »ñÈ¡µ±Ç°ÏµÍ³Ê±ÖÓÔ´ */
+    /* èŽ·å–å½“å‰ç³»ç»Ÿæ—¶é’Ÿæº */
     switch(std_rcc_get_sysclk_source())
     {
-        /* ÏµÍ³Ê±ÖÓÎªEXTCLK£¬Ä¬ÈÏÎª8MHz */
+        /* ç³»ç»Ÿæ—¶é’Ÿä¸ºEXTCLKï¼Œé»˜è®¤ä¸º8MHz */
         case RCC_SYSCLK_SRC_STATUS_EXTCLK:
         {
             frequency = EXTCLK_VALUE;
         }break;
         
-        /* ÏµÍ³Ê±ÖÓÎªRCHDIV3 */
+        /* ç³»ç»Ÿæ—¶é’Ÿä¸ºRCHDIV3 */
         case RCC_SYSCLK_SRC_STATUS_RCHDIV3:
         {
             frequency = RCH_VALUE/3;
         }break;
         
-        /* ÏµÍ³Ê±ÖÓÎªRCH */
+        /* ç³»ç»Ÿæ—¶é’Ÿä¸ºRCH */
         case RCC_SYSCLK_SRC_STATUS_RCH:
         {
             frequency = RCH_VALUE;
         }break;
         
-        /* ÏµÍ³Ê±ÖÓÎªRCL */
+        /* ç³»ç»Ÿæ—¶é’Ÿä¸ºRCL */
         case RCC_SYSCLK_SRC_STATUS_RCL:
         {
             frequency = RCL_VALUE;
         }break;       
         
-        /* ÏµÍ³Ê±ÖÓÎªRCHDIV6 */
+        /* ç³»ç»Ÿæ—¶é’Ÿä¸ºRCHDIV6 */
         case RCC_SYSCLK_SRC_STATUS_RCHDIV6:
         default:
         {
@@ -87,8 +87,8 @@ uint32_t std_rcc_get_sysclkfreq(void)
 
 
 /**
-* @brief  »ñÈ¡AHBÊ±ÖÓÆµÂÊ£¨HCLK£©
-* @retval ·µ»ØHCLKÊ±ÖÓÆµÂÊ£¨Hz£©
+* @brief  èŽ·å–AHBæ—¶é’Ÿé¢‘çŽ‡ï¼ˆHCLKï¼‰
+* @retval è¿”å›žHCLKæ—¶é’Ÿé¢‘çŽ‡ï¼ˆHzï¼‰
 */
 uint32_t std_rcc_get_hclkfreq(void)
 {
@@ -97,7 +97,7 @@ uint32_t std_rcc_get_hclkfreq(void)
     
     tmp = std_rcc_get_sysclkfreq();
     
-    /* »ñÈ¡AHB·ÖÆµÒò×Ó */
+    /* èŽ·å–AHBåˆ†é¢‘å› å­ */
     hclk_div = std_rcc_get_ahbdiv()>>RCC_CFG_HPRE_POS;
     frequency = tmp >> hclk_div;    
 
@@ -105,8 +105,8 @@ uint32_t std_rcc_get_hclkfreq(void)
 }
 
 /**
-* @brief  »ñÈ¡APBÊ±ÖÓÆµÂÊ£¨PCLK£©
-* @retval ·µ»ØPCLK1Ê±ÖÓÆµÂÊ£¨Hz£©
+* @brief  èŽ·å–APBæ—¶é’Ÿé¢‘çŽ‡ï¼ˆPCLKï¼‰
+* @retval è¿”å›žPCLK1æ—¶é’Ÿé¢‘çŽ‡ï¼ˆHzï¼‰
 */
 uint32_t std_rcc_get_pclkfreq(void)
 {
@@ -115,7 +115,7 @@ uint32_t std_rcc_get_pclkfreq(void)
     
     tmp = std_rcc_get_hclkfreq();
     
-    /* »ñÈ¡APB·ÖÆµÒò×Ó */
+    /* èŽ·å–APBåˆ†é¢‘å› å­ */
     pclk_div = std_rcc_get_apbdiv()>>RCC_CFG_PPRE_POS;
     
     if (pclk_div < 3)

@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_uart.c
 * @author             MCU Ecosystem Development Team
-* @brief              UART STD¿âÇı¶¯¡£
-*                     ÊµÏÖUART³õÊ¼»¯µÈAPI¡£
+* @brief              UART STDåº“é©±åŠ¨ã€‚
+*                     å®ç°UARTåˆå§‹åŒ–ç­‰APIã€‚
 *
 *
 **************************************************************************************************
@@ -41,27 +41,27 @@
 /************************************************************************************************/ 
 
 /**
-* @brief  UART³õÊ¼»¯
-* @param  uartx UARTÍâÉè
-* @param  uart_init_param UART³õÊ¼»¯½á¹¹Ìå
-* @retval  ÎŞ
+* @brief  UARTåˆå§‹åŒ–
+* @param  uartx UARTå¤–è®¾
+* @param  uart_init_param UARTåˆå§‹åŒ–ç»“æ„ä½“
+* @retval  æ— 
 */
 void std_uart_init(UART_t *uartx,std_uart_init_t *uart_init_param)
 {
     uint32_t pclk;
    
-    /* ÉèÖÃ UART ×Ö³¤ ¡¢ÊÕ·¢Ä£Ê½¡¢Ğ£Ñé*/
+    /* è®¾ç½® UART å­—é•¿ ã€æ”¶å‘æ¨¡å¼ã€æ ¡éªŒ*/
     MODIFY_REG(uartx->CR1,
               (UART_CR1_WL|UART_CR1_TE|UART_CR1_RE|UART_CR1_PTS|UART_CR1_PEN),
               (uart_init_param->wordlength|uart_init_param->direction|uart_init_param->parity));
      
-    /* ÉèÖÃUARTÍ£Ö¹Î» */
+    /* è®¾ç½®UARTåœæ­¢ä½ */
     std_uart_set_stopbits(uartx,uart_init_param->stopbits);
            
-     /* »ñÈ¡UARTÊ±ÖÓÆµÂÊ */
+     /* è·å–UARTæ—¶é’Ÿé¢‘ç‡ */
     pclk = std_rcc_get_pclkfreq();
  
-    /* BRRÈ¡Öµ·¶Î§[0x10,0xFFFF] */    
+    /* BRRå–å€¼èŒƒå›´[0x10,0xFFFF] */    
     if(uart_init_param->baudrate != 0)
     {
         uartx->BRR = (pclk + (uart_init_param->baudrate>>1))/uart_init_param->baudrate;
@@ -69,13 +69,13 @@ void std_uart_init(UART_t *uartx,std_uart_init_t *uart_init_param)
 }
 
 /**
-* @brief  UARTÈ¥³õÊ¼»¯
-* @param  uartx UARTÍâÉè
-* @retval ÎŞ
+* @brief  UARTå»åˆå§‹åŒ–
+* @param  uartx UARTå¤–è®¾
+* @retval æ— 
 */
 void std_uart_deinit(UART_t *uartx)
 {
-    /* UART µÄRCCÊ±ÖÓ¸´Î» */
+    /* UART çš„RCCæ—¶é’Ÿå¤ä½ */
     if(uartx == UART1)
     {
         std_rcc_apb2_reset(RCC_PERIPH_RESET_UART1);
@@ -87,9 +87,9 @@ void std_uart_deinit(UART_t *uartx)
 }
 
 /**
-* @brief  UART½á¹¹Ìå³õÊ¼»¯
-* @param  uart_init_struct UART³õÊ¼»¯½á¹¹Ìå
-* @retval ÎŞ
+* @brief  UARTç»“æ„ä½“åˆå§‹åŒ–
+* @param  uart_init_struct UARTåˆå§‹åŒ–ç»“æ„ä½“
+* @retval æ— 
 */
 void std_uart_struct_init(std_uart_init_t *uart_init_struct)
 { 

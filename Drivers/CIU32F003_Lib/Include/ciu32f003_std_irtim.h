@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_irtim.h
 * @author             MCU Ecosystem Development Team
-* @brief              IRTIM STD������ͷ�ļ���
-*                     �ṩIRTIM��ص�STD������������������������Լ������Ķ��塣                         
+* @brief              IRTIM STD库驱动头文件。
+*                     提供IRTIM相关的STD库操作函数声明、数据类型以及常量的定义。                         
 *
 *
 **************************************************************************************************
@@ -13,7 +13,7 @@
 **************************************************************************************************
 */
 
-/* ����ͷ�ļ��ظ����� */
+/* 避免头文件重复引用 */
 #ifndef CIU32F003_STD_IRTIM_H
 #define CIU32F003_STD_IRTIM_H
 
@@ -25,7 +25,7 @@
 
 /**
 * @defgroup IRTIM IRTIM
-* @brief �������ģ���STD������
+* @brief 红外控制模块的STD库驱动
 * @{
 */
 /************************************************************************************************/
@@ -41,20 +41,20 @@
 /************************************************************************************************/
 /**
 * @defgroup IRTIM_Constants  IRTIM Constants
-* @brief    IRTIM�������弰�궨��
+* @brief    IRTIM常量定义及宏定义
 * @{
 *
 */
 /************************************************************************************************/
 
-/* IRTIM �����ź�Դѡ��  */    
-#define ITRIM_SIGNAL_SOURCE_TIM3_OC1                       IRTIM_CR_IR_MODE_TIM3_OC1                /**< �����ź�Դ��TIM3_OC1  */
-#define ITRIM_SIGNAL_SOURCE_UART1_TX                       IRTIM_CR_IR_MODE_UART1_TX                /**< �����ź�Դ��UART1_TX  */
-#define ITRIM_SIGNAL_SOURCE_UART2_TX                       IRTIM_CR_IR_MODE_UART2_TX                /**< �����ź�Դ��UART2_TX  */
+/* IRTIM 调制信号源选择  */    
+#define ITRIM_SIGNAL_SOURCE_TIM3_OC1                       IRTIM_CR_IR_MODE_TIM3_OC1                /**< 调制信号源于TIM3_OC1  */
+#define ITRIM_SIGNAL_SOURCE_UART1_TX                       IRTIM_CR_IR_MODE_UART1_TX                /**< 调制信号源于UART1_TX  */
+#define ITRIM_SIGNAL_SOURCE_UART2_TX                       IRTIM_CR_IR_MODE_UART2_TX                /**< 调制信号源于UART2_TX  */
                     
-/* IRTIM ����źż���ѡ�� */
-#define IRTIM_POLARITY_DIRECT                              (0x00000000U)                            /**< IRTIM ����ź�δ����  */
-#define IRTIM_POLARITY_INVERSE                             IRTIM_CR_IR_POL                          /**< IRTIM ����źŷ���    */
+/* IRTIM 输出信号极性选择 */
+#define IRTIM_POLARITY_DIRECT                              (0x00000000U)                            /**< IRTIM 输出信号未反相  */
+#define IRTIM_POLARITY_INVERSE                             IRTIM_CR_IR_POL                          /**< IRTIM 输出信号反相    */
      
      
 /** 
@@ -66,18 +66,18 @@
 /************************************************************************************************/
 /**
 * @defgroup IRTIM_External_Functions IRTIM External Functions
-* @brief    IRTIM���⺯��
+* @brief    IRTIM对外函数
 * @{
 *
 */
 /************************************************************************************************/
 /** 
-* @brief  ����IRTIM�����ź�Դ
-* @param  source �����ź�Դѡ��
-*             @arg ITRIM_SIGNAL_SOURCE_TIM3_OC1�� �����ź�ԴΪTIM3��OC1
-*             @arg ITRIM_SIGNAL_SOURCE_UART1_TX�� �����ź�ԴΪUART1
-*             @arg ITRIM_SIGNAL_SOURCE_UART2_TX�� �����ź�ԴΪUART2
-* @retval ��
+* @brief  配置IRTIM调制信号源
+* @param  source 调制信号源选择
+*             @arg ITRIM_SIGNAL_SOURCE_TIM3_OC1： 调制信号源为TIM3的OC1
+*             @arg ITRIM_SIGNAL_SOURCE_UART1_TX： 调制信号源为UART1
+*             @arg ITRIM_SIGNAL_SOURCE_UART2_TX： 调制信号源为UART2
+* @retval 无
 */
 __STATIC_INLINE void std_irtim_set_signal_source(uint32_t source)
 {
@@ -85,11 +85,11 @@ __STATIC_INLINE void std_irtim_set_signal_source(uint32_t source)
 }
 
 /**
-* @brief  ��ȡIRTIM�����ź�Դ
-* @retval uint32_t �����ź�Դ
-*             @arg ITRIM_SIGNAL_SOURCE_TIM3_OC1�� �����ź�ԴΪTIM3��OC1
-*             @arg ITRIM_SIGNAL_SOURCE_UART1_TX�� �����ź�ԴΪUART1
-*             @arg ITRIM_SIGNAL_SOURCE_UART2_TX�� �����ź�ԴΪUART2
+* @brief  获取IRTIM调制信号源
+* @retval uint32_t 调制信号源
+*             @arg ITRIM_SIGNAL_SOURCE_TIM3_OC1： 调制信号源为TIM3的OC1
+*             @arg ITRIM_SIGNAL_SOURCE_UART1_TX： 调制信号源为UART1
+*             @arg ITRIM_SIGNAL_SOURCE_UART2_TX： 调制信号源为UART2
 */
 __STATIC_INLINE uint32_t std_irtim_get_signal_source(void)
 {
@@ -97,11 +97,11 @@ __STATIC_INLINE uint32_t std_irtim_get_signal_source(void)
 }
 
 /**
-* @brief  IR_OUT����źż���ѡ��
-* @param  polarity ����źż���
-*             @arg IRTIM_POLARITY_DIRECT:  ����ź�δ����
-*             @arg IRTIM_POLARITY_INVERSE: ����źŷ���
-* @retval ��
+* @brief  IR_OUT输出信号极性选择
+* @param  polarity 输出信号极性
+*             @arg IRTIM_POLARITY_DIRECT:  输出信号未反相
+*             @arg IRTIM_POLARITY_INVERSE: 输出信号反相
+* @retval 无
 */
 __STATIC_INLINE void std_irtim_set_polarity(uint32_t polarity)
 {
@@ -109,10 +109,10 @@ __STATIC_INLINE void std_irtim_set_polarity(uint32_t polarity)
 }
 
 /**
-* @brief  ��ȡIR_OUT����źż���״̬
-* @retval uint32_t �����߼�����ʽ���жϽ��
-*             @arg ��0�� ��ʾIRTIM����źŷ���
-*             @arg  0��  ��ʾIRTIM����ź�δ�෴
+* @brief  获取IR_OUT输出信号极性状态
+* @retval uint32_t 输出信号极性
+*             @arg IRTIM_POLARITY_DIRECT:  输出信号未反相
+*             @arg IRTIM_POLARITY_INVERSE: 输出信号反相
 */
 __STATIC_INLINE uint32_t std_irtim_get_polarity(void)
 {

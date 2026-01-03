@@ -2,8 +2,8 @@
 /**
 * @file               ciu32f003_std_adc.h
 * @author             MCU Ecosystem Development Team
-* @brief              ADC STD������ͷ�ļ���
-*                     �ṩADC��ص�STD������������������������Լ������Ķ��塣                         
+* @brief              ADC STD库驱动头文件。
+*                     提供ADC相关的STD库操作函数声明、数据类型以及常量的定义。                         
 *
 *
 **************************************************************************************************
@@ -13,7 +13,7 @@
 **************************************************************************************************
 */
 
-/* ����ͷ�ļ��ظ����� */
+/* 避免头文件重复引用 */
 #ifndef CIU32F003_STD_ADC_H
 #define CIU32F003_STD_ADC_H
 
@@ -25,7 +25,7 @@
 
 /**
 * @defgroup ADC ADC
-* @brief ģ��ת������STD������
+* @brief 模数转换器的STD库驱动
 * @{
 */
 /************************************************************************************************/
@@ -43,129 +43,129 @@
 /************************************************************************************************/
 /**
 * @defgroup ADC_Constants  ADC Constants
-* @brief    ADC�������弰�궨��
+* @brief    ADC常量定义及宏定义
 * @{
 *
 */
 /************************************************************************************************/
-/* ADC_CKʱ�ӷ�Ƶϵ�� */
-#define ADC_CK_DIV1                          ADC_CFG2_PRESC_DIV1                            /**< ADC_CKʱ��: ����Ƶ */
-#define ADC_CK_DIV2                          ADC_CFG2_PRESC_DIV2                            /**< ADC_CKʱ��: 2��Ƶ  */
-#define ADC_CK_DIV3                          ADC_CFG2_PRESC_DIV3                            /**< ADC_CKʱ��: 3��Ƶ  */
-#define ADC_CK_DIV4                          ADC_CFG2_PRESC_DIV4                            /**< ADC_CKʱ��: 4��Ƶ  */
-#define ADC_CK_DIV8                          ADC_CFG2_PRESC_DIV8                            /**< ADC_CKʱ��: 8��Ƶ  */
-#define ADC_CK_DIV16                         ADC_CFG2_PRESC_DIV16                           /**< ADC_CKʱ��: 16��Ƶ */
-#define ADC_CK_DIV32                         ADC_CFG2_PRESC_DIV32                           /**< ADC_CKʱ��: 32��Ƶ */
-#define ADC_CK_DIV64                         ADC_CFG2_PRESC_DIV64                           /**< ADC_CKʱ��: 64��Ƶ */
+/* ADC_CK时钟分频系数 */
+#define ADC_CK_DIV1                          ADC_CFG2_PRESC_DIV1                            /**< ADC_CK时钟: 不分频 */
+#define ADC_CK_DIV2                          ADC_CFG2_PRESC_DIV2                            /**< ADC_CK时钟: 2分频  */
+#define ADC_CK_DIV3                          ADC_CFG2_PRESC_DIV3                            /**< ADC_CK时钟: 3分频  */
+#define ADC_CK_DIV4                          ADC_CFG2_PRESC_DIV4                            /**< ADC_CK时钟: 4分频  */
+#define ADC_CK_DIV8                          ADC_CFG2_PRESC_DIV8                            /**< ADC_CK时钟: 8分频  */
+#define ADC_CK_DIV16                         ADC_CFG2_PRESC_DIV16                           /**< ADC_CK时钟: 16分频 */
+#define ADC_CK_DIV32                         ADC_CFG2_PRESC_DIV32                           /**< ADC_CK时钟: 32分频 */
+#define ADC_CK_DIV64                         ADC_CFG2_PRESC_DIV64                           /**< ADC_CK时钟: 64分频 */
 
-/* ADCת��ģʽ */
-#define ADC_SINGLE_CONVER_MODE               ADC_CFG1_CONV_MOD_SINGLE                       /**< ADC����ɨ��ת�� */
-#define ADC_CONTINUOUS_CONVER_MODE           ADC_CFG1_CONV_MOD_CONTINUOUS                   /**< ADCѭ��ɨ��ת�� */
-#define ADC_DISCONTINUOUS_CONVER_MODE        ADC_CFG1_CONV_MOD_DISCONTINUOUS                /**< ADCѭ�����ת�� */
+/* ADC转换模式 */
+#define ADC_SINGLE_CONVER_MODE               ADC_CFG1_CONV_MOD_SINGLE                       /**< ADC单次扫描转换 */
+#define ADC_CONTINUOUS_CONVER_MODE           ADC_CFG1_CONV_MOD_CONTINUOUS                   /**< ADC循环扫描转换 */
+#define ADC_DISCONTINUOUS_CONVER_MODE        ADC_CFG1_CONV_MOD_DISCONTINUOUS                /**< ADC循环间断转换 */
 
-/* ADCͨ��ɨ�跽�� */
-#define ADC_SCAN_DIR_FORWARD                 (0x00000000U)                                  /**< ADCת��ͨ��: ����ɨ�� */
-#define ADC_SCAN_DIR_BACKWARD                ADC_CFG1_SDIR                                  /**< ADCת��ͨ��: ����ɨ�� */
+/* ADC通道扫描方向 */
+#define ADC_SCAN_DIR_FORWARD                 (0x00000000U)                                  /**< ADC转换通道: 正向扫描 */
+#define ADC_SCAN_DIR_BACKWARD                ADC_CFG1_SDIR                                  /**< ADC转换通道: 反向扫描 */
 
-/* ADCת������ģʽ: ������ */
-#define ADC_TRIG_SW                          ADC_CFG1_TRIGEN_SW                             /**< ����������ʽ                 */
-#define ADC_TRIG_HW_EDGE_RISING              ADC_CFG1_TRIGEN_HW_EDGE_RISING                 /**< �ⲿӲ������ʹ��: �����ش��� */
-#define ADC_TRIG_HW_EDGE_FALLING             ADC_CFG1_TRIGEN_HW_EDGE_FALLING                /**< �ⲿӲ������ʹ��: �½��ش��� */
-#define ADC_TRIG_HW_EDGE_BOTH                ADC_CFG1_TRIGEN_HW_EDGE_BOTH                   /**< �ⲿӲ������ʹ��: ˫�ش���   */
+/* ADC转换触发模式: 触发沿 */
+#define ADC_TRIG_SW                          ADC_CFG1_TRIGEN_SW                             /**< 软件触发方式                 */
+#define ADC_TRIG_HW_EDGE_RISING              ADC_CFG1_TRIGEN_HW_EDGE_RISING                 /**< 外部硬件触发使能: 上升沿触发 */
+#define ADC_TRIG_HW_EDGE_FALLING             ADC_CFG1_TRIGEN_HW_EDGE_FALLING                /**< 外部硬件触发使能: 下降沿触发 */
+#define ADC_TRIG_HW_EDGE_BOTH                ADC_CFG1_TRIGEN_HW_EDGE_BOTH                   /**< 外部硬件触发使能: 双沿触发   */
 
-/*  ADCת������Դ */
-#define ADC_EXTRIG_TIM1_TRGO                 ADC_CFG1_TRIG_TIM1_TRGO                        /**< ADC����Դ: TIM1 TRGO      */
-#define ADC_EXTRIG_TIM1_OC4_ADC              ADC_CFG1_TRIG_TIM1_OC4_ADC                     /**< ADC����Դ: TIM1 OC4       */
-#define ADC_EXTRIG_TIM3_TRGO                 ADC_CFG1_TRIG_TIM3_TRGO                        /**< ADC����Դ: TIM3 TRGO      */
-#define ADC_EXTRIG_EXTI7                     ADC_CFG1_TRIG_EXTI7                            /**< ADC����Դ: �ⲿ�ж�EXTI_7 */
+/*  ADC转换触发源 */
+#define ADC_EXTRIG_TIM1_TRGO                 ADC_CFG1_TRIG_TIM1_TRGO                        /**< ADC触发源: TIM1 TRGO      */
+#define ADC_EXTRIG_TIM1_OC4_ADC              ADC_CFG1_TRIG_TIM1_OC4_ADC                     /**< ADC触发源: TIM1 OC4       */
+#define ADC_EXTRIG_TIM3_TRGO                 ADC_CFG1_TRIG_TIM3_TRGO                        /**< ADC触发源: TIM3 TRGO      */
+#define ADC_EXTRIG_EXTI7                     ADC_CFG1_TRIG_EXTI7                            /**< ADC触发源: 外部中断EXTI_7 */
 
-/* ADCת�������ADC_DR�Ĵ������ݴ洢��ʽ */
-#define ADC_OVRN_MODE_PRESERVED              (0x00000000U)                                  /**< ADC_DR�Ĵ�������ԭ���� */
-#define ADC_OVRN_MODE_OVERWRITTEN            ADC_CFG1_OVRN_MOD                              /**< ADC_DR�Ĵ������������� */
+/* ADC转换溢出后ADC_DR寄存器数据存储方式 */
+#define ADC_OVRN_MODE_PRESERVED              (0x00000000U)                                  /**< ADC_DR寄存器保留原数据 */
+#define ADC_OVRN_MODE_OVERWRITTEN            ADC_CFG1_OVRN_MOD                              /**< ADC_DR寄存器覆盖新数据 */
 
-/* ADC����ʱ����� */
-#define ADC_SAMPTIME_3CYCLES                 ADC_SAMPT_SAMPT_3CYCLES                        /**< ����ʱ��Ϊ3��ʱ������    */
-#define ADC_SAMPTIME_7CYCLES                 ADC_SAMPT_SAMPT_7CYCLES                        /**< ����ʱ��Ϊ7��ʱ������    */
-#define ADC_SAMPTIME_12CYCLES                ADC_SAMPT_SAMPT_12CYCLES                       /**< ����ʱ��Ϊ12��ʱ������   */
-#define ADC_SAMPTIME_19CYCLES                ADC_SAMPT_SAMPT_19CYCLES                       /**< ����ʱ��Ϊ19��ʱ������   */
-#define ADC_SAMPTIME_39CYCLES                ADC_SAMPT_SAMPT_39CYCLES                       /**< ����ʱ��Ϊ39��ʱ������   */
-#define ADC_SAMPTIME_79CYCLES                ADC_SAMPT_SAMPT_79CYCLES                       /**< ����ʱ��Ϊ79��ʱ������   */
-#define ADC_SAMPTIME_119CYCLES               ADC_SAMPT_SAMPT_119CYCLES                      /**< ����ʱ��Ϊ119��ʱ������  */
-#define ADC_SAMPTIME_159CYCLES               ADC_SAMPT_SAMPT_159CYCLES                      /**< ����ʱ��Ϊ159��ʱ������  */
-#define ADC_SAMPTIME_239CYCLES               ADC_SAMPT_SAMPT_239CYCLES                      /**< ����ʱ��Ϊ239��ʱ������  */
-#define ADC_SAMPTIME_319CYCLES               ADC_SAMPT_SAMPT_319CYCLES                      /**< ����ʱ��Ϊ319��ʱ������  */
-#define ADC_SAMPTIME_479CYCLES               ADC_SAMPT_SAMPT_479CYCLES                      /**< ����ʱ��Ϊ479��ʱ������  */
-#define ADC_SAMPTIME_639CYCLES               ADC_SAMPT_SAMPT_639CYCLES                      /**< ����ʱ��Ϊ639��ʱ������  */
-#define ADC_SAMPTIME_959CYCLES               ADC_SAMPT_SAMPT_959CYCLES                      /**< ����ʱ��Ϊ959��ʱ������  */
-#define ADC_SAMPTIME_1279CYCLES              ADC_SAMPT_SAMPT_1279CYCLES                     /**< ����ʱ��Ϊ1279��ʱ������ */
-#define ADC_SAMPTIME_1919CYCLES              ADC_SAMPT_SAMPT_1919CYCLES                     /**< ����ʱ��Ϊ1919��ʱ������ */
+/* ADC采样时间参数 */
+#define ADC_SAMPTIME_3CYCLES                 ADC_SAMPT_SAMPT_3CYCLES                        /**< 采样时间为3个时钟周期    */
+#define ADC_SAMPTIME_7CYCLES                 ADC_SAMPT_SAMPT_7CYCLES                        /**< 采样时间为7个时钟周期    */
+#define ADC_SAMPTIME_12CYCLES                ADC_SAMPT_SAMPT_12CYCLES                       /**< 采样时间为12个时钟周期   */
+#define ADC_SAMPTIME_19CYCLES                ADC_SAMPT_SAMPT_19CYCLES                       /**< 采样时间为19个时钟周期   */
+#define ADC_SAMPTIME_39CYCLES                ADC_SAMPT_SAMPT_39CYCLES                       /**< 采样时间为39个时钟周期   */
+#define ADC_SAMPTIME_79CYCLES                ADC_SAMPT_SAMPT_79CYCLES                       /**< 采样时间为79个时钟周期   */
+#define ADC_SAMPTIME_119CYCLES               ADC_SAMPT_SAMPT_119CYCLES                      /**< 采样时间为119个时钟周期  */
+#define ADC_SAMPTIME_159CYCLES               ADC_SAMPT_SAMPT_159CYCLES                      /**< 采样时间为159个时钟周期  */
+#define ADC_SAMPTIME_239CYCLES               ADC_SAMPT_SAMPT_239CYCLES                      /**< 采样时间为239个时钟周期  */
+#define ADC_SAMPTIME_319CYCLES               ADC_SAMPT_SAMPT_319CYCLES                      /**< 采样时间为319个时钟周期  */
+#define ADC_SAMPTIME_479CYCLES               ADC_SAMPT_SAMPT_479CYCLES                      /**< 采样时间为479个时钟周期  */
+#define ADC_SAMPTIME_639CYCLES               ADC_SAMPT_SAMPT_639CYCLES                      /**< 采样时间为639个时钟周期  */
+#define ADC_SAMPTIME_959CYCLES               ADC_SAMPT_SAMPT_959CYCLES                      /**< 采样时间为959个时钟周期  */
+#define ADC_SAMPTIME_1279CYCLES              ADC_SAMPT_SAMPT_1279CYCLES                     /**< 采样时间为1279个时钟周期 */
+#define ADC_SAMPTIME_1919CYCLES              ADC_SAMPT_SAMPT_1919CYCLES                     /**< 采样时间为1919个时钟周期 */
 
-/* ADCת��ͨ�� */
-#define ADC_CHANNEL_NONE                     (0x00000000U)                                  /**< ADC ת��ͨ�����     */ 
-#define ADC_CHANNEL_0                        ADC_CHCFG_CHN0                                 /**< ADC ת��ͨ��IN0      */
-#define ADC_CHANNEL_1                        ADC_CHCFG_CHN1                                 /**< ADC ת��ͨ��IN1      */
-#define ADC_CHANNEL_2                        ADC_CHCFG_CHN2                                 /**< ADC ת��ͨ��IN2      */
-#define ADC_CHANNEL_3                        ADC_CHCFG_CHN3                                 /**< ADC ת��ͨ��IN3      */
-#define ADC_CHANNEL_4                        ADC_CHCFG_CHN4                                 /**< ADC ת��ͨ��IN4      */
-#define ADC_CHANNEL_5                        ADC_CHCFG_CHN5                                 /**< ADC ת��ͨ��IN5      */
-#define ADC_CHANNEL_6                        ADC_CHCFG_CHN6                                 /**< ADC ת��ͨ��IN6      */
-#define ADC_CHANNEL_7                        ADC_CHCFG_CHN7                                 /**< ADC ת��ͨ��IN7      */
-#define ADC_CHANNEL_8                        ADC_CHCFG_CHN8                                 /**< ADC ת��ͨ��IN8      */
-#define ADC_CHANNEL_VBGR                     ADC_CHCFG_CHN8                                 /**< ADC �ڲ�ת��ͨ��VBGR */
-#define ADC_CHANNEL_ALL                      ADC_CHCFG_CHN                                  /**< ADC ȫ��ת��ͨ��     */ 
+/* ADC转换通道 */
+#define ADC_CHANNEL_NONE                     (0x00000000U)                                  /**< ADC 转换通道清除     */ 
+#define ADC_CHANNEL_0                        ADC_CHCFG_CHN0                                 /**< ADC 转换通道IN0      */
+#define ADC_CHANNEL_1                        ADC_CHCFG_CHN1                                 /**< ADC 转换通道IN1      */
+#define ADC_CHANNEL_2                        ADC_CHCFG_CHN2                                 /**< ADC 转换通道IN2      */
+#define ADC_CHANNEL_3                        ADC_CHCFG_CHN3                                 /**< ADC 转换通道IN3      */
+#define ADC_CHANNEL_4                        ADC_CHCFG_CHN4                                 /**< ADC 转换通道IN4      */
+#define ADC_CHANNEL_5                        ADC_CHCFG_CHN5                                 /**< ADC 转换通道IN5      */
+#define ADC_CHANNEL_6                        ADC_CHCFG_CHN6                                 /**< ADC 转换通道IN6      */
+#define ADC_CHANNEL_7                        ADC_CHCFG_CHN7                                 /**< ADC 转换通道IN7      */
+#define ADC_CHANNEL_8                        ADC_CHCFG_CHN8                                 /**< ADC 转换通道IN8      */
+#define ADC_CHANNEL_VBGR                     ADC_CHCFG_CHN8                                 /**< ADC 内部转换通道VBGR */
+#define ADC_CHANNEL_ALL                      ADC_CHCFG_CHN                                  /**< ADC 全部转换通道     */ 
 
-/* ADCģ�⿴�Ź����ͨ�� */
-#define ADC_AWDG_CHANNEL_NONE                (0x00000000U)                                  /**< ADC ģ�⿴�Ź����ͨ����� */ 
-#define ADC_AWDG_CHANNEL_0                   ADC_AWDGCR_CHN0                                /**< ADC ģ�⿴�Ź����ͨ��0    */ 
-#define ADC_AWDG_CHANNEL_1                   ADC_AWDGCR_CHN1                                /**< ADC ģ�⿴�Ź����ͨ��1    */ 
-#define ADC_AWDG_CHANNEL_2                   ADC_AWDGCR_CHN2                                /**< ADC ģ�⿴�Ź����ͨ��2    */ 
-#define ADC_AWDG_CHANNEL_3                   ADC_AWDGCR_CHN3                                /**< ADC ģ�⿴�Ź����ͨ��3    */ 
-#define ADC_AWDG_CHANNEL_4                   ADC_AWDGCR_CHN4                                /**< ADC ģ�⿴�Ź����ͨ��4    */ 
-#define ADC_AWDG_CHANNEL_5                   ADC_AWDGCR_CHN5                                /**< ADC ģ�⿴�Ź����ͨ��5    */ 
-#define ADC_AWDG_CHANNEL_6                   ADC_AWDGCR_CHN6                                /**< ADC ģ�⿴�Ź����ͨ��6    */ 
-#define ADC_AWDG_CHANNEL_7                   ADC_AWDGCR_CHN7                                /**< ADC ģ�⿴�Ź����ͨ��7    */ 
-#define ADC_AWDG_CHANNEL_8                   ADC_AWDGCR_CHN8                                /**< ADC ģ�⿴�Ź����ͨ��8    */ 
-#define ADC_AWDG_CHANNEL_VBGR                ADC_AWDGCR_CHN8                                /**< ADC ģ�⿴�Ź����ͨ��VBGR */ 
-#define ADC_AWDG_CHANNEL_ALL                 ADC_AWDGCR_CHN                                 /**< ADC ȫ��ת��ͨ��           */ 
+/* ADC模拟看门狗监测通道 */
+#define ADC_AWDG_CHANNEL_NONE                (0x00000000U)                                  /**< ADC 模拟看门狗监测通道清除 */ 
+#define ADC_AWDG_CHANNEL_0                   ADC_AWDGCR_CHN0                                /**< ADC 模拟看门狗监测通道0    */ 
+#define ADC_AWDG_CHANNEL_1                   ADC_AWDGCR_CHN1                                /**< ADC 模拟看门狗监测通道1    */ 
+#define ADC_AWDG_CHANNEL_2                   ADC_AWDGCR_CHN2                                /**< ADC 模拟看门狗监测通道2    */ 
+#define ADC_AWDG_CHANNEL_3                   ADC_AWDGCR_CHN3                                /**< ADC 模拟看门狗监测通道3    */ 
+#define ADC_AWDG_CHANNEL_4                   ADC_AWDGCR_CHN4                                /**< ADC 模拟看门狗监测通道4    */ 
+#define ADC_AWDG_CHANNEL_5                   ADC_AWDGCR_CHN5                                /**< ADC 模拟看门狗监测通道5    */ 
+#define ADC_AWDG_CHANNEL_6                   ADC_AWDGCR_CHN6                                /**< ADC 模拟看门狗监测通道6    */ 
+#define ADC_AWDG_CHANNEL_7                   ADC_AWDGCR_CHN7                                /**< ADC 模拟看门狗监测通道7    */ 
+#define ADC_AWDG_CHANNEL_8                   ADC_AWDGCR_CHN8                                /**< ADC 模拟看门狗监测通道8    */ 
+#define ADC_AWDG_CHANNEL_VBGR                ADC_AWDGCR_CHN8                                /**< ADC 模拟看门狗监测通道VBGR */ 
+#define ADC_AWDG_CHANNEL_ALL                 ADC_AWDGCR_CHN                                 /**< ADC 全部转换通道           */ 
 
-/* ADC�ڲ�ͨ��ʹ�� */
-#define ADC_INTERNAL_CHANNEL_VBGREN          ADC_CFG2_VBGREN                                /**< ADC �ڲ�ͨ��VBGRʹ�� */ 
+/* ADC内部通道使能 */
+#define ADC_INTERNAL_CHANNEL_VBGREN          ADC_CFG2_VBGREN                                /**< ADC 内部通道VBGR使能 */ 
 
-/* ADC�ж�Դ���壺IER�жϼĴ��� */
-#define ADC_INTERRUPT_EOSAMP                 ADC_IER_EOSAMPIE                               /**< ADC���������ж�           */
-#define ADC_INTERRUPT_EOC                    ADC_IER_EOCIE                                  /**< ADC��ͨ��ת������ж�     */
-#define ADC_INTERRUPT_EOS                    ADC_IER_EOSIE                                  /**< ADCͨ������ת������ж�   */
-#define ADC_INTERRUPT_OVRN                   ADC_IER_OVRNIE                                 /**< ADC��������ж�           */
-#define ADC_INTERRUPT_AWDG                   ADC_IER_AWDGIE                                 /**< ADCģ�⿴�Ź���ѹ����ж� */
-#define ADC_INTERRUPT_EOCAL                  ADC_IER_EOCALIE                                /**< ADCУ׼�����ж�           */
+/* ADC中断源定义：IER中断寄存器 */
+#define ADC_INTERRUPT_EOSAMP                 ADC_IER_EOSAMPIE                               /**< ADC采样结束中断           */
+#define ADC_INTERRUPT_EOC                    ADC_IER_EOCIE                                  /**< ADC单通道转换完成中断     */
+#define ADC_INTERRUPT_EOS                    ADC_IER_EOSIE                                  /**< ADC通道序列转换完成中断   */
+#define ADC_INTERRUPT_OVRN                   ADC_IER_OVRNIE                                 /**< ADC数据溢出中断           */
+#define ADC_INTERRUPT_AWDG                   ADC_IER_AWDGIE                                 /**< ADC模拟看门狗电压监控中断 */
+#define ADC_INTERRUPT_EOCAL                  ADC_IER_EOCALIE                                /**< ADC校准结束中断           */
 
-/* ADC״̬���壺ISR״̬�Ĵ��� */
-#define ADC_FLAG_EOSAMP                      ADC_ISR_EOSAMP                                 /**< ADC��������״̬           */
-#define ADC_FLAG_EOC                         ADC_ISR_EOC                                    /**< ADC��ͨ��ת�����״̬     */
-#define ADC_FLAG_EOS                         ADC_ISR_EOS                                    /**< ADCͨ������ת�����״̬   */
-#define ADC_FLAG_OVRN                        ADC_ISR_OVRN                                   /**< ADC�������״̬           */
-#define ADC_FLAG_AWDG                        ADC_ISR_AWDG                                   /**< ADCģ�⿴�Ź���ص�ѹ״̬ */
-#define ADC_FLAG_EOCAL                       ADC_ISR_EOCAL                                  /**< ADCУ׼״̬               */
+/* ADC状态定义：ISR状态寄存器 */
+#define ADC_FLAG_EOSAMP                      ADC_ISR_EOSAMP                                 /**< ADC采样结束状态           */
+#define ADC_FLAG_EOC                         ADC_ISR_EOC                                    /**< ADC单通道转换完成状态     */
+#define ADC_FLAG_EOS                         ADC_ISR_EOS                                    /**< ADC通道序列转换完成状态   */
+#define ADC_FLAG_OVRN                        ADC_ISR_OVRN                                   /**< ADC数据溢出状态           */
+#define ADC_FLAG_AWDG                        ADC_ISR_AWDG                                   /**< ADC模拟看门狗监控电压状态 */
+#define ADC_FLAG_EOCAL                       ADC_ISR_EOCAL                                  /**< ADC校准状态               */
 #define ADC_FLAG_ALL                         (ADC_ISR_EOSAMP | ADC_ISR_EOC | ADC_ISR_EOS \
-                                              | ADC_ISR_OVRN | ADC_ISR_AWDG | ADC_ISR_EOCAL)/**< ADCȫ��״̬               */
+                                              | ADC_ISR_OVRN | ADC_ISR_AWDG | ADC_ISR_EOCAL)/**< ADC全部状态               */
                                               
-/* ADC����ģʽ���� */
-#define ADC_MODE_INTERVAL                    (0x00000000U)                                  /**< ADC��Ъ����ģʽ           */
-#define ADC_MODE_NORMAL                      ADC_CFG3_MODE                                  /**< ADC��������ģʽ           */
+/* ADC工作模式定义 */
+#define ADC_MODE_INTERVAL                    (0x00000000U)                                  /**< ADC间歇工作模式           */
+#define ADC_MODE_NORMAL                      ADC_CFG3_MODE                                  /**< ADC正常工作模式           */
                                               
 
-/* VBGRУ׼�������� */  
-#define VBGR_CAL_ADDR                        ((uint16_t *)(BGR_CAL))                        /**< VBGRУ׼�����洢��ַ       */
-#define VBGR_CAL_VREF                        (3300U)                                        /**< VBGRУ׼���òο���ѹ��3.3V */
+/* VBGR校准参数定义 */  
+#define VBGR_CAL_ADDR                        ((uint16_t *)(BGR_CAL))                        /**< VBGR校准参数存储地址       */
+#define VBGR_CAL_VREF                        (3300U)                                        /**< VBGR校准采用参考电压：3.3V */
 
-/* �ȴ��ڲ�ͨ��VBGR�������ȶ�ʱ�� 90us */
-#define ADC_VBGR_CHANNEL_DELAY               (90U)                                          /**< VBGRͨ�������ȶ�ʱ�� */
+/* 等待内部通道VBGR的启动稳定。稳定时间最大值参考CIU32F003的数据手册(tADC_BUF参数) */
+#define ADC_VBGR_CHANNEL_DELAY               (22U)                                          /**< VBGR通道启动稳定时间：22us */
 
-/* ADCʹ���ȶ�ʱ�䣬��ȴ�1us�ȶ�ʱ�� */
-#define ADC_EN_DELAY                         (1U)                                           /**< ADCʹ���ȶ�ʱ�� */
+/* ADC使能稳定时间，需等待1us稳定时间 */
+#define ADC_EN_DELAY                         (1U)                                           /**< ADC使能稳定时间 */
 
-/* ADC������ֵ */
-#define ADC_CONVER_SCALE                     (4095U)                                        /**< ADC������ֵ������ADC��ѹת������ */
+/* ADC最大采样值 */
+#define ADC_CONVER_SCALE                     (4095U)                                        /**< ADC最大采样值，用于ADC电压转换计算 */
 
 /** 
 * @} 
@@ -176,14 +176,14 @@
 /************************************************************************************************/
 /**
 * @defgroup ADC_External_Functions ADC External Functions
-* @brief    ADC���⺯��
+* @brief    ADC对外函数
 * @{
 *
 */
 /************************************************************************************************/
 /** 
-* @brief  ʹ��ADC
-* @retval ��
+* @brief  使能ADC
+* @retval 无
 */
 __STATIC_INLINE void std_adc_enable(void)
 {
@@ -191,8 +191,8 @@ __STATIC_INLINE void std_adc_enable(void)
 }
 
 /** 
-* @brief  ��ֹADC
-* @retval ��
+* @brief  禁止ADC
+* @retval 无
 */
 __STATIC_INLINE void std_adc_disable(void)
 {
@@ -200,10 +200,10 @@ __STATIC_INLINE void std_adc_disable(void)
 }
 
 /** 
-* @brief  ��ȡADCʹ��λ״̬
-* @retval uint32_t �����߼�����ʽ���жϽ��
-*             @arg ��0�� ��ʾADC����ʹ��״̬
-*             @arg 0����ʾADC���ڽ�ֹ״̬
+* @brief  获取ADC使能位状态
+* @retval uint32_t 返回逻辑表达式的判断结果
+*             @arg 非0： 表示ADC处于使能状态
+*             @arg 0：表示ADC处于禁止状态
 */
 __STATIC_INLINE uint32_t std_adc_get_enable_status(void)
 {
@@ -211,9 +211,9 @@ __STATIC_INLINE uint32_t std_adc_get_enable_status(void)
 }
 
 /** 
-* @brief  ʹ��ADCУ׼
-* @note   ��ADEN=1��ADC�ȶ�����START=0��STOP=0��ADDIS=0��������ͨ��������CALENλ��1
-* @retval ��
+* @brief  使能ADC校准
+* @note   当ADEN=1，ADC稳定后，且START=0、STOP=0、ADDIS=0，才允许通过软件将CALEN位置1
+* @retval 无
 */
 __STATIC_INLINE void std_adc_calibration_enable(void)
 {
@@ -221,8 +221,8 @@ __STATIC_INLINE void std_adc_calibration_enable(void)
 }
 
 /** 
-* @brief  ����ADCת�� 
-* @retval ��
+* @brief  启动ADC转换 
+* @retval 无
 */
 __STATIC_INLINE void std_adc_start_conversion(void)
 {
@@ -230,10 +230,10 @@ __STATIC_INLINE void std_adc_start_conversion(void)
 }
 
 /** 
-* @brief  ��ȡADC����״̬
-* @retval uint32_t ����ADC����״̬
-*             @arg ��0�� ��ʾADC�����ڹ���״̬
-*             @arg 0����ʾADC����δ����״̬
+* @brief  获取ADC工作状态
+* @retval uint32_t 返回ADC工作状态
+*             @arg 非0： 表示ADC正处于工作状态
+*             @arg 0：表示ADC处于未工作状态
 */
 __STATIC_INLINE uint32_t std_adc_get_conversion_status(void)
 {
@@ -241,9 +241,9 @@ __STATIC_INLINE uint32_t std_adc_get_conversion_status(void)
 }
 
 /** 
-* @brief  ADCֹͣת��
-* @note   ����START=1��ADDIS=0ʱ��������STOPλ��1��Ч
-* @retval ��
+* @brief  ADC停止转换
+* @note   仅当START=1且ADDIS=0时，软件将STOP位置1生效
+* @retval 无
 */
 __STATIC_INLINE void std_adc_stop_conversion(void)
 {
@@ -251,15 +251,15 @@ __STATIC_INLINE void std_adc_stop_conversion(void)
 }
 
 /** 
-* @brief  ADC�ж�ʹ��
-* @param  interrupt ADC�ж�Դ   
+* @brief  ADC中断使能
+* @param  interrupt ADC中断源   
 *             @arg ADC_INTERRUPT_EOSAMP
 *             @arg ADC_INTERRUPT_EOC
 *             @arg ADC_INTERRUPT_EOS
 *             @arg ADC_INTERRUPT_OVRN
 *             @arg ADC_INTERRUPT_AWDG
 *             @arg ADC_INTERRUPT_EOCAL
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_interrupt_enable(uint32_t interrupt)
 {
@@ -267,15 +267,15 @@ __STATIC_INLINE void std_adc_interrupt_enable(uint32_t interrupt)
 }
 
 /** 
-* @brief  ADC�жϽ�ֹ
-* @param  interrupt ADC�ж�Դ   
+* @brief  ADC中断禁止
+* @param  interrupt ADC中断源   
 *             @arg ADC_INTERRUPT_EOSAMP
 *             @arg ADC_INTERRUPT_EOC
 *             @arg ADC_INTERRUPT_EOS
 *             @arg ADC_INTERRUPT_OVRN
 *             @arg ADC_INTERRUPT_AWDG
 *             @arg ADC_INTERRUPT_EOCAL
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_interrupt_disable(uint32_t interrupt)
 {
@@ -283,17 +283,17 @@ __STATIC_INLINE void std_adc_interrupt_disable(uint32_t interrupt)
 }
 
 /** 
-* @brief  ��ȡADC�ж�Դʹ��״̬
-* @param  interrupt ADC�ж�Դ��Ϣ 
+* @brief  获取ADC中断源使能状态
+* @param  interrupt ADC中断源信息 
 *             @arg ADC_INTERRUPT_EOSAMP
 *             @arg ADC_INTERRUPT_EOC
 *             @arg ADC_INTERRUPT_EOS
 *             @arg ADC_INTERRUPT_OVRN
 *             @arg ADC_INTERRUPT_AWDG
 *             @arg ADC_INTERRUPT_EOCAL
-* @retval uint32_t �����ж�Դʹ��״̬
-*             @arg ��0�� ��ʾָ�����ж�ʹ��
-*             @arg 0����ʾָ�����ж�δʹ��
+* @retval uint32_t 返回中断源使能状态
+*             @arg 非0： 表示指定的中断使能
+*             @arg 0：表示指定的中断未使能
 */
 
 __STATIC_INLINE uint32_t std_adc_get_interrupt_enable(uint32_t interrupt)
@@ -302,17 +302,17 @@ __STATIC_INLINE uint32_t std_adc_get_interrupt_enable(uint32_t interrupt)
 }
 
 /** 
-* @brief  ��ȡADC��־״̬
-* @param  flag ��ȡADC��־
+* @brief  获取ADC标志状态
+* @param  flag 获取ADC标志
 *             @arg ADC_FLAG_EOSAMP
 *             @arg ADC_FLAG_EOC
 *             @arg ADC_FLAG_EOS
 *             @arg ADC_FLAG_OVRN
 *             @arg ADC_FLAG_AWDG
 *             @arg ADC_FLAG_EOCAL
-* @retval uint32_t ���ر�־λ״̬
-*             @arg ��0����ʾ��ǰ��־Ϊ��λ״̬
-*             @arg 0����ʾ��ǰ��־Ϊ���״̬
+* @retval uint32_t 返回标志位状态
+*             @arg 非0：表示当前标志为置位状态
+*             @arg 0：表示当前标志为清除状态
 */
 __STATIC_INLINE uint32_t std_adc_get_flag(uint32_t flag)
 {
@@ -320,15 +320,15 @@ __STATIC_INLINE uint32_t std_adc_get_flag(uint32_t flag)
 }
 
 /** 
-* @brief  ���ADC��־
-* @param  flag ���ADC��־
+* @brief  清除ADC标志
+* @param  flag 清除ADC标志
 *             @arg ADC_FLAG_EOSAMP
 *             @arg ADC_FLAG_EOC
 *             @arg ADC_FLAG_EOS
 *             @arg ADC_FLAG_OVRN
 *             @arg ADC_FLAG_AWDG
 *             @arg ADC_FLAG_EOCAL
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_clear_flag(uint32_t flag)
 {
@@ -336,13 +336,13 @@ __STATIC_INLINE void std_adc_clear_flag(uint32_t flag)
 }
 
 /** 
-* @brief  ����ADCת��ģʽ
-* @param  conversion_mode ת��ģʽѡ��
+* @brief  配置ADC转换模式
+* @param  conversion_mode 转换模式选择
 *             @arg ADC_SINGLE_CONVER_MODE
 *             @arg ADC_CONTINUOUS_CONVER_MODE
 *             @arg ADC_DISCONTINUOUS_CONVER_MODE
-* @note   ��START=0ʱ�������Դ�λ��ִ��д������Ч
-* @retval ��
+* @note   当START=0时，软件对此位域执行写操作生效
+* @retval 无
 */
 __STATIC_INLINE void std_adc_conversion_mode_config(uint32_t conversion_mode)
 {
@@ -350,13 +350,13 @@ __STATIC_INLINE void std_adc_conversion_mode_config(uint32_t conversion_mode)
 }
 
 /** 
-* @brief  ADCͨ��ʹ��
-* @param  channel ͨ����ѡ��
+* @brief  ADC通道使能
+* @param  channel 通道号选择
 *             @arg ADC_CHANNEL_0
 *             @arg ADC_CHANNEL_1
 *             @arg ...
 *             @arg ADC_CHANNEL_ALL
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_fix_sequence_channel_enable(uint32_t channel)
 {
@@ -364,13 +364,13 @@ __STATIC_INLINE void std_adc_fix_sequence_channel_enable(uint32_t channel)
 }
 
 /** 
-* @brief  ADCͨ����ֹ
-* @param  channel ��ֹͨ��ѡ��
+* @brief  ADC通道禁止
+* @param  channel 禁止通道选择
 *             @arg ADC_CHANNEL_0
 *             @arg ADC_CHANNEL_1
 *             @arg ...
 *             @arg ADC_CHANNEL_ALL
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_fix_sequence_channel_disable(uint32_t channel)
 {
@@ -378,8 +378,8 @@ __STATIC_INLINE void std_adc_fix_sequence_channel_disable(uint32_t channel)
 }
 
 /** 
-* @brief  ����ADC����ԴΪ��������
-* @retval ��
+* @brief  配置ADC触发源为软件触发
+* @retval 无
 */
 __STATIC_INLINE void std_adc_trig_sw(void)
 {
@@ -387,19 +387,19 @@ __STATIC_INLINE void std_adc_trig_sw(void)
 }
 
 /** 
-* @brief  ����ADC�����ź�Դ�ͼ���
-* @param  trig_edge ��������ѡ��
-*             @arg ADC_TRIG_SW(����������ʽ)
+* @brief  配置ADC触发信号源和极性
+* @param  trig_edge 触发极性选择
+*             @arg ADC_TRIG_SW(软件触发方式)
 *             @arg ADC_TRIG_HW_EDGE_RISING
 *             @arg ADC_TRIG_HW_EDGE_FALLING
 *             @arg ADC_TRIG_HW_EDGE_BOTH
-* @param  trig_source �ⲿ����Դ��ѡ��
+* @param  trig_source 外部触发源性选择
 *             @arg ADC_EXTRIG_TIM1_TRGO
 *             @arg ADC_EXTRIG_TIM1_OC4_ADC
 *             @arg ADC_EXTRIG_TIM3_TRGO
 *             @arg ADC_EXTRIG_EXTI7
-* @note   ��ѡ��ADC_TRIG_SW(����������ʽ)ʱ������Դ���������塣
-* @retval ��
+* @note   当选择ADC_TRIG_SW(软件触发方式)时，触发源参数无意义。
+* @retval 无
 */
 __STATIC_INLINE void std_adc_trig_config(uint32_t trig_edge,uint32_t trig_source)
 {
@@ -407,12 +407,12 @@ __STATIC_INLINE void std_adc_trig_config(uint32_t trig_edge,uint32_t trig_source
 }
 
 /** 
-* @brief  ADC����ʱ�����1����
-* @param  sample_time ����ʱ��ѡ��
+* @brief  ADC采样时间参数1配置
+* @param  sample_time 采样时间选择
 *           @arg ADC_SAMPTIME_3CYCLES
 *           @arg ...
 *           @arg ADC_SAMPTIME_1919CYCLES 
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_sampt_time_config(uint32_t sample_time)
 {
@@ -420,14 +420,14 @@ __STATIC_INLINE void std_adc_sampt_time_config(uint32_t sample_time)
 }
 
 /** 
-* @brief  ����ADC_CKʱ�ӷ�Ƶ
-* @param  presc ADC_CKʱ��Դ��Ƶϵ��
-*             @arg  ADC_CK_DIV1�� ADC_CK ����Ƶ
-*             @arg  ADC_CK_DIV2�� ADC_CK 2��Ƶ
-*             @arg  ADC_CK_DIV3�� ADC_CK 3��Ƶ
+* @brief  配置ADC_CK时钟分频
+* @param  presc ADC_CK时钟源分频系数
+*             @arg  ADC_CK_DIV1： ADC_CK 不分频
+*             @arg  ADC_CK_DIV2： ADC_CK 2分频
+*             @arg  ADC_CK_DIV3： ADC_CK 3分频
 *             @arg ...
-*             @arg  ADC_CK_DIV64��ADC_CK 64��Ƶ
-* @retval ��
+*             @arg  ADC_CK_DIV64：ADC_CK 64分频
+* @retval 无
 */
 __STATIC_INLINE void std_adc_clock_config(uint32_t presc)
 {
@@ -435,9 +435,9 @@ __STATIC_INLINE void std_adc_clock_config(uint32_t presc)
 }
 
 /** 
-* @brief  ����ADCУ׼ϵ��
-* @param  calibration_factor ������ΧΪ0x00~0x3F
-* @retval ��
+* @brief  配置ADC校准系数
+* @param  calibration_factor 参数范围为0x00~0x3F
+* @retval 无
 */
 __STATIC_INLINE void std_adc_calibration_factor_config(uint32_t calibration_factor)
 {
@@ -445,9 +445,18 @@ __STATIC_INLINE void std_adc_calibration_factor_config(uint32_t calibration_fact
 }
 
 /** 
-* @brief  ʹ��ADC�ȴ�ģʽ
-* @note   ���ڱ�������δ��ʱ��ȡ��ת�����
-* @retval ��
+* @brief  获取ADC校准系数
+* @retval uint16_t ADC校准系数
+*/
+__STATIC_INLINE uint16_t std_adc_get_calibration_factor(void)
+{
+    return ((uint16_t)(ADC->CALFACT));
+}
+
+/** 
+* @brief  使能ADC等待模式
+* @note   用于避免数据未及时读取，转换溢出
+* @retval 无
 */
 __STATIC_INLINE void std_adc_wait_mode_enable(void)
 {
@@ -455,8 +464,8 @@ __STATIC_INLINE void std_adc_wait_mode_enable(void)
 }
 
 /** 
-* @brief  ��ֹADC�ȴ�ģʽ
-* @retval ��
+* @brief  禁止ADC等待模式
+* @retval 无
 */
 __STATIC_INLINE void std_adc_wait_mode_disable(void)
 {
@@ -464,11 +473,11 @@ __STATIC_INLINE void std_adc_wait_mode_disable(void)
 }
 
 /** 
-* @brief  ����ͨ������ɨ�跽��
-* @param  dir ADCͨ��ɨ�跽��
+* @brief  配置通道序列扫描方向
+* @param  dir ADC通道扫描方向
 *             @arg ADC_SCAN_DIR_FORWARD
 *             @arg ADC_SCAN_DIR_BACKWARD
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_scan_direction_config(uint32_t dir)
 {
@@ -476,11 +485,11 @@ __STATIC_INLINE void std_adc_scan_direction_config(uint32_t dir)
 }
 
 /** 
-* @brief  ����ADC�������������ʽ
-* @param  ovrn_mode ADC�������������ʽ
+* @brief  配置ADC数据溢出管理方式
+* @param  ovrn_mode ADC数据溢出管理方式
 *             @arg ADC_OVRN_MODE_PRESERVED
 *             @arg ADC_OVRN_MODE_OVERWRITTEN
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_ovrn_mode_config(uint32_t ovrn_mode)
 {
@@ -488,8 +497,8 @@ __STATIC_INLINE void std_adc_ovrn_mode_config(uint32_t ovrn_mode)
 }
 
 /** 
-* @brief  ADC�ڲ�ͨ��VBGRʹ��
-* @retval ��
+* @brief  ADC内部通道VBGR使能
+* @retval 无
 */
 __STATIC_INLINE void std_adc_internal_channel_vbgr_enable(void)
 {
@@ -497,8 +506,8 @@ __STATIC_INLINE void std_adc_internal_channel_vbgr_enable(void)
 }
 
 /** 
-* @brief  ADC�ڲ�ͨ��VBGR��ֹ
-* @retval ��
+* @brief  ADC内部通道VBGR禁止
+* @retval 无
 */
 __STATIC_INLINE void std_adc_internal_channel_vbgr_disable(void)
 {
@@ -506,13 +515,13 @@ __STATIC_INLINE void std_adc_internal_channel_vbgr_disable(void)
 }
 
 /** 
-* @brief  ѡ��ADCģ�⿴�Ź����ͨ��
-* @param  channel ADC���Ź����ͨ��ѡ��
+* @brief  选择ADC模拟看门狗监控通道
+* @param  channel ADC看门狗监控通道选择
 *             @arg ADC_AWDG_CHANNEL_NONE
 *             @arg ADC_AWDG_CHANNEL_0
 *             @arg ...
 *             @arg ADC_AWDG_CHANNEL_ALL
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_analog_watchdog_monit_channel(uint32_t channel)
 {
@@ -520,10 +529,10 @@ __STATIC_INLINE void std_adc_analog_watchdog_monit_channel(uint32_t channel)
 }
 
 /** 
-* @brief  ���ÿ��Ź����ͨ����ѹ��ֵ
-* @param  high_threshold ��ֵ����ѡ��ΧΪ 0x000~0xFFF
-* @param  low_threshold  ��ֵ����ѡ��ΧΪ 0x000~0xFFF
-* @retval ��
+* @brief  配置看门狗监控通道电压阈值
+* @param  high_threshold 阈值上限选择范围为 0x000~0xFFF
+* @param  low_threshold  阈值下限选择范围为 0x000~0xFFF
+* @retval 无
 */
 __STATIC_INLINE void std_adc_analog_watchdog_thresholds_config(uint32_t high_threshold, uint32_t low_threshold)
 {
@@ -531,8 +540,8 @@ __STATIC_INLINE void std_adc_analog_watchdog_thresholds_config(uint32_t high_thr
 }
 
 /** 
-* @brief  ��ȡADC����ֵ
-* @retval uint16_t ADCת��ֵ
+* @brief  获取ADC采样值
+* @retval uint16_t ADC转换值
 */
 __STATIC_INLINE uint16_t std_adc_get_conversion_value(void)
 {
@@ -540,9 +549,9 @@ __STATIC_INLINE uint16_t std_adc_get_conversion_value(void)
 }
 
 /** 
-* @brief  ��ȡУ׼��Ĳο���ѹֵ
-* @param  vbgr_sample_data ADC�ɼ�BGR��ת��ֵ
-* @retval uint32_t У׼��Ĳο���ѹֵ
+* @brief  获取校准后的参考电压值
+* @param  vbgr_sample_data ADC采集BGR的转换值
+* @retval uint32_t 校准后的参考电压值
 */
 __STATIC_INLINE uint32_t std_adc_calc_vref_voltage(uint16_t vbgr_sample_data)
 {
@@ -550,18 +559,18 @@ __STATIC_INLINE uint32_t std_adc_calc_vref_voltage(uint16_t vbgr_sample_data)
 }
 
 /** 
-* @brief  ����ADC����ģʽ
-* @param  mode_sel ADC����ģʽ
+* @brief  配置ADC工作模式
+* @param  mode_sel ADC工作模式
 *             @arg ADC_MODE_INTERVAL
 *             @arg ADC_MODE_NORMAL
-* @retval ��
+* @retval 无
 */
 __STATIC_INLINE void std_adc_mode_config(uint32_t mode_sel)
 {
     MODIFY_REG(ADC->CFG3, ADC_CFG3_MODE_MASK, mode_sel);
 }
 
-/* ADCȥ��ʼ������ */
+/* ADC去初始化函数 */
 void std_adc_deinit(void);
 
 /**
