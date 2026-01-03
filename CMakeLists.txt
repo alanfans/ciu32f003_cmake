@@ -19,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set the project name
-set(CMAKE_PROJECT_NAME ciu32f001_cmake)
+set(CMAKE_PROJECT_NAME ciu32f003_cmake)
 
 # Include toolchain file
 include("cmake/gcc-arm-none-eabi.cmake")
