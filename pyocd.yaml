@@ -1,10 +1,12 @@
 pack:
   - HED.CIU32F003_DFP.1.0.0.pack
-
-target_override: ciu32f003
+  
+target:
+  ciu32f003w5sx
+#target_override: ciu32f003f5px
 
 frequency: 1000000
 
 
-#  --target mm32g0001a1tc  --pack MindMotion.MM32G0001_DFP.1.0.1.pack
+#  --target ciu32f003w5sx  --pack HED.CIU32F003_DFP.1.0.0.pack
 #  --config pyocd.yaml
